@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import type {IProject} from "../types/project.ts";
 import {useParams} from "react-router-dom";
 import {getOneProject} from "../http/project.api.ts";
+import TabList from "../components/TabList.tsx";
+import TabItem from "../components/TabItem.tsx";
 
 type ProjectPageParams = {
     id: string;
@@ -29,8 +31,18 @@ const ProjectPage = () => {
 
     return (
         <div>
-            <h1>{project?.name}</h1>
-            <p>{project?.description}</p>
+            <div>
+                <h1>{project?.name}</h1>
+                <p>{project?.description}</p>
+            </div>
+            <TabList activeTabIndex={0} >
+                <TabItem label='Tab #1'>
+                    <p>This is Tab #1</p>
+                </TabItem>
+                <TabItem label='Tab #2'>
+                    <p>This is Tab #2</p>
+                </TabItem>
+            </TabList>
         </div>
     );
 };
