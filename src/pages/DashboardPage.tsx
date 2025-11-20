@@ -1,13 +1,10 @@
-import { useAppSelector} from "../hooks/redux.ts";
+import ProjectList from "../components/ProjectList.tsx";
 
 const DashboardPage = () => {
-    const {  user, isLoading, error } = useAppSelector(state => state.auth);
-
     return (
         <div>
-            {isLoading && <h1>Идет загрузка</h1>}
-            {error && <h1>{error}</h1>}
-            {user && <h1>{JSON.stringify(user)}</h1>}
+            <h1>Проекты</h1>
+            <ProjectList />
         </div>
     );
 };

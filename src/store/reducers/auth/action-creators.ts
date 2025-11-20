@@ -15,7 +15,6 @@ export const loginAction = (email: string, password: string) => async (dispatch:
 
 export const meAction = () => async (dispatch: AppDispatch) => {
     try {
-        console.log('meAction')
         dispatch(authSlice.actions.loginStart());
         const data = await me();
         dispatch(authSlice.actions.setUser(data));

@@ -1,7 +1,8 @@
+import {Link, useNavigate} from "react-router-dom";
+
 import {useAppDispatch, useAppSelector} from "../hooks/redux.ts";
 import {logoutAction} from "../store/reducers/auth/action-creators.ts";
-import {Link, useNavigate} from "react-router-dom";
-import {DASHBOARD_ROUTE, EAST_ROUTE} from "../utils/consts.ts";
+import {DASHBOARD_ROUTE, EAST_ROUTE, LOGIN_ROUTE} from "../utils/consts.ts";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Header = () => {
     }
 
     const handleClick = () => {
-        navigate('/login')
+        navigate(LOGIN_ROUTE)
     }
 
     return (
