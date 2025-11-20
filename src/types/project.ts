@@ -10,14 +10,16 @@ export interface IProject {
 }
 
 // @ts-ignore
-export enum SubscriptionPlan {
-    FREE,
-    PRO
+export enum RoleMember {
+    OWNER,
+    MEMBER,
+    VIEWER
 }
 
 export interface IMember {
     id: string;
+    projectId?: string;
     userId: string;
-    role: SubscriptionPlan;
+    role: RoleMember;
 }
 

@@ -17,7 +17,7 @@ const ProjectList = () => {
 
     const handleClick = () => {
         navigate(CREATE_PROJECT_ROUTE);
-    }
+    };
 
     return (
         <div>

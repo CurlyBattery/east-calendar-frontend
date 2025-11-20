@@ -1,5 +1,5 @@
 import {$host} from "./index.ts";
-import {type IMember, type IProject, SubscriptionPlan} from "../types/project.ts";
+import { type IProject} from "../types/project.ts";
 
 export const getMyProjects = async () => {
     const { data } = await $host.get<IProject[]>('projects');
@@ -19,10 +19,3 @@ export const createProject = async (name: string, description: string) => {
     return data;
 };
 
-export const addMember = async (projectId: string, userId: string, role: SubscriptionPlan) => {
-    const { data } = await $host.post<IMember>(`projects/${projectId}/members`, {
-        userId,
-        role
-    });
-    return data;
-}
