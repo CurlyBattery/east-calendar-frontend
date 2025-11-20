@@ -1,9 +1,18 @@
 import './App.css'
 
-import AppRouter from "./components/AppRouter.tsx";
+import {useAppDispatch} from "./hooks/redux.ts";
+import {useEffect} from "react";
+import {meAction} from "./store/reducers/auth/action-creators.ts";
+import {AppRoutes} from "./components/AppRoutes.tsx";
 
 function App() {
-    return <AppRouter />;
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(meAction());
+    }, [dispatch])
+
+    return <AppRoutes />;
 }
 
 export default App;
