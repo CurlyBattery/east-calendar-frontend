@@ -62,15 +62,15 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
             <form style={{display: hidden}}>
                 <select value={selectedUserId} onChange={handleSelectUserIdChange}>
                     {users && users.filter(user => !memberIds.includes(user.id)).map(user =>
-                        <option id={user.id} value={user.id}>
+                        <option key={user.id} id={user.id} value={user.id}>
                             {user.name}
                         </option>
                     )}
-                </select>
+                </select>   
                 <select value={selectedRole} onChange={handleSelectRoleChange}>
-                        <option value={RoleMember.OWNER}>Руководитель</option>
-                        <option value={RoleMember.MEMBER}>Исполнитель</option>
-                        <option value={RoleMember.VIEWER}>Наблюдатель</option>
+                        <option key={RoleMember.OWNER} value={RoleMember.OWNER}>Руководитель</option>
+                        <option key={RoleMember.MEMBER} value={RoleMember.MEMBER}>Исполнитель</option>
+                        <option key={RoleMember.VIEWER} value={RoleMember.VIEWER}>Наблюдатель</option>
                 </select>
                 <button type='button' onClick={handleClick}>Добавить</button>
             </form>

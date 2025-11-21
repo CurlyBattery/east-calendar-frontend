@@ -4,9 +4,11 @@ interface ModalProps {
     children: ReactNode;
     visible: boolean;
     setVisible: (visible: boolean) => void;
+    width: number | string;
+    height: number | string;
 }
 
-const Modal: FC<ModalProps> = ({ children, visible, setVisible }) => {
+const Modal: FC<ModalProps> = ({ children, visible, setVisible, width, height }) => {
     const containerStyle: React.CSSProperties = {
         display: visible ? 'flex' : 'none',
         position: 'fixed',
@@ -22,8 +24,8 @@ const Modal: FC<ModalProps> = ({ children, visible, setVisible }) => {
 
     const contentStyle: React.CSSProperties = {
         background: 'white',
-        width: 300,
-        height: 300,
+        width,
+        height,
         borderRadius: '8px',
         padding: '20px',
         boxShadow: '0 5px 15px rgba(0,0,0,0.3)',

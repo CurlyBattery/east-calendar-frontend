@@ -5,6 +5,7 @@ import {getOneProject} from "../http/project.api.ts";
 import TabList from "../components/TabList.tsx";
 import TabItem from "../components/TabItem.tsx";
 import MemberList from "../components/MemberList.tsx";
+import TaskList from "../components/TaskList.tsx";
 
 type ProjectPageParams = {
     id: string;
@@ -37,15 +38,13 @@ const ProjectPage = () => {
             </div>
             <TabList activeTabIndex={0} >
                 <TabItem label='Tab #1'>
-                    <p>Tasks</p>
+                    <TaskList projectId={id!}/>
                 </TabItem>
                 <TabItem label='Tab #2'>
                     <p>Calendar</p>
                 </TabItem>
                 <TabItem label='Tab #3'>
-                    <div>
-                        <MemberList projectId={id!}/>
-                    </div>
+                    <MemberList projectId={id!} />
                 </TabItem>
             </TabList>
         </div>
