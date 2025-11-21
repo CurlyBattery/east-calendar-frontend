@@ -3,11 +3,13 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import userReducer from './reducers/user/user.slice.ts';
 import authReducer from './reducers/auth/auth.slice.ts';
 import projectReducer from './reducers/project/project.slice.ts';
+import memberReducer from "./reducers/member/member.slice.ts";
 
 const rootReducer = combineReducers({
     user: userReducer,
     auth: authReducer,
-    project: projectReducer
+    project: projectReducer,
+    member: memberReducer
 });
 
 export const store = configureStore({

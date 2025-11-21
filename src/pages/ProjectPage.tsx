@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {getOneProject} from "../http/project.api.ts";
 import TabList from "../components/TabList.tsx";
 import TabItem from "../components/TabItem.tsx";
+import MemberList from "../components/MemberList.tsx";
 
 type ProjectPageParams = {
     id: string;
@@ -28,7 +29,6 @@ const ProjectPage = () => {
         }
     }
 
-
     return (
         <div>
             <div>
@@ -37,10 +37,15 @@ const ProjectPage = () => {
             </div>
             <TabList activeTabIndex={0} >
                 <TabItem label='Tab #1'>
-                    <p>This is Tab #1</p>
+                    <p>Tasks</p>
                 </TabItem>
                 <TabItem label='Tab #2'>
-                    <p>This is Tab #2</p>
+                    <p>Calendar</p>
+                </TabItem>
+                <TabItem label='Tab #3'>
+                    <div>
+                        <MemberList projectId={id!}/>
+                    </div>
                 </TabItem>
             </TabList>
         </div>

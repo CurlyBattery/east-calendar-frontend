@@ -1,5 +1,5 @@
-import {type IMember, RoleMember} from "../types/project.ts";
 import {$host} from "./index.ts";
+import {type IMember, RoleMember} from "../types/member.ts";
 
 export const getMembers = async (projectId: string) => {
     const { data } = await $host.get<IMember[]>(`projects/${projectId}/members`);

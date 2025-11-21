@@ -1,6 +1,22 @@
 import type {AppDispatch} from "../../store.ts";
 import {authSlice} from "./auth.slice.ts";
-import {loginned, logouted, me} from "../../../http/auth.api.ts";
+import {loginned, logouted, me, register} from "../../../http/auth.api.ts";
+
+export const registerAction = (
+    email: string,
+    password: string,
+    name: string,
+    avatarUrl: string
+) => async (dispatch: AppDispatch) => {
+    try {
+        dispatch(authSlice.actions.loginStart());
+        const data = await register(email, password, name, avatarUrl)
+        dispatch(authSlice.actions.loginSuccess(data));
+    } catch (e) {
+        // @ts-ignore
+        dispatch(authSlice.actions.loginError(e.message));
+    }
+}
 
 export const loginAction = (email: string, password: string) => async (dispatch: AppDispatch) => {
     try {

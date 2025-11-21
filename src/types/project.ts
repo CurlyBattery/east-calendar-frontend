@@ -9,17 +9,4 @@ export interface IProject {
     owner?: IUser;
 }
 
-// @ts-ignore
-export enum RoleMember {
-    OWNER,
-    MEMBER,
-    VIEWER
-}
-
-export interface IMember {
-    id: string;
-    projectId?: string;
-    userId: string;
-    role: RoleMember;
-}
 

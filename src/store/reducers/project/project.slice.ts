@@ -30,17 +30,14 @@ export const projectSlice = createSlice({
             state.error = action.payload;
         },
         createProjectStart: (state) => {
-            console.log('createProjectStart')
             state.isLoading = true;
         },
         createProjectSuccess: (state, action: PayloadAction<IProject>) => {
-            console.log('createProjectSuccess')
             state.isLoading = false;
             state.error = '';
             state.projects.push(action.payload)
         },
         createProjectError: (state, action: PayloadAction<string>) => {
-            console.log('createProjectError')
             state.isLoading = false;
             state.error = action.payload;
         }

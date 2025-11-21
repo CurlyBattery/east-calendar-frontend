@@ -1,9 +1,9 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import {loginAction} from "../store/reducers/auth/action-creators.ts";
 import { useAppDispatch } from "../hooks/redux.ts";
-import {DASHBOARD_ROUTE} from "../utils/consts.ts";
+import {DASHBOARD_ROUTE, REGISTRATION_ROUTE} from "../utils/consts.ts";
 
 const LoginPage = () => {
     const dispatch = useAppDispatch();
@@ -27,6 +27,7 @@ const LoginPage = () => {
                     type='button'
                     onClick={handleLogin}
                 >Войти</button>
+                <Link to={REGISTRATION_ROUTE}>Нет аккаунта? Создать</Link>
             </form>
         </div>
     );

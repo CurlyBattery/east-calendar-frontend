@@ -1,5 +1,21 @@
 import {$host} from "./index.ts";
 
+export const register = async (
+    email: string,
+    password: string,
+    name: string,
+    avatarUrl: string
+) => {
+    const { data } = await $host.post('auth/register',
+        {
+            email,
+            password,
+            name,
+            avatarUrl
+        });
+    return data;
+}
+
 export const loginned = async (email: string, password: string) => {
     const { data } = await $host.post('auth/login',
         {

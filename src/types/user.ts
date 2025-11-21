@@ -8,13 +8,11 @@ export interface IUser {
     createdAt?: Date;
 }
 
-// @ts-ignore
 export enum PlanUser {
-    FREE,
-    PRO
+    FREE = 'FREE',
+    PRO = 'PRO'
 }
 
-// @ts-ignore
 export enum RoleUser {
     USER,
     ADMIN
