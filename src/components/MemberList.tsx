@@ -25,13 +25,32 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
 
     useEffect(() => {
         dispatch(fetchMembersAction(projectId));
-    }, []);
-
-    useEffect(() => {
         if(user?.plan === PlanUser.PRO ) {
             dispatch(fetchUsersAcrion());
         }
-    }, []);
+    }, [dispatch, projectId, user?.plan]); // Добавляем зависимости, чтобы избежать ошибок
+
+    // 💡 ЕДИНЫЙ ЭФФЕКТ ДЛЯ ИНИЦИАЛИЗАЦИИ SELECTED USER ID
+    // Зависит от изменения списков members и users
+    useEffect(() => {
+        // 1. Фильтруем список пользователей, которых можно добавить
+        const availableUsers = users.filter(user => !memberIds.includes(user.id));
+
+        // 2. Проверяем, что есть пользователи для добавления
+        if (availableUsers.length > 0) {
+            const firstAvailableUserId = availableUsers[0].id;
+
+            // 3. Устанавливаем ID, ТОЛЬКО если текущий стейт пуст
+            //    ИЛИ если первый доступный пользователь изменился
+            if (selectedUserId === '' || !availableUsers.some(u => u.id === selectedUserId)) {
+                setSelectedUserId(firstAvailableUserId);
+            }
+
+        } else if (selectedUserId !== '') {
+            // Если список доступных пользователей пуст, очищаем выбранный ID
+            setSelectedUserId('');
+        }
+    }, [users, members, memberIds, selectedUserId]);
 
     // @ts-ignore
     const handleSelectUserIdChange = (e) => {
@@ -43,11 +62,6 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
         setSelectedRole(e.target.value)
     };
 
-    useEffect(() => {
-        if(users.filter(user => !memberIds.includes(user.id)).length > 0) {
-            setSelectedUserId(users.filter(user => !memberIds.includes(user.id))[0].id)
-        }
-    }, []);
 
     const handleClick = (e: React.FormEvent) => {
         e.preventDefault();
@@ -66,7 +80,7 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
                             {user.name}
                         </option>
                     )}
-                </select>   
+                </select>
                 <select value={selectedRole} onChange={handleSelectRoleChange}>
                         <option key={RoleMember.OWNER} value={RoleMember.OWNER}>Руководитель</option>
                         <option key={RoleMember.MEMBER} value={RoleMember.MEMBER}>Исполнитель</option>

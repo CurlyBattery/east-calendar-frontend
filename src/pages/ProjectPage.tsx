@@ -6,6 +6,7 @@ import TabList from "../components/TabList.tsx";
 import TabItem from "../components/TabItem.tsx";
 import MemberList from "../components/MemberList.tsx";
 import TaskList from "../components/TaskList.tsx";
+import Calendar from "../components/Calendar.tsx";
 
 type ProjectPageParams = {
     id: string;
@@ -41,7 +42,7 @@ const ProjectPage = () => {
                     <TaskList projectId={id!}/>
                 </TabItem>
                 <TabItem label='Tab #2'>
-                    <p>Calendar</p>
+                    <Calendar projectId={id!}/>
                 </TabItem>
                 <TabItem label='Tab #3'>
                     <MemberList projectId={id!} />
