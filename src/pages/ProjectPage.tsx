@@ -34,7 +34,7 @@ const ProjectPage = () => {
     return (
         <div>
             <div>
-                <h1>{project?.name}</h1>
+                <h1 style={{ marginTop: 0, marginBottom: 0 }}>{project?.name}</h1>
                 <p>{project?.description}</p>
             </div>
             <TabList activeTabIndex={0} >

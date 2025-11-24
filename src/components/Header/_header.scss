@@ -1,0 +1,42 @@
+@import '../../variables';
+
+.header {
+  height: $header-height;
+  border-bottom: 1px solid black;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 1em;
+  }
+  &__link {
+    text-decoration: none;
+    color: $text-color;
+  }
+  &__button {
+    padding: $padding-button;
+    border: $border-button;
+    background: $main-color;
+    cursor: pointer;
+
+    &:hover {
+      background: aqua;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+  &__item {
+    list-style: none;
+    &__link {
+      text-decoration: none;
+      color: $text-color;
+    }
+  }
+
+}

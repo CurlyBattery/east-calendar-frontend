@@ -1,10 +1,8 @@
 import Modal from "./Modal.tsx";
-import {type FC, useState} from "react";
+import React, {type FC, useState} from "react";
 import {TaskPriority} from "../types/task.ts";
 import {useAppDispatch} from "../hooks/redux.ts";
-import {useNavigate} from "react-router-dom";
 import {createTaskAction} from "../store/reducers/task/action-creators.ts";
-import {ONE_PROJECT_ROUTE} from "../utils/consts.ts";
 
 interface CreateTaskProps {
     visible: boolean;
@@ -21,7 +19,7 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
     const [end, setEnd] = useState('');
     const [selectedPriority, setSelectedPriority] = useState(TaskPriority.MEDIUM);
 
-    const handleClick = async (e) => {
+    const handleClick = async (e: React.FormEvent) => {
         e.preventDefault();
        await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId));
 

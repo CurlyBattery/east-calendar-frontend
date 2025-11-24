@@ -1,11 +1,12 @@
-import {type FC, useEffect, useState} from "react";
+import { type FC, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
+import interactionPlugin, {type EventResizeDoneArg} from '@fullcalendar/interaction'
 
 import {useAppDispatch, useAppSelector} from "../hooks/redux.ts";
 import {fetchTasksAction, updateTaskAction} from "../store/reducers/task/action-creators.ts";
+import { type EventDropArg } from "@fullcalendar/core";
 
 interface CalendarProps {
     projectId: string
@@ -19,11 +20,11 @@ const Calendar: FC<CalendarProps> = ({ projectId }) => {
         dispatch(fetchTasksAction(projectId));
     }, []);
 
-    const update = async (info) => {
+    const update = async (info: EventResizeDoneArg | EventDropArg) => {
         const task = tasks.find(task => task.id === info.event.id);
         if(!task) return;
 
-        await dispatch(updateTaskAction(task.id, {start: info.event.start, end: info.event.end}))
+        await dispatch(updateTaskAction(task.id, { start: info.event.start!, end: info.event.end! }))
     }
 
     return (

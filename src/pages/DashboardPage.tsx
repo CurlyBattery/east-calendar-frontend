@@ -3,7 +3,7 @@ import ProjectList from "../components/ProjectList.tsx";
 const DashboardPage = () => {
     return (
         <div>
-            <h1>Проекты</h1>
+            <h1 style={{ marginTop: 0, marginBottom: 0 }}>Проекты</h1>
             <ProjectList />
         </div>
     );

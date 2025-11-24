@@ -9,8 +9,6 @@ import {
     REGISTRATION_ROUTE
 } from "../utils/consts.ts";
 import HomePage from "../pages/HomePage.tsx";
-import RegistrationPage from "../pages/RegistrationPage.tsx";
-import LoginPage from "../pages/LoginPage.tsx";
 import {ProtectedRoute} from "./ProtectedRoute.tsx";
 import DashboardPage from "../pages/DashboardPage.tsx";
 import Layout from "./Layout.tsx";
@@ -18,6 +16,8 @@ import type {FC} from "react";
 import ErrorPage from "./ErrorPage.tsx";
 import CreateProjectPage from "../pages/CreateProjectPage.tsx";
 import ProjectPage from "../pages/ProjectPage.tsx";
+import LoginPage from "../pages/LoginPage/LoginPage.tsx";
+import RegistrationPage from "../pages/RegistrationPage/RegistrationPage.tsx";
 
 
 export const router = createBrowserRouter([

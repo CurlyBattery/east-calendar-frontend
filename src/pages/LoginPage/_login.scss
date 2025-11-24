@@ -1,0 +1,33 @@
+@import '../../variables';
+
+.login {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    background-color: $main-color;
+    padding: $padding-form;
+    gap: $gap-form;
+    border: $border-form;
+    box-shadow: $shadow-form;
+  }
+  &__input {
+    padding: $padding-input;
+    border: $border-input;
+  }
+  &__button {
+    cursor: pointer;
+    padding: $padding-button;
+    border: $border-button;
+    background: $main-color;
+  }
+  &__link {
+    text-decoration: none;
+    color: $text-color;
+  }
+}

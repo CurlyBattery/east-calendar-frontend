@@ -1,4 +1,4 @@
-import './App.css'
+import './_app.scss'
 
 import {useAppDispatch} from "./hooks/redux.ts";
 import {useEffect} from "react";
