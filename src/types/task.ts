@@ -18,7 +18,7 @@ export interface ITask {
     assignee?: IUser;
     creator?: IUser;
 }
-
+export type ITaskUpdateData = Partial<Omit<ITask, 'id' | 'projectId' | 'createdAt' | 'creator'>>;
 export enum TaskStatus {
     TODO = 'TODO',
     IN_PROGRESS = 'IN_PROGRESS',

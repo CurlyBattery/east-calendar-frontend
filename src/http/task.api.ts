@@ -1,5 +1,5 @@
 import {$host} from "./index.ts";
-import type {ITask} from "../types/task.ts";
+import type {ITask, ITaskUpdateData} from "../types/task.ts";
 
 export const getMyTasksByProject = async (projectId: string) => {
     const { data } = await $host.get<ITask[]>(`tasks/my/${projectId}`);
@@ -22,6 +22,15 @@ export const createTask = async (
         priority,
         projectId
     })
+    return data;
+};
+
+export const updateTask = async (
+    taskId: string,
+    taskUpdateData: ITaskUpdateData
+) => {
+    console.log(taskUpdateData)
+    const { data } =  await $host.patch<ITask>(`tasks/${taskId}`, taskUpdateData)
     return data;
 
 }

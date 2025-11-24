@@ -26,16 +26,33 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
             <div>
                 {isLoading && <h1>Загрузка</h1>}
                 {error && <h1>{error}</h1>}
-                {tasks && tasks.map(task =>
-                    <TaskItem key={task.id} task={task}/>
-                )}
-            </div>
-            <div>
-                <button onClick={handleClick}>Создать</button>
-            </div>
-            <CreateTaskModal visible={openModal} setVisible={setOpenModal} projectId={projectId}/>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Задачи</th>
+                            <th>Исполнитель</th>
+                            <th>Автор</th>
+                            <th>Прироитет</th>
+                            <th>Статус</th>
+                            <th>Создано</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {tasks && tasks.map(task =>
+                            <TaskItem key={task.id} task={task}/>
+                        )}
+                        </tbody>
+                    </table>
+
         </div>
-    );
+    <div>
+        <button onClick={handleClick}>Создать</button>
+    </div>
+    <CreateTaskModal visible={openModal} setVisible={setOpenModal} projectId={projectId}/>
+</div>
+)
+    ;
 };
 
 export default TaskList;

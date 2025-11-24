@@ -40,6 +40,23 @@ export const taskSlice = createSlice({
         createTaskError: (state, action: PayloadAction<string>) => {
             state.isLoading = false;
             state.error = action.payload;
+        },
+        updateTaskStart: (state) => {
+            state.isLoading = true;
+        },
+        updateTaskSuccess: (state, action: PayloadAction<ITask>) => {
+            state.isLoading = false;
+            state.error = '';
+            const updatedTask = action.payload;
+            const index = state.tasks.findIndex(task => task.id === updatedTask.id);
+            console.log(index)
+            if (index !== -1) {
+                state.tasks[index] = updatedTask;
+            }
+        },
+        updateTaskError: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload;
         }
     }
 });

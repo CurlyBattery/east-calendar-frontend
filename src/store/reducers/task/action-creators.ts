@@ -1,6 +1,7 @@
 import type {AppDispatch} from "../../store.ts";
 import {taskSlice} from "./task.slice.ts";
-import {createTask, getMyTasksByProject} from "../../../http/task.api.ts";
+import {createTask, getMyTasksByProject, updateTask} from "../../../http/task.api.ts";
+import type {ITaskUpdateData} from "../../../types/task.ts";
 
 export const fetchTasksAction = (projectId: string) => async (dispatch: AppDispatch) => {
     try {
@@ -29,4 +30,20 @@ export const createTaskAction = (
         // @ts-ignore
         dispatch(taskSlice.actions.createTaskError(e.message));
     }
-}
+};
+
+
+export const updateTaskAction = (
+    taskId: string,
+    taskUpdateData: ITaskUpdateData
+) => async (dispatch: AppDispatch) => {
+    try {
+        console.log(taskId)
+        dispatch(taskSlice.actions.updateTaskStart());
+        const data = await updateTask(taskId, taskUpdateData);
+        dispatch(taskSlice.actions.updateTaskSuccess(data));
+    } catch (e) {
+        // @ts-ignore
+        dispatch(taskSlice.actions.updateTaskError(e.message));
+    }
+};
