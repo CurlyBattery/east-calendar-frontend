@@ -1,0 +1,30 @@
+@import '../../variables';
+
+.create-task-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  height: 100%;
+  gap: $gap-form;
+
+  &__header {
+    font-size: $title-size;
+  }
+
+  &__input {
+    padding: $padding-input;
+    background: $main-color;
+    border: $border-input;
+  }
+  &__button {
+    padding: $padding-button;
+    background: $main-color;
+    border: $border-button;
+
+    &:hover {
+      background: aqua;
+      cursor: pointer;
+    }
+  }
+}

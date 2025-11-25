@@ -1,0 +1,83 @@
+@import '../../variables';
+
+.task {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $padding-form;
+  gap: $gap-form;
+  font-size: $main-size;
+
+  &__search {
+    display: flex;
+    flex-direction: row;
+    gap: $gap-form;
+
+    &__input {
+      border: $border-input;
+    }
+    &__button {
+      padding: $padding-button;
+      font-size: $min-size;
+      background: $main-color;
+      border: $border-button;
+
+      &:hover {
+        cursor: pointer;
+        background: aqua;
+      }
+    }
+  }
+  &__container {
+    border: $border-table;
+    border-radius: $border-radius-table;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  &__scroll {
+    flex-grow: 1;
+    overflow-y: auto;
+    flex-shrink: 1;
+  }
+  &__create {
+    flex-shrink: 0;
+    border-top: $border-table;
+    padding: 10px;
+    &__button {
+      border: none;
+      padding: $padding-button;
+      background: none;
+
+      &:hover {
+        cursor: pointer;
+        background: aqua;
+      }
+    }
+  }
+  &__table {
+    border-spacing: 0;
+    overflow: hidden;
+    width: 100%;
+    border-top-left-radius: $border-radius-table;
+    border-top-right-radius: $border-radius-table;
+
+    thead {
+      text-align: left;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: $color-head-table;
+        border-bottom: $border-table;
+    }
+    th,td {
+      padding: $padding-table;
+    }
+
+
+  }
+}

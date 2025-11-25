@@ -1,0 +1,23 @@
+@import '../../variables';
+
+.tab-list {
+  font-size: $min-size;
+  width: 100%;
+  &__nav {
+    border-bottom: $border-form;
+  }
+  &__ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  &__item {
+    list-style: none;
+
+    &__link {
+      background: $main-color;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

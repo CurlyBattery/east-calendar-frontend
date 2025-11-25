@@ -25,7 +25,7 @@ const ProjectList = () => {
         <div className='project-list'>
             <div className='project-list__header'>
                 <h1 className='project-list__title' style={{marginTop: 0, marginBottom: 0}}>Проекты</h1>
-                <button className='project-list__create' onClick={handleClick}>Создать проект</button>
+                <button className='project-list__create' type='button' onClick={handleClick}>Создать проект</button>
             </div>
             <div className='project-list__search'>
                 <input className='project-list__search__input' type="search"/>
@@ -44,7 +44,8 @@ const ProjectList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projects && projects.map(project => <ProjectItem key={project.id} project={project}/>
+                        {projects && projects.map(project =>
+                            <ProjectItem key={project.id} project={project}/>
                         )}
                     </tbody>
                 </table>

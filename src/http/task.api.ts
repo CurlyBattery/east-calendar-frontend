@@ -6,6 +6,11 @@ export const getMyTasksByProject = async (projectId: string) => {
     return data;
 };
 
+export const getOneTask = async (id: string) => {
+    const { data } = await $host.get<ITask>('tasks/' + id);
+    return data;
+};
+
 export const createTask = async (
     title: string,
     description: string,
@@ -32,5 +37,4 @@ export const updateTask = async (
     console.log(taskUpdateData)
     const { data } =  await $host.patch<ITask>(`tasks/${taskId}`, taskUpdateData)
     return data;
-
-}
+};

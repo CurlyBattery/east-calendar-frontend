@@ -1,0 +1,7 @@
+@import '../../variables';
+
+.task-item {
+  &:hover {
+    background: #ddd;
+  }
+}

@@ -1,5 +1,5 @@
 import type {FC} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import type {IProject} from "../../types/project.ts";
 import './_project_item.scss';

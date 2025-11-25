@@ -1,4 +1,5 @@
 import type {IUser} from "./user.ts";
+import type {IProject} from "./project.ts";
 
 export interface ITask {
     id: string;
@@ -17,6 +18,7 @@ export interface ITask {
 
     assignee?: IUser;
     creator?: IUser;
+    project?: IProject;
 }
 export type ITaskUpdateData = Partial<Omit<ITask, 'id' | 'projectId' | 'createdAt' | 'creator'>>;
 export enum TaskStatus {

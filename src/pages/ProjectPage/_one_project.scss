@@ -1,1 +1,24 @@
 @import '../../variables';
+
+.one-project {
+  display: flex;
+  flex-direction: row;
+  font-size: $main-size;
+  min-height: calc(100vh - $header-height - $footer-height);
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-form;
+    border-right: $border-form;
+    padding: $padding-button;
+    min-width: 200px;
+  }
+  &__title {
+    font-size: $title-size;
+    margin: 0;
+  }
+  &__description {
+    font-size: $min-size;
+  }
+}

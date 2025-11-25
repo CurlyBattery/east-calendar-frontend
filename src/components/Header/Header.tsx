@@ -26,8 +26,8 @@ const Header = () => {
                 {isAuth ? (
                     <>
                         <ul className='header__list'>
-                            <li className='header__item'><Link className='header__item__link' to={DASHBOARD_ROUTE}>Dashboard</Link></li>
-                            <li className='header__item'><Link className='header__item__link' to={DASHBOARD_ROUTE}>Dashboard</Link></li>
+                            <li className='header__item'><Link className='header__item__link' to={DASHBOARD_ROUTE}>Дашборд</Link></li>
+                            <li className='header__item'><Link className='header__item__link' to={DASHBOARD_ROUTE}>О нас</Link></li>
                         </ul>
                         <button className='header__button' type='button' onClick={handleLogout}>Выйти</button>
                     </>

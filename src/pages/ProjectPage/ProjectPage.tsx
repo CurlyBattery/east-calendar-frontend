@@ -3,12 +3,12 @@ import {useParams} from "react-router-dom";
 
 import type {IProject} from "../../types/project.ts";
 import {getOneProject} from "../../http/project.api.ts";
-import TabList from "../../components/TabList.tsx";
 import TabItem from "../../components/TabItem.tsx";
-import TaskList from "../../components/TaskList.tsx";
-import Calendar from "../../components/Calendar.tsx";
 import MemberList from "../../components/MemberList.tsx";
 import './_one_project.scss';
+import TabList from "../../components/TabList/TabList.tsx";
+import TaskList from "../../components/TaskList/TaskList.tsx";
+import Calendar from "../../components/Calendar/Calendar.tsx";
 
 type ProjectPageParams = {
     id: string;
@@ -37,17 +37,17 @@ const ProjectPage = () => {
         <div className='one-project'>
             <div className='one-project__header'>
                 <span className='one-project__name'>Проекты</span>
-                <h1 className='one-project__title' style={{ marginTop: 0, marginBottom: 0 }}>{project?.name}</h1>
+                <h1 className='one-project__title' >{project?.name}</h1>
                 <p className='one-project__description'>{project?.description}</p>
             </div>
             <TabList activeTabIndex={0} >
-                <TabItem label='Tab #1'>
+                <TabItem label='Список'>
                     <TaskList projectId={id!}/>
                 </TabItem>
-                <TabItem label='Tab #2'>
+                <TabItem label='Календарь'>
                     <Calendar projectId={id!}/>
                 </TabItem>
-                <TabItem label='Tab #3'>
+                <TabItem label='Участники'>
                     <MemberList projectId={id!} />
                 </TabItem>
             </TabList>

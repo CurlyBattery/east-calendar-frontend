@@ -38,7 +38,7 @@
     }
     &__button {
       padding: $padding-button;
-      font-size: $main-size;
+      font-size: $min-size;
       background: $main-color;
       border: $border-button;
 
@@ -51,23 +51,19 @@
 
   &__table {
     width: 100%;
-    border: .5px solid $text-color;
     border-spacing: 0;
-    border-radius: 10px;
     overflow: hidden;
+    border-radius: $border-radius-table;
+    border: $border-table;
     font-size: $main-size;
 
     thead {
       text-align: left;
-      background: #ddd;
+      background: $color-head-table;
     }
 
     th, td {
-      padding: 1em;
+      padding: $padding-table;
     }
-
-
-
-
   }
 }

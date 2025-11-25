@@ -1,9 +1,9 @@
 //main
 $main-color: #ffffff;
 $text-color: black;
-$main-size: 14px;
+$main-size: 16px;
 $title-size: 24px;
-$min-size: 10px;
+$min-size: 14px;
 
 //header
 $header-height: 60px;
@@ -24,3 +24,9 @@ $padding-input: .5em;
 //button
 $border-button: 1px solid black;
 $padding-button: .5em;
+
+//table
+$padding-table: 10px;
+$color-head-table: #ddd;
+$border-table: 1px solid rgba(0, 0, 0, 0.2);
+$border-radius-table: 10px;
