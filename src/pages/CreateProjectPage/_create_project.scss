@@ -1,0 +1,52 @@
+@import '../../variables';
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-form;
+  height: 100%;
+  padding: $padding-form;
+
+  &__title {
+    font-size: $title-size;
+    margin: 0;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-form;
+    max-width: 300px;
+    font-size: $main-size;
+    padding: $padding-form;
+    border: $border-form;
+    box-shadow: $shadow-form;
+  }
+  &__input {
+    padding: $padding-input;
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: $gap-form;
+  }
+  &__back {
+    padding: $padding-button;
+    border: $border-button;
+    background: $main-color;
+
+    &:hover {
+      cursor: pointer;
+      background: aqua;
+    }
+  }
+  &__save  {
+    padding: $padding-button;
+    border: $border-button;
+    background: $main-color;
+
+    &:hover {
+      cursor: pointer;
+      background: aqua;
+    }
+  }
+}

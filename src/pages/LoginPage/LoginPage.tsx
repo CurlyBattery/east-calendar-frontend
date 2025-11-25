@@ -2,13 +2,14 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 
 import {loginAction} from "../../store/reducers/auth/action-creators.ts";
-import {useAppDispatch} from "../../hooks/redux.ts";
-import {DASHBOARD_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts.ts";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
+import {DASHBOARD_ROUTE, QR_LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts.ts";
 import './_login.scss';
 
 const LoginPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { error } = useAppSelector(state => state.auth);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,6 +32,8 @@ const LoginPage = () => {
                     type='button'
                     onClick={handleLogin}
                 >Войти</button>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <Link className='login__link' to={QR_LOGIN_ROUTE}>Вход через QRCode</Link>
                 <Link className='login__link' to={REGISTRATION_ROUTE}>Нет аккаунта? Создать</Link>
             </form>
         </div>

@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
-import type {IProject} from "../types/project.ts";
 import {useParams} from "react-router-dom";
-import {getOneProject} from "../http/project.api.ts";
-import TabList from "../components/TabList.tsx";
-import TabItem from "../components/TabItem.tsx";
-import MemberList from "../components/MemberList.tsx";
-import TaskList from "../components/TaskList.tsx";
-import Calendar from "../components/Calendar.tsx";
+
+import type {IProject} from "../../types/project.ts";
+import {getOneProject} from "../../http/project.api.ts";
+import TabList from "../../components/TabList.tsx";
+import TabItem from "../../components/TabItem.tsx";
+import TaskList from "../../components/TaskList.tsx";
+import Calendar from "../../components/Calendar.tsx";
+import MemberList from "../../components/MemberList.tsx";
+import './_one_project.scss';
 
 type ProjectPageParams = {
     id: string;
@@ -32,10 +34,11 @@ const ProjectPage = () => {
     }
 
     return (
-        <div>
-            <div>
-                <h1 style={{ marginTop: 0, marginBottom: 0 }}>{project?.name}</h1>
-                <p>{project?.description}</p>
+        <div className='one-project'>
+            <div className='one-project__header'>
+                <span className='one-project__name'>Проекты</span>
+                <h1 className='one-project__title' style={{ marginTop: 0, marginBottom: 0 }}>{project?.name}</h1>
+                <p className='one-project__description'>{project?.description}</p>
             </div>
             <TabList activeTabIndex={0} >
                 <TabItem label='Tab #1'>

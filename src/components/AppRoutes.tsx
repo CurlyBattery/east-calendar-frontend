@@ -1,23 +1,24 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import type {FC} from "react";
 
 import {
     CREATE_PROJECT_ROUTE,
     DASHBOARD_ROUTE,
     EAST_ROUTE,
     LOGIN_ROUTE,
-    ONE_PROJECT_ROUTE,
+    ONE_PROJECT_ROUTE, QR_LOGIN_ROUTE,
     REGISTRATION_ROUTE
 } from "../utils/consts.ts";
-import HomePage from "../pages/HomePage.tsx";
 import {ProtectedRoute} from "./ProtectedRoute.tsx";
-import DashboardPage from "../pages/DashboardPage.tsx";
 import Layout from "./Layout.tsx";
-import type {FC} from "react";
 import ErrorPage from "./ErrorPage.tsx";
-import CreateProjectPage from "../pages/CreateProjectPage.tsx";
-import ProjectPage from "../pages/ProjectPage.tsx";
 import LoginPage from "../pages/LoginPage/LoginPage.tsx";
 import RegistrationPage from "../pages/RegistrationPage/RegistrationPage.tsx";
+import CreateProjectPage from "../pages/CreateProjectPage/CreateProjectPage.tsx";
+import DashboardPage from "../pages/DashboardPage/DashboardPage.tsx";
+import QrCodeLoginPage from "../pages/QrCodeLoginPage/QrCodeLoginPage.tsx";
+import HomePage from "../pages/HomePage/HomePage.tsx";
+import ProjectPage from "../pages/ProjectPage/ProjectPage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: LOGIN_ROUTE,
                 element: <LoginPage />
+            },
+            {
+                path: QR_LOGIN_ROUTE,
+                element: <QrCodeLoginPage />
             },
             {
                 path: DASHBOARD_ROUTE,

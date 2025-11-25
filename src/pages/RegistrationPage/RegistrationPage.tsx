@@ -1,7 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 
-import {useAppDispatch} from "../../hooks/redux.ts";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {registerAction} from "../../store/reducers/auth/action-creators.ts";
 import {DASHBOARD_ROUTE, LOGIN_ROUTE} from "../../utils/consts.ts";
 import './_registration.scss';
@@ -9,6 +9,8 @@ import './_registration.scss';
 const RegistrationPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { error } = useAppSelector(state => state.auth);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -16,7 +18,7 @@ const RegistrationPage = () => {
 
     const handleRegister = async () => {
         await dispatch(registerAction(email, password, name, avatarUrl));
-        navigate(DASHBOARD_ROUTE);
+        if(!error) navigate(DASHBOARD_ROUTE);
     };
 
     return (
@@ -37,6 +39,7 @@ const RegistrationPage = () => {
                     onClick={handleRegister}
                 >Зарегистрироваться
                 </button>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <Link className='registration__link' to={LOGIN_ROUTE}>Есть аккаунт? Войти</Link>
             </form>
         </div>

@@ -1,6 +1,7 @@
 @import '../../variables';
 
 .registration {
+  min-height: calc(100vh - $footer-height - $header-height);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -25,6 +26,10 @@
     padding: $padding-button;
     border: $border-button;
     background: $main-color;
+
+    &:hover {
+      background: aqua;
+    }
   }
   &__link {
     text-decoration: none;

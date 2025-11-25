@@ -12,6 +12,6 @@ html, body {
 }
 
 .main__container {
-  height: calc(100vh - $header-height - $footer-height);
+  min-height: calc(100vh - $header-height - $footer-height);
   box-sizing: border-box;
 }
