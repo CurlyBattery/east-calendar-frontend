@@ -2,7 +2,7 @@ import { userSlice } from "./user.slice.ts";
 import type {AppDispatch} from "../../store.ts";
 import {getUsers} from "../../../http/user.api.ts";
 
-export const fetchUsersAcrion = () => async (dispatch: AppDispatch) => {
+export const fetchUsersAction = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(userSlice.actions.usersFetching());
         const data = await getUsers();

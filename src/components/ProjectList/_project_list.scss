@@ -1,11 +1,11 @@
-@import '../../variables';
+@use '../../variables';
 
 .project-list {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: $padding-form;
-  gap: $gap-form;
+  padding: variables.$padding-form;
+  gap: variables.$gap-form;
 
   &__header {
     display: flex;
@@ -14,13 +14,13 @@
 
   }
   &__title {
-    font-size: $title-size;
+    font-size: variables.$title-size;
   }
   &__create {
-    padding: $padding-button;
-    font-size: $main-size;
-    background: $main-color;
-    border: $border-button;
+    padding: variables.$padding-button;
+    font-size: variables.$main-size;
+    background: variables.$main-color;
+    border: variables.$border-button;
 
     &:hover {
       cursor: pointer;
@@ -31,16 +31,16 @@
   &__search {
     display: flex;
     flex-direction: row;
-    gap: $gap-form;
+    gap: variables.$gap-form;
 
     &__input {
-      border: $border-input;
+      border: variables.$border-input;
     }
     &__button {
-      padding: $padding-button;
-      font-size: $min-size;
-      background: $main-color;
-      border: $border-button;
+      padding: variables.$padding-button;
+      font-size: variables.$min-size;
+      background: variables.$main-color;
+      border: variables.$border-button;
 
       &:hover {
         cursor: pointer;
@@ -53,17 +53,17 @@
     width: 100%;
     border-spacing: 0;
     overflow: hidden;
-    border-radius: $border-radius-table;
-    border: $border-table;
-    font-size: $main-size;
+    border-radius: variables.$border-radius-table;
+    border: variables.$border-table;
+    font-size: variables.$main-size;
 
     thead {
       text-align: left;
-      background: $color-head-table;
+      background: variables.$color-head-table;
     }
 
     th, td {
-      padding: $padding-table;
+      padding: variables.$padding-table;
     }
   }
 }

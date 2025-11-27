@@ -1,9 +1,14 @@
 //main
 $main-color: #ffffff;
-$text-color: black;
+$text-color: #000000;
 $main-size: 16px;
 $title-size: 24px;
 $min-size: 14px;
+$arctic: #d3d1ce;
+$apres: #6c6d74;
+$slopes: #b3b7ba;
+$midnight: #090f15;
+$mount: #262e36;
 
 //header
 $header-height: 60px;
@@ -23,6 +28,7 @@ $padding-input: .5em;
 
 //button
 $border-button: 1px solid black;
+$border-button-hover: 1px solid $slopes;
 $padding-button: .5em;
 
 //table

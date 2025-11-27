@@ -2,7 +2,7 @@ export interface IUser {
     id: string;
     name: string;
     email: string;
-    avatarUrl?: string;
+    avatarPath?: string;
     plan?: PlanUser;
     role: RoleUser;
     createdAt?: Date;

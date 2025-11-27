@@ -1,6 +1,7 @@
 import type {AppDispatch} from "../../store.ts";
 import {authSlice} from "./auth.slice.ts";
 import {loginned, logouted, me, register} from "../../../http/auth.api.ts";
+import {checkPayment} from "../../../http/payment.api.ts";
 
 export const registerAction = (
     email: string,
@@ -46,5 +47,18 @@ export const logoutAction = () => async (dispatch: AppDispatch) => {
     } catch (e) {
         // @ts-ignore
         console.log(e.message)
+    }
+}
+
+export const checkPayloadAction = () => async (dispatch: AppDispatch) => {
+    try {
+        dispatch(authSlice.actions.loginStart());
+        const data = await checkPayment();
+        if(data.status === 'succeeded') {
+            dispatch(authSlice.actions.setUser(data.user));
+        }
+    } catch (e) {
+        // @ts-ignore
+        dispatch(authSlice.actions.loginError(e.message));
     }
 }

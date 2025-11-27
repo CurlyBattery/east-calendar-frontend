@@ -1,4 +1,4 @@
-@import '../../variables';
+@use '../../variables';
 
 .one-task {
   display: flex;
@@ -6,9 +6,9 @@
   align-items: start;
   justify-content: center;
   height: 100%;
-  font-size: $main-size;
+  font-size: variables.$main-size;
 
   &__header {
-    font-size: $title-size;
+    font-size: variables.$title-size;
   }
 }

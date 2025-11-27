@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux.ts";
 import {addMemberAction, fetchMembersAction} from "../store/reducers/member/action-creators.ts";
 import MemberItem from "./MemberItem.tsx";
 import {PlanUser} from "../types/user.ts";
-import {fetchUsersAcrion} from "../store/reducers/user/action-creators.ts";
+import {fetchUsersAction} from "../store/reducers/user/action-creators.ts";
 import {RoleMember} from "../types/member.ts";
 
 interface MemberListProps {
@@ -26,28 +26,21 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
     useEffect(() => {
         dispatch(fetchMembersAction(projectId));
         if(user?.plan === PlanUser.PRO ) {
-            dispatch(fetchUsersAcrion());
+            dispatch(fetchUsersAction());
         }
-    }, [dispatch, projectId, user?.plan]); // Добавляем зависимости, чтобы избежать ошибок
+    }, [dispatch, projectId, user?.plan]);
 
-    // 💡 ЕДИНЫЙ ЭФФЕКТ ДЛЯ ИНИЦИАЛИЗАЦИИ SELECTED USER ID
-    // Зависит от изменения списков members и users
     useEffect(() => {
-        // 1. Фильтруем список пользователей, которых можно добавить
         const availableUsers = users.filter(user => !memberIds.includes(user.id));
 
-        // 2. Проверяем, что есть пользователи для добавления
         if (availableUsers.length > 0) {
             const firstAvailableUserId = availableUsers[0].id;
 
-            // 3. Устанавливаем ID, ТОЛЬКО если текущий стейт пуст
-            //    ИЛИ если первый доступный пользователь изменился
             if (selectedUserId === '' || !availableUsers.some(u => u.id === selectedUserId)) {
                 setSelectedUserId(firstAvailableUserId);
             }
 
         } else if (selectedUserId !== '') {
-            // Если список доступных пользователей пуст, очищаем выбранный ID
             setSelectedUserId('');
         }
     }, [users, members, memberIds, selectedUserId]);
@@ -65,9 +58,6 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
 
     const handleClick = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(selectedUserId);
-        console.log(selectedRole)
-        console.log(projectId)
         dispatch(addMemberAction(selectedUserId, selectedRole, projectId))
     }
 

@@ -1,4 +1,4 @@
-@import '../../variables';
+@use '../../variables';
 
 .create-task-modal {
   display: flex;
@@ -6,21 +6,21 @@
   align-items: start;
   justify-content: center;
   height: 100%;
-  gap: $gap-form;
+  gap: variables.$gap-form;
 
   &__header {
-    font-size: $title-size;
+    font-size: variables.$title-size;
   }
 
   &__input {
-    padding: $padding-input;
-    background: $main-color;
-    border: $border-input;
+    padding: variables.$padding-input;
+    background: variables.$main-color;
+    border: variables.$border-input;
   }
   &__button {
-    padding: $padding-button;
-    background: $main-color;
-    border: $border-button;
+    padding: variables.$padding-button;
+    background: variables.$main-color;
+    border: variables.$border-button;
 
     &:hover {
       background: aqua;

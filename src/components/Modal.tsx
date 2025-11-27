@@ -1,5 +1,6 @@
 import React, {type FC, type ReactNode} from "react";
 
+
 interface ModalProps {
     children: ReactNode;
     visible: boolean;

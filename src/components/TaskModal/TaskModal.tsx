@@ -27,7 +27,7 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                 setTask(data);
             }
         } catch (e) {
-            alert(e);
+            console.log(e)
         }
     }
 

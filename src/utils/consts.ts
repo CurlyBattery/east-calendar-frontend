@@ -5,3 +5,4 @@ export const REGISTRATION_ROUTE = '/registration';
 export const DASHBOARD_ROUTE = '/dashboard';
 export const CREATE_PROJECT_ROUTE = '/create-project';
 export const ONE_PROJECT_ROUTE = '/projects/:id';
+export const PREMIUM_ROUTE = '/premium';

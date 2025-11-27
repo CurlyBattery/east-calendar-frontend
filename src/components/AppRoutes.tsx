@@ -6,7 +6,7 @@ import {
     DASHBOARD_ROUTE,
     EAST_ROUTE,
     LOGIN_ROUTE,
-    ONE_PROJECT_ROUTE, QR_LOGIN_ROUTE,
+    ONE_PROJECT_ROUTE, PREMIUM_ROUTE, QR_LOGIN_ROUTE,
     REGISTRATION_ROUTE
 } from "../utils/consts.ts";
 import {ProtectedRoute} from "./ProtectedRoute.tsx";
@@ -19,6 +19,7 @@ import DashboardPage from "../pages/DashboardPage/DashboardPage.tsx";
 import QrCodeLoginPage from "../pages/QrCodeLoginPage/QrCodeLoginPage.tsx";
 import HomePage from "../pages/HomePage/HomePage.tsx";
 import ProjectPage from "../pages/ProjectPage/ProjectPage.tsx";
+import PremiumPage from "../pages/PremiumPage/PremiumPage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -66,6 +67,14 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <ProjectPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: PREMIUM_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                        <PremiumPage />
                     </ProtectedRoute>
                 )
             },
