@@ -4,15 +4,21 @@ export const register = async (
     email: string,
     password: string,
     name: string,
-    avatarUrl: string
+    file: File
 ) => {
-    const { data } = await $host.post('auth/register',
-        {
-            email,
-            password,
-            name,
-            avatarUrl
-        });
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('name', name);
+    if(file) {
+        formData.append('file', file);
+    }
+
+    const { data } = await $host.post('auth/register', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    });
     return data;
 }
 

@@ -14,24 +14,36 @@ const RegistrationPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [avatarUrl, setAvatarUrl] = useState('');
+    const [file, setFile] = useState<File | null>(null);
 
     const handleRegister = async () => {
-        await dispatch(registerAction(email, password, name, avatarUrl));
+        await dispatch(registerAction(email, password, name, file as File));
         if(!error) navigate(DASHBOARD_ROUTE);
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.files && e.target.files[0])
+        if(e.target.files && e.target.files[0]) {
+            setFile(e.target.files[0]);
+        }
     };
 
     return (
         <div className='registration'>
             <form className='registration__form'>
                 <label>Почта</label>
-                <input className='registration__input' type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <input className='registration__input' type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                 <label>Пароль</label>
-                <input className='registration__input' type="text" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input className='registration__input' type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <label>Никнейм</label>
                 <input className='registration__input' type="text" value={name} onChange={(e) => setName(e.target.value)}/>
                 <label>Аватар</label>
-                <input className='registration__input' type="text" value={avatarUrl} onChange={(e) => setAvatarUrl(e.target.value)}/>
+                <input
+                    className='registration__input'
+                    type="file"
+                    onChange={handleFileChange}
+                    accept='image/*'
+                />
 
                 <button
                     className='registration__button'

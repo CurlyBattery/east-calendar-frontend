@@ -6,11 +6,11 @@ export const registerAction = (
     email: string,
     password: string,
     name: string,
-    avatarUrl: string
+    file: File
 ) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSlice.actions.loginStart());
-        const data = await register(email, password, name, avatarUrl)
+        const data = await register(email, password, name, file)
         dispatch(authSlice.actions.loginSuccess(data));
     } catch (e) {
         // @ts-ignore

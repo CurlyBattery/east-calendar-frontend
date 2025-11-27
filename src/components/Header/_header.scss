@@ -38,5 +38,11 @@
       color: $text-color;
     }
   }
+  &__profile {
+    display: flex;
+    flex-direction: row;
+    gap: $gap-form;
+    align-items: center;
+  }
 
 }
