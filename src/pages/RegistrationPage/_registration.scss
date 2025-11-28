@@ -1,4 +1,4 @@
-@import '../../variables';
+@use '../../variables' as *;
 
 .registration {
   min-height: calc(100vh - $footer-height - $header-height);
