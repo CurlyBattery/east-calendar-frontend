@@ -3,6 +3,7 @@ import {refresh} from "./auth.api.ts";
 import {store} from '../store/store.ts';
 import {authSlice} from "../store/reducers/auth/auth.slice.ts";
 
+
 const $host = axios.create({
     baseURL: 'http://localhost:5000/',
     headers: {

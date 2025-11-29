@@ -1,4 +1,4 @@
-import {checkPayment, createPayment} from "../../http/payment.api.ts";
+import { createPayment} from "../../http/payment.api.ts";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {PlanUser} from "../../types/user.ts";
 import {useEffect} from "react";
@@ -10,12 +10,11 @@ const PremiumPage = () => {
 
     useEffect(() => {
         dispatch(checkPayloadAction())
-    }, [user]);
+    }, []);
 
     const handleClick = async (e: React.FormEvent) => {
         e.preventDefault();
         const { confirmation } = await createPayment();
-        console.log(confirmation)
         window.location.href = confirmation?.confirmation_url;
 
         if(confirmation) {
@@ -25,7 +24,7 @@ const PremiumPage = () => {
 
     return (
         <div>
-            {user?.plan === PlanUser.PRO ?
+            {user?.plan?.subscriptionPlan === PlanUser.PRO ?
                 (<h1>Подписка активирована</h1>)
                 :
                ( <form onSubmit={(e) => handleClick(e)}>

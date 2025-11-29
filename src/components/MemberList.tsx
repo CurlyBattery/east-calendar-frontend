@@ -18,14 +18,14 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
     const [ selectedUserId, setSelectedUserId ] = useState('');
     const [ selectedRole, setSelectedRole ] = useState(RoleMember.MEMBER);
 
-    const hidden = user?.plan === PlanUser.PRO ? 'flex' : 'none';
+    const hidden = user?.plan?.subscriptionPlan === PlanUser.PRO ? 'flex' : 'none';
     const memberIds = members.map(member => {
         return member.userId;
     });
 
     useEffect(() => {
         dispatch(fetchMembersAction(projectId));
-        if(user?.plan === PlanUser.PRO ) {
+        if(user?.plan?.subscriptionPlan === PlanUser.PRO ) {
             dispatch(fetchUsersAction());
         }
     }, [dispatch, projectId, user?.plan]);

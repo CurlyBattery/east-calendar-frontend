@@ -1,4 +1,5 @@
 import {$host} from "./index.ts";
+import type {QrStatus} from "../types/user.ts";
 
 export const register = async (
     email: string,
@@ -34,14 +35,47 @@ export const loginned = async (email: string, password: string) => {
 export const logouted = async () => {
     const { data } = await $host.post('auth/logout', {});
     return data;
-}
+};
 
 export const me = async () => {
     const { data } = await $host.get('auth');
     return data;
-}
+};
 
 export const refresh = async () => {
     const { data } = await $host.post('auth/refresh', {});
     return data;
-}
+};
+
+export const getQr = async () => {
+    const response = await $host.get('auth/qr', { responseType: 'blob' });
+
+    const token = response.headers['x-qr-session-token'];
+    console.log(token)
+
+    return {
+        qrCode: response.data,
+        token
+    };
+};
+
+export const checkStatusQr = async (token: string) => {
+    const {data} = await $host.get(`auth/qr/check?token=${token}`);
+
+    return data;
+};
+
+export const qrConfirm = async (sessionId: string, status: QrStatus) => {
+    console.log(sessionId, status)
+    const {data} = await $host.post(`auth/qr/confirm`, {
+            sessionId,
+            status
+    });
+
+    return data;
+};
+
+export const getAllDevices = async () => {
+    const { data } = await $host.get('auth/devices');
+    return data;
+};

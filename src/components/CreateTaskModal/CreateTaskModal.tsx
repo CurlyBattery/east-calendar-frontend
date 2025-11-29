@@ -1,10 +1,13 @@
-import React, {type FC, useState} from "react";
+import React, {type FC, useEffect, useState} from "react";
 
-import {useAppDispatch} from "../../hooks/redux.ts";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {TaskPriority} from "../../types/task.ts";
 import {createTaskAction} from "../../store/reducers/task/action-creators.ts";
 import Modal from "../Modal.tsx";
 import './_create_task.scss';
+import {fetchMembersAction} from "../../store/reducers/member/action-creators.ts";
+import {PlanUser} from "../../types/user.ts";
+import {fetchUsersAction} from "../../store/reducers/user/action-creators.ts";
 
 interface CreateTaskProps {
     visible: boolean;
@@ -14,22 +17,26 @@ interface CreateTaskProps {
 
 const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }) => {
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector(state => state.auth);
+    const { members } = useAppSelector(state => state.member);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
     const [selectedPriority, setSelectedPriority] = useState(TaskPriority.MEDIUM);
+    const [ selectedMemberId, setSelectedMemberId ] = useState('');
+
 
     const handleClick = async (e: React.FormEvent) => {
         e.preventDefault();
-       await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId));
+       await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId, selectedMemberId));
         setTitle('');
         setDescription('');
         setStart('');
         setEnd('');
         setSelectedPriority(TaskPriority.MEDIUM)
-
+        setSelectedMemberId('')
 
        setVisible(false);
     };
@@ -39,10 +46,25 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
         setSelectedPriority(e.target.value);
     };
 
+    useEffect(() => {
+        dispatch(fetchMembersAction(projectId));
+    }, [dispatch, projectId]);
+
+    const handleSelectMemberIdChange = (e) => {
+        setSelectedMemberId(e.target.value)
+    };
+
     return (
         <Modal visible={visible} setVisible={setVisible} width={'80%'} height={'80%'}>
             <form className='create-task-modal'>
                 <h1 className='create-task-modal__header'>Создать новую задачу</h1>
+                <select value={selectedMemberId} onChange={handleSelectMemberIdChange}>
+                    {members && members.map(member =>
+                        <option key={member?.user?.id} id={member?.user?.id} value={member?.user?.id}>
+                            {member?.user?.name}
+                        </option>
+                    )}
+                </select>
                 <label>Название</label>
                 <input
                     className='create-task-modal__input'
@@ -71,7 +93,7 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
                     value={end}
                     onChange={(e) => setEnd(e.target.value)}
                 />
-                <label>Название</label>
+                <label>Приоритет</label>
                 <select
                     className='create-task-modal__input'
                     value={selectedPriority}

@@ -6,3 +6,5 @@ export const DASHBOARD_ROUTE = '/dashboard';
 export const CREATE_PROJECT_ROUTE = '/create-project';
 export const ONE_PROJECT_ROUTE = '/projects/:id';
 export const PREMIUM_ROUTE = '/premium';
+export const ALL_DEVICES_ROUTE = '/devices';
+export const SCAN_ROUTE = '/scan/:sessionId';

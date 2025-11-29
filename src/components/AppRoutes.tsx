@@ -2,12 +2,13 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import type {FC} from "react";
 
 import {
+    ALL_DEVICES_ROUTE,
     CREATE_PROJECT_ROUTE,
     DASHBOARD_ROUTE,
     EAST_ROUTE,
     LOGIN_ROUTE,
     ONE_PROJECT_ROUTE, PREMIUM_ROUTE, QR_LOGIN_ROUTE,
-    REGISTRATION_ROUTE
+    REGISTRATION_ROUTE, SCAN_ROUTE
 } from "../utils/consts.ts";
 import {ProtectedRoute} from "./ProtectedRoute.tsx";
 import Layout from "./Layout.tsx";
@@ -20,6 +21,8 @@ import QrCodeLoginPage from "../pages/QrCodeLoginPage/QrCodeLoginPage.tsx";
 import HomePage from "../pages/HomePage/HomePage.tsx";
 import ProjectPage from "../pages/ProjectPage/ProjectPage.tsx";
 import PremiumPage from "../pages/PremiumPage/PremiumPage.tsx";
+import AllDevices from "../pages/AllDevicesPage/AllDevices.tsx";
+import ScanPage from "../pages/ScanPage/ScanPage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +78,22 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <PremiumPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: ALL_DEVICES_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                        <AllDevices />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: SCAN_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                            <ScanPage />
                     </ProtectedRoute>
                 )
             },

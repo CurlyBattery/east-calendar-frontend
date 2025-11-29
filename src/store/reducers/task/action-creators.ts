@@ -21,10 +21,11 @@ export const createTaskAction = (
     end: string,
     priority: string,
     projectId: string,
+    assigneeId: string
 ) => async (dispatch: AppDispatch) => {
     try {
         dispatch(taskSlice.actions.createTaskStart());
-        const data = await createTask(title, description, start, end, priority, projectId);
+        const data = await createTask(title, description, start, end, priority, projectId, assigneeId);
         dispatch(taskSlice.actions.createTaskSuccess(data));
     } catch (e) {
         // @ts-ignore
