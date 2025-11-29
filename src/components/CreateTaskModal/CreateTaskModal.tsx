@@ -6,8 +6,6 @@ import {createTaskAction} from "../../store/reducers/task/action-creators.ts";
 import Modal from "../Modal.tsx";
 import './_create_task.scss';
 import {fetchMembersAction} from "../../store/reducers/member/action-creators.ts";
-import {PlanUser} from "../../types/user.ts";
-import {fetchUsersAction} from "../../store/reducers/user/action-creators.ts";
 
 interface CreateTaskProps {
     visible: boolean;
@@ -17,7 +15,6 @@ interface CreateTaskProps {
 
 const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }) => {
     const dispatch = useAppDispatch();
-    const { user } = useAppSelector(state => state.auth);
     const { members } = useAppSelector(state => state.member);
 
     const [title, setTitle] = useState('');
@@ -50,6 +47,7 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
         dispatch(fetchMembersAction(projectId));
     }, [dispatch, projectId]);
 
+    // @ts-ignore
     const handleSelectMemberIdChange = (e) => {
         setSelectedMemberId(e.target.value)
     };

@@ -18,21 +18,22 @@
     align-items: center;
     height: 100%;
     padding: 0 1em;
-  }
-  &__link {
-    text-decoration: none;
-    color: $arctic;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-family: 'MyFont', sans-serif;
-    font-size: $title-size;
+    &__link {
+      text-decoration: none;
+      color: $arctic;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-family: 'MyFont', sans-serif;
+      font-size: $title-size;
 
-    img {
-      width: 40px;
-      height: 40px;
+      img {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
+
 
   &__list {
     display: flex;
@@ -45,10 +46,6 @@
     &__link {
       text-decoration: none;
       color: $main-color;
-
-      &:hover {
-
-      }
     }
   }
   &__profile {
@@ -60,7 +57,6 @@
     &__button {
       padding: $padding-button;
       border: $border-button-hover;
-      cursor: pointer;
       border-radius: 5px;
       font-family: 'MyFont', sans-serif;
       background: $midnight;

@@ -24,6 +24,10 @@ export interface IQRSession {
     status: QrStatus
 }
 
+export interface IDevice {
+    userAgent: string;
+}
+
 export enum PlanUser {
     FREE = 'FREE',
     PRO = 'PRO'

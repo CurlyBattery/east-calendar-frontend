@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getAllDevices} from "../../http/auth.api.ts";
+import type {IDevice} from "../../types/user.ts";
 
 const AllDevices = () => {
     const [devices, setDevices] = useState<any>();
@@ -15,7 +16,7 @@ const AllDevices = () => {
     return (
         <div>
             AllDevices
-            {devices && devices.refreshTokens.map(device =>
+            {devices && devices.refreshTokens.map((device: IDevice) =>
                 <h2>{device.userAgent}</h2>
             )}
         </div>

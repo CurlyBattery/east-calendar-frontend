@@ -1,5 +1,5 @@
 import {$host} from "./index.ts";
-import type {QrStatus} from "../types/user.ts";
+import type {IDevice, QrStatus} from "../types/user.ts";
 
 export const register = async (
     email: string,
@@ -76,6 +76,6 @@ export const qrConfirm = async (sessionId: string, status: QrStatus) => {
 };
 
 export const getAllDevices = async () => {
-    const { data } = await $host.get('auth/devices');
+    const { data } = await $host.get<IDevice[]>('auth/devices');
     return data;
 };

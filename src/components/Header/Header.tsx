@@ -3,7 +3,7 @@ import './_header.scss';
 
 import { useAppSelector } from "../../hooks/redux.ts";
 import {DASHBOARD_ROUTE, EAST_ROUTE, LOGIN_ROUTE, PREMIUM_ROUTE} from "../../utils/consts.ts";
-import logo from '../../assets/images/icons8-skull-64.png';
+import logo from '../../assets/images/cactus.png';
 import {useState} from "react";
 import ProfileModal from "../ProfileModal/ProfileModal.tsx";
 
@@ -30,7 +30,7 @@ const Header = () => {
     return (
         <header className='header'>
             <div className='header__nav'>
-                <Link className='header__link' to={EAST_ROUTE}>
+                <Link className='header__nav__link' to={EAST_ROUTE}>
                     <img src={logo} alt="логотип"/>
                     <p>EastCalendar</p>
                 </Link>
