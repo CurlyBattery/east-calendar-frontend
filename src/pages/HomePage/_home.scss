@@ -20,6 +20,8 @@
             url("src/assets/images/cross.png"),
             url("src/assets/images/cross.png"),
             url("src/assets/images/cross.png"),
+            url("src/assets/images/cross.png"),
+            url("src/assets/images/cross.png"),
             url("src/assets/images/cross.png");
     background-repeat: no-repeat;
     background-position:
@@ -27,6 +29,8 @@
             40% 100%,
             70% 30%,
             90% 80%,
+            10% 10%,
+            40% 30%,
             80% 60%,
             30% 60%,
             34% 20%,
@@ -37,6 +41,8 @@
             40px,
             50px,
             60px,
+            70px,
+            70px,
             70px,
             80px,
             35px,
@@ -54,6 +60,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    z-index: 1;
 
     &:before {
       content: "";
@@ -63,7 +70,7 @@
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: bottom;
-      z-index: 1;
+      z-index: -1;
     }
 
     &__left {
@@ -72,27 +79,31 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
       z-index: 1;
+
       img {
         width: 300px;
       }
     }
+
     &__right {
       width: 50%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
       z-index: 1;
     }
-
-
   }
+
   &__teeth {
     position: relative;
     min-height: 500px;
     display: flex;
     align-items: center;
+    z-index: 1;
 
     &__list {
       display: grid;
@@ -102,10 +113,14 @@
       list-style: none;
       padding: 0;
       max-width: 1200px;
+      width: 100%;
       margin: 0 auto;
 
       &__item {
+        display: flex;
+
         &__card {
+          background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 20px;
@@ -115,7 +130,11 @@
           position: relative;
           overflow: hidden;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
           &::before {
             content: '';
@@ -131,6 +150,7 @@
                             transparent
             );
             transition: left 0.5s;
+            z-index: 0;
           }
 
           img {
@@ -139,6 +159,8 @@
             object-fit: contain;
             transition: all 0.4s ease;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+            position: relative;
+            z-index: 1;
           }
 
           &__text {
@@ -149,6 +171,8 @@
             line-height: 1.4;
             transition: color 0.3s ease;
             letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
           }
 
           &:hover {
@@ -170,20 +194,18 @@
               color: $main-color;
             }
           }
-
         }
       }
-
     }
 
     &:before {
       position: absolute;
       content: "";
-      z-index: -1;
       inset: 0;
-      background-image: url("src/assets/images/d6510bdd347bded9fa758d10cf7e58e7-removebg-preview.png");
+      background-image: url("src/assets/images/teeth.png");
       background-repeat: no-repeat;
-      background-position: 10% 120%;
+      background-position: 50% 160%;
+      background-size: 250px;
       opacity: 0.1;
       pointer-events: none;
     }
@@ -195,6 +217,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 
     &__table {
       display: table;
@@ -206,8 +229,9 @@
       border-collapse: separate;
       border-spacing: 0;
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
 
       &__header {
         th {
@@ -215,33 +239,43 @@
           padding: 1em 2em;
           text-align: start;
         }
-        &__red {
-          border: 1px solid rgba(255, 255, 255, 0.12);
 
+        &__red {
+          border: 4px solid rgba(221, 45, 74, 0.2);
           border-top-left-radius: $border-radius-table;
         }
-        &__blue {
-          border: 1px solid rgba(255, 255, 255, 0.12);
 
+        &__blue {
+          border: 4px solid rgba(102, 155, 188, 0.2);
         }
+
         &__green {
           border-top-right-radius: $border-radius-table;
-          border: 1px solid rgba(255, 255, 255, 0.12);
-
+          border: 4px solid rgba(51, 92, 103, 0.2);
         }
-
       }
 
-      &__row  {
+      &__row {
         td {
           font-size: $min-size;
           padding: 1em 2em;
           text-align: start;
         }
       }
+
       &:hover {
         transform: perspective(3000px) rotateY(0deg);
       }
+    }
+    &:before {
+      content: "";
+      inset: 0;
+      position: absolute;
+      background-image: url("src/assets/images/dvd.png");
+      opacity: 0.1;
+      background-repeat: no-repeat;
+      background-position: 0% 10%;
+      background-size: 250px;
     }
   }
 
@@ -267,6 +301,11 @@
       &__item {
         position: relative;
         padding: 1.8em 2em 1.8em 4.5em;
+        background: linear-gradient(
+                        135deg,
+                        rgba(255, 255, 255, 0.08) 0%,
+                        rgba(255, 255, 255, 0.03) 100%
+        );
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 16px;
@@ -367,12 +406,11 @@
       content: "";
       inset: 0;
       position: absolute;
-      background-image: url("src/assets/images/ceb9c9ba1100b06a51958627795326cd-removebg-preview.png");
+      background-image: url("src/assets/images/angel.png");
       background-size: contain;
       opacity: 0.1;
       background-repeat: no-repeat;
       background-position: 90% 90%;
-      z-index: -1;
     }
   }
 }
@@ -383,18 +421,23 @@
       &__left {
         display: none;
       }
+
       &__right {
         width: 100%;
       }
     }
+
     &__teeth {
       padding: 2em 1em;
+
       &__list {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
         gap: 1.5em;
+
         &__item {
           &__card {
-            padding: 2em;
+            padding: 1.5em 1em;
 
             img {
               width: 60px;
@@ -402,12 +445,13 @@
             }
 
             &__text {
-              font-size: 1rem;
+              font-size: 0.95rem;
             }
           }
         }
       }
     }
+
     &__glass {
       &__table {
         transform: perspective(1000px) rotateY(0deg);
@@ -422,25 +466,68 @@
         }
       }
     }
+
+    &__god {
+      padding: 2em 1em;
+
+      &__list {
+        gap: 1.2em;
+
+        &__item {
+          padding: 1.5em 1.5em 1.5em 3.8em;
+          font-size: 0.95rem;
+
+          &::before {
+            width: 32px;
+            height: 32px;
+            left: 1.2em;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 480px) {
   .home {
-    &__teeth__list {
-      grid-template-columns: 1fr;
+    &__teeth {
+      &__list {
+        grid-template-columns: 1fr;
+      }
     }
+
     &__glass {
       &__table {
         &__header th {
           padding: 0.6em 0.8em;
           font-size: $min-size;
         }
+
         &__row td {
           padding: 0.6em 0.8em;
         }
       }
     }
-  }
 
+    &__god {
+      padding: 1.5em 1em;
+
+      &__list {
+        gap: 1em;
+
+        &__item {
+          padding: 1.2em 1em 1.2em 3.5em;
+          font-size: 0.9rem;
+
+          &::before {
+            width: 28px;
+            height: 28px;
+            left: 1em;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
 }
