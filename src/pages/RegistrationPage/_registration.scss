@@ -1,38 +1,171 @@
 @use '../../variables' as *;
 
 .registration {
-  min-height: calc(100vh - $footer-height - $header-height);
-  height: 100%;
+  min-height: calc(100vh - $header-height - $footer-height);
+  font-family: 'MyFont', sans-serif;
+  background: #1a1a1a;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    background-color: $main-color;
-    padding: $padding-form;
-    gap: $gap-form;
-    border: $border-form;
-    box-shadow: $shadow-form;
-  }
-  &__input {
-    padding: $padding-input;
-    border: $border-input;
-  }
-  &__button {
-    cursor: pointer;
-    padding: $padding-button;
-    border: $border-button;
-    background: $main-color;
+  &__container {
+    background: $midnight;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    max-width: 500px;
+    width: 100%;
+    padding: 60px 50px;
 
-    &:hover {
-      background: aqua;
+    &__logo {
+      font-size: $title-size;
+      font-weight: 700;
+      color: $arctic;
+      margin-bottom: 10px;
+    }
+    &__subtitle {
+      color: $slopes;
+      margin-bottom: 40px;
+      font-size: $main-size;
+    }
+    &__form__group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: $arctic;
+      font-weight: 500;
+      font-size: $main-size;
+    }
+    input[type='text'],
+    input[type='email'],
+    input[type='file'],
+    input[type='password'] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #404040;
+      border-radius: 8px;
+      font-size: $main-size;
+      transition: all 0.3s ease;
+      background: #1f1f1f;
+      color: $arctic;
+      &:focus {
+        outline: none;
+        border-color: $arctic;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+      }
+    }
+    &__form__terms {
+      display: flex;
+      color: $slopes;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      font-size: $main-size;
+
+      input[type='checkbox'] {
+        margin-top: 3px;
+        cursor: pointer;
+      }
+
+      &__link {
+        color: $arctic;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    &__form__button {
+      width: 100%;
+      padding: 14px;
+      background: $arctic;
+      color: $text-color;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      }
+      &:active {
+        transform: translateY(0);
+      }
+    }
+    &__form__divider {
+      text-align: center;
+      margin: 24px 0;
+      color: $arctic;
+      font-size: $main-size;
+      position: relative;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: #404040;
+      }
+      &:before {
+        left: 0;
+      }
+      &:after {
+        right: 0;
+      }
+    }
+    &__form__link {
+      text-align: center;
+      font-size: $main-size;
+      color: $slopes;
+      text-decoration: none;
+      font-weight: 500;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &__form__strength {
+      margin-top: 8px;
+      height: 4px;
+      background: #404040;
+      border-radius: 2px;
+      overflow: hidden;
+      &__bar {
+        height: 100%;
+        width: 0%;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+        &.week {
+          width: 33%;
+          background: #ff6b6b;
+        }
+        &.medium {
+          width: 66%;
+          background: #ffd93d;
+        }
+        &.strong {
+          width: 100%;
+          background: #6bcf7f;
+        }
+      }
+    }
+    &__form__hint {
+      font-size: $min-size;
+      color: #808080;
+      margin-top: 8px;
     }
   }
-  &__link {
-    text-decoration: none;
-    color: $text-color;
+}
+@media (max-width: 768px) {
+  .registration {
+    &__container {
+      padding: 40px 30px;
+    }
   }
 }

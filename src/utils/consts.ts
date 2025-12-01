@@ -1,5 +1,5 @@
 export const EAST_ROUTE = '/';
-export const LOGIN_ROUTE = '/login/email';
+export const LOGIN_ROUTE = '/login';
 export const QR_LOGIN_ROUTE = '/login/qr';
 export const REGISTRATION_ROUTE = '/registration';
 export const DASHBOARD_ROUTE = '/dashboard';

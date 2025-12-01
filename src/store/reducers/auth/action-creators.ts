@@ -6,27 +6,30 @@ import {checkPayment} from "../../../http/payment.api.ts";
 export const registerAction = (
     email: string,
     password: string,
+    confirmPassword: string,
     name: string,
     file: File
 ) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSlice.actions.loginStart());
-        const data = await register(email, password, name, file)
+        const data = await register(email, password, confirmPassword, name, file)
         dispatch(authSlice.actions.loginSuccess(data));
     } catch (e) {
+        console.log(e.response.data)
         // @ts-ignore
-        dispatch(authSlice.actions.loginError(e.message));
+        dispatch(authSlice.actions.loginError(e?.response?.data?.errors?.map(e => e.message).join(', ')) || '');
     }
 }
 
 export const loginAction = (email: string, password: string) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSlice.actions.loginStart());
+        console.log(email, password)
         const data = await loginned(email, password);
         dispatch(authSlice.actions.loginSuccess(data));
     } catch (e) {
         // @ts-ignore
-        dispatch(authSlice.actions.loginError(e.message));
+        dispatch(authSlice.actions.loginError(e?.response?.data?.errors?.map(e => e.message).join(', ')) || '');
     }
 };
 

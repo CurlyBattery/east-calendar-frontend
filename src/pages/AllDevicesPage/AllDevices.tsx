@@ -3,7 +3,7 @@ import {getAllDevices} from "../../http/auth.api.ts";
 import type {IDevice} from "../../types/user.ts";
 
 const AllDevices = () => {
-    const [devices, setDevices] = useState<any>();
+    const [devices, setDevices] = useState<IDevice[] | undefined>();
 
     useEffect(() => {
         const fetchDevices = async () => {
@@ -14,11 +14,13 @@ const AllDevices = () => {
     }, []);
 
     return (
-        <div>
-            AllDevices
-            {devices && devices.refreshTokens.map((device: IDevice) =>
-                <h2>{device.userAgent}</h2>
-            )}
+        <div className="devices">
+            <h2 className='divices__title'>AllDevices</h2>
+            <ul className='devices__list'>
+                {devices && devices.map((device: IDevice) =>
+                    <li className='devices__list__item'>{device.userAgent}</li>
+                )}
+            </ul>
         </div>
     );
 };

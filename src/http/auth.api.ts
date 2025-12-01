@@ -4,12 +4,14 @@ import type {IDevice, QrStatus} from "../types/user.ts";
 export const register = async (
     email: string,
     password: string,
+    confirmPassword: string,
     name: string,
     file: File
 ) => {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
+    formData.append('confirmPassword', confirmPassword);
     formData.append('name', name);
     if(file) {
         formData.append('file', file);
