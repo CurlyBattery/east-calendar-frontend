@@ -14,32 +14,70 @@ const CreateProjectPage = () => {
 
     const [ name, setName ] = useState('');
     const [ description, setDescription ] = useState('');
+    const [ nameCount, setNameCount ] = useState(0);
+    const [ descCount, setDescCount ] = useState(0);
 
     const handleBack = (e: React.FormEvent) => {
         e.preventDefault();
         navigate(DASHBOARD_ROUTE);
     };
 
-    const handleCreateProject = () => {
+    const handleCreateProject = (e: React.FormEvent) => {
+        e.preventDefault();
         dispatch(createProjectAction(name, description));
         navigate(DASHBOARD_ROUTE);
     };
 
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+        setNameCount(e.target.value.length);
+    };
+    const handleDescChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setDescription(e.target.value);
+        setDescCount(e.target.value.length);
+    };
+
     return (
         <div className='project'>
-            <h1 className='project__title' >Создание проекта</h1>
-            <form className='project__form'>
-                <label htmlFor="">Название</label>
-                <input className='project__input' type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+            <div className='project__container'>
+                <h1 className='project__container__title'>Создание проекта</h1>
+                <form className='project__container__form'>
+                    <label htmlFor="">Название</label>
+                    <input
+                        className='project__container__form__input'
+                        type="text"
+                        value={name}
+                        onChange={handleNameChange}
+                        placeholder='Введите название проекта'
+                        maxLength={100}
+                    />
+                    <div className='project__container__form__counter'>
+                        <span id='nameCounter'>{nameCount}</span> / 100
+                    </div>
 
-                <label htmlFor="">Описание</label>
-                <input className='project__input' type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    <label htmlFor="">Описание</label>
+                    <textarea
+                        className='project__container__form__input'
+                        value={description}
+                        onChange={handleDescChange}
+                        placeholder='Опишите цели и задачи проекта'
+                        maxLength={500}
+                    ></textarea>
+                    <div className='project__container__form__counter'>
+                        <span id='descCounter'>{descCount}</span> / 500
+                    </div>
 
-                <div className='project__buttons'>
-                    <button className='project__back' type='button' onClick={handleBack}>Отмена</button>
-                    <button className='project__save' type='button' onClick={handleCreateProject}>Создание</button>
-                </div>
-            </form>
+                    <div className='project__container__form__buttons'>
+                        <button className='project__container__form__buttons__back' type='button' onClick={handleBack}>Отмена</button>
+                        <button
+                            className='project__container__form__buttons__save'
+                            type='submit'
+                            onClick={handleCreateProject}
+                            disabled={!name.trim()}
+                        >Создание</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

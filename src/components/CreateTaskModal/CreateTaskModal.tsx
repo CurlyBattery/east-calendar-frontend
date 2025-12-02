@@ -6,6 +6,7 @@ import {createTaskAction} from "../../store/reducers/task/action-creators.ts";
 import Modal from "../Modal.tsx";
 import './_create_task.scss';
 import {fetchMembersAction} from "../../store/reducers/member/action-creators.ts";
+import {PlanUser} from "../../types/user.ts";
 
 interface CreateTaskProps {
     visible: boolean;
@@ -16,6 +17,7 @@ interface CreateTaskProps {
 const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }) => {
     const dispatch = useAppDispatch();
     const { members } = useAppSelector(state => state.member);
+     const { user } = useAppSelector(state => state.auth);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -56,13 +58,18 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
         <Modal visible={visible} setVisible={setVisible} width={'80%'} height={'80%'}>
             <form className='create-task-modal'>
                 <h1 className='create-task-modal__header'>Создать новую задачу</h1>
-                <select value={selectedMemberId} onChange={handleSelectMemberIdChange}>
-                    {members && members.map(member =>
-                        <option key={member?.user?.id} id={member?.user?.id} value={member?.user?.id}>
-                            {member?.user?.name}
-                        </option>
-                    )}
-                </select>
+                {user?.plan?.subscriptionPlan === PlanUser.PRO && (
+                    <>
+                        <label>Исполнитель</label>
+                        <select value={selectedMemberId} onChange={handleSelectMemberIdChange}>
+                            {members && members.map(member =>
+                                <option key={member?.user?.id} id={member?.user?.id} value={member?.user?.id}>
+                                    {member?.user?.name}
+                                </option>
+                            )}
+                        </select>
+                    </>
+                )}
                 <label>Название</label>
                 <input
                     className='create-task-modal__input'

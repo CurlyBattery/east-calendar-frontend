@@ -1,9 +1,7 @@
-@import '../../variables';
+@use '../../variables' as *;
 
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-
+  margin: 0;
+  background: #1a1a1a;
+  min-height: calc(100vh - $header-height - $footer-height);
 }

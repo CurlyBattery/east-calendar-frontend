@@ -1,0 +1,107 @@
+@use '../../variables' as *;
+
+.modal_profile {
+  background: #2d2d2d;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  min-width: 280px;
+  max-width: 320px;
+  animation: modalSlideIn 0.3s ease;
+  border: 1px solid #404040;
+  &__header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #404040;
+    &__info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      &__avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &__details {
+        flex: 1;
+        &__name {
+          font-weight: 600;
+          color: $arctic;
+          font-size: 16px;
+          margin-bottom: 4px;
+        }
+        &__email {
+          font-size: 13px;
+          color: $slopes;
+        }
+      }
+    }
+  }
+  &__body {
+    padding: 8px 0;
+    &__item {
+      width: 100%;
+      padding: 14px 24px;
+      background: transparent;
+      border: none;
+      color: #e0e0e0;
+      font-size: $main-size;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12ps;
+      &:hover {
+        background: #343434;
+      }
+      &:active {
+        background: #404040;
+      }
+    }
+  }
+  &__footer {
+    padding: 8px 0;
+    border-top: 1px solid #404040;
+    &__button {
+      width: 100%;
+      padding: 14px 24px;
+      background: transparent;
+      border: none;
+      color: #ff6b6b;
+      font-size: $main-size;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      text-align: left;
+      align-items: center;
+      gap: 12px;
+      &:hover {
+        background: rgba(255, 107, 107, 0.1);
+      }
+      &:active {
+        background: rgba(255, 107, 107, 0.2);
+      }
+    }
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .modal_profile {
+    max-width: calc(100vw - 40px);
+  }
+}

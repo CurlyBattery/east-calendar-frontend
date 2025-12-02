@@ -11,7 +11,7 @@ import ProjectItem from "../ProjectItem/ProjectItem.tsx";
 const ProjectList = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { projects, isLoading, error } = useAppSelector(state => state.project);
+    const { projects } = useAppSelector(state => state.project);
 
     useEffect(() => {
         dispatch(fetchMyProjectsAction());
@@ -22,19 +22,18 @@ const ProjectList = () => {
     };
 
     return (
-        <div className='project-list'>
-            <div className='project-list__header'>
-                <h1 className='project-list__title' style={{marginTop: 0, marginBottom: 0}}>Проекты</h1>
-                <button className='project-list__create' type='button' onClick={handleClick}>Создать проект</button>
+        <div className='project_list'>
+            <div className='project_list__header'>
+                <h1 className='project_list__header__title'>Проекты</h1>
+                <button className='project_list__header__create' type='button' onClick={handleClick}>Создать проект</button>
             </div>
-            <div className='project-list__search'>
-                <input className='project-list__search__input' type="search"/>
-                <button className='project-list__search__button'>Искать</button>
+
+            <div className='project_list__search'>
+                <input className='project_list__search__input' type="search" placeholder='Поиск проектов...' />
+                <button className='project_list__search__button'>Искать</button>
             </div>
-            <div className='project-list__container'>
-                {isLoading && <h1>Загрузка</h1>}
-                {error && <h1>{error}</h1>}
-                <table className='project-list__table'>
+            <div className='project_list__container'>
+                <table className='project_list__container__table'>
                     <thead>
                         <tr>
                             <th>Имя</th>

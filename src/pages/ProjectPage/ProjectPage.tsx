@@ -18,12 +18,6 @@ const ProjectPage = () => {
     const [project, setProject] = useState<IProject | null>(null);
     const { id } = useParams<ProjectPageParams>();
 
-    useEffect(() => {
-        (async () => {
-            await fetchProject();
-        })()
-    }, []);
-
     async function fetchProject() {
         try {
             const data = await getOneProject(id!);
@@ -32,6 +26,12 @@ const ProjectPage = () => {
             alert(e);
         }
     }
+
+    useEffect(() => {
+        (async () => {
+            await fetchProject();
+        })()
+    }, []);
 
     return (
         <div className='one-project'>

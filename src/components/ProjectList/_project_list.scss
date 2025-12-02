@@ -1,69 +1,153 @@
-@use '../../variables';
+@use '../../variables' as *;
 
-.project-list {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: variables.$padding-form;
-  gap: variables.$gap-form;
-
+.project_list {
+  padding: 40px 20px;
   &__header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-
-  }
-  &__title {
-    font-size: variables.$title-size;
-  }
-  &__create {
-    padding: variables.$padding-button;
-    font-size: variables.$main-size;
-    background: variables.$main-color;
-    border: variables.$border-button;
-
-    &:hover {
-      cursor: pointer;
-      background: aqua;
+    align-items: center;
+    margin-bottom: 32px;
+    &__title {
+      font-size: $title-size;
+      font-weight: 700;
+      color: $arctic;
     }
-  }
-
-  &__search {
-    display: flex;
-    flex-direction: row;
-    gap: variables.$gap-form;
-
-    &__input {
-      border: variables.$border-input;
-    }
-    &__button {
-      padding: variables.$padding-button;
-      font-size: variables.$min-size;
-      background: variables.$main-color;
-      border: variables.$border-button;
-
+    &__create {
+      padding: 12px 24px;
+      background-color: $arctic;
+      border: none;
+      border-radius: 8px;
+      font-size: $main-size;
+      color: $text-color;
+      font-family: 'MyFont', sans-serif;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       &:hover {
-        cursor: pointer;
-        background: aqua;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
       }
     }
   }
-
-  &__table {
-    width: 100%;
-    border-spacing: 0;
-    overflow: hidden;
-    border-radius: variables.$border-radius-table;
-    border: variables.$border-table;
-    font-size: variables.$main-size;
-
-    thead {
-      text-align: left;
-      background: variables.$color-head-table;
+  &__search {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    max-width: 500px;
+    &__input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #404040;
+      border-radius: 8px;
+      font-size: $main-size;
+      background: #2d2d2d;
+      color: $arctic;
+      font-family: 'MyFont', sans-serif;
+      transition: all 0.3s ease;
+      &:focus {
+        outline: none;
+        border-color: $slopes;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+      }
+      &::placeholder {
+        color: #606060;
+      }
     }
+    &__button {
+      padding: 12px 24px;
+      background: #404040;
+      color: $arctic;
+      border: none;
+      border-radius: 8px;
+      font-size: $main-size;
+      transition: all 0.3s ease;
+      font-family: 'MyFont', sans-serif;
+      &:hover {
+        background: #4a4a4a;
+      }
+    }
+  }
+  &__container {
+    background: #2d2d2d;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    &__table {
+      width: 100%;
+      border-collapse: collapse;
+      thead {
+        background: #1f1f1f;
+        tr {
+          th {
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #a0a0a0;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #404040;
+          }
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: 1px solid #404040;
+          transition: background-color 0.2s ease;
+          &:hover {
+            background-color: #353535;
+          }
+          &:last-child {
+            border-bottom: none;
+          }
+          td {
+            padding: 16px 20px;
+            color: #e0e0e0;
+            font-size: $main-size;
+            &:first-child {
+              font-weight: 600;
+            }
+            a {
+              color: $arctic;
+              text-decoration: none;
+              transition: color 0.2s ease;
+              &:hover {
+                color: #a0a0a0;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
 
-    th, td {
-      padding: variables.$padding-table;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .project_list {
+    padding: 20px 16px;
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      &__title {
+        font-size: 24px;
+      }
+      &__create {
+        width: 100%;
+      }
+    }
+    &__search {
+      max-width: 100%;
+    }
+    &__container {
+      overflow-x: auto;
+      &__table {
+        min-width: 600px;
+        th, td {
+          padding: 12px 16px;
+        }
+      }
     }
   }
 }

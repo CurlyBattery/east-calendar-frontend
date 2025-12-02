@@ -1,4 +1,4 @@
-@import '../../variables';
+@use '../../variables' as *;
 
 .one-project {
   display: flex;
@@ -13,6 +13,7 @@
     border-right: $border-form;
     padding: $padding-button;
     min-width: 200px;
+
   }
   &__title {
     font-size: $title-size;

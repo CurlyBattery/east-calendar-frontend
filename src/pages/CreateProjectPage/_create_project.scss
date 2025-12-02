@@ -1,52 +1,118 @@
 @use '../../variables' as *;
 
 .project {
-  display: flex;
-  flex-direction: column;
-  gap: $gap-form;
-  height: 100%;
-  padding: $padding-form;
-
-  &__title {
-    font-size: $title-size;
-    margin: 0;
-  }
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-form;
-    max-width: 300px;
-    font-size: $main-size;
-    padding: $padding-form;
-    border: $border-form;
-    box-shadow: $shadow-form;
-  }
-  &__input {
-    padding: $padding-input;
-  }
-  &__buttons {
-    display: flex;
-    flex-direction: row;
-    gap: $gap-form;
-  }
-  &__back {
-    padding: $padding-button;
-    border: $border-button;
-    background: $main-color;
-
-    &:hover {
-      cursor: pointer;
-      background: aqua;
+  background: #1a1a1a;
+  height: calc(100vh - $header-height - $footer-height);
+  padding: 40px 20px;
+  &__container {
+    max-width: 600px;
+    margin: 0 auto;
+    &__title {
+      font-size: $title-size;
+      font-weight: 700;
+      color: $arctic;
+      margin-bottom: 32px;
+    }
+    &__form {
+      background: #2d2d2d;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: $slopes;
+        font-weight: 500;
+        font-size: $main-size;
+        font-family: 'MyFont', sans-serif;
+      }
+      &__input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #404040;
+        border-radius: 8px;
+        font-size: $main-size;
+        background: #1f1f1f;
+        color: $arctic;
+        transition: all 0.3s ease;
+        margin-bottom: 24px;
+        font-family: inherit;
+        &:focus {
+          outline: none;
+          border-color: $arctic;
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+        &::placeholder {
+          color: #606060;
+        }
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      &__buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 32px;
+        &__back,
+        &__save {
+          flex: 1;
+          padding: 14px 24px;
+          border: none;
+          border-radius: 8px;
+          font-size: $main-size;
+          font-weight: 600;
+          transition: all 0.2s ease;
+          &:active {
+            transform: translateY(0);
+          }
+        }
+        &__back {
+          background: #404040;
+          color: $arctic;
+          &:hover {
+            background: #4a4a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          }
+        }
+        &__save {
+          background: $arctic;
+          color: $midnight;
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+      &__counter {
+        text-align: right;
+        font-size: $min-size;
+        color: #606060;
+        margin-bottom: 24px;
+        margin-top: -18px;
+      }
     }
   }
-  &__save  {
-    padding: $padding-button;
-    border: $border-button;
-    background: $main-color;
-
-    &:hover {
-      cursor: pointer;
-      background: aqua;
+}
+@media (max-width: 768px) {
+  .project {
+    padding: 20px 16px;
+    &__container {
+      &__title {
+        font-size: $main-size;
+        margin-bottom: 24px;
+      }
+      &__form {
+        padding: 24px;
+        &__buttons {
+          flex-direction: column-reverse;
+          &__back,
+          &__save {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }
