@@ -1,25 +1,31 @@
 @use '../../variables' as *;
 
 .one-project {
-  display: flex;
-  flex-direction: row;
-  font-size: $main-size;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: $midnight;
   min-height: calc(100vh - $header-height - $footer-height);
-
   &__header {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-form;
-    border-right: $border-form;
-    padding: $padding-button;
-    min-width: 200px;
-
+    margin-bottom: 32px;
+  }
+  &__name {
+    display: inline-block;
+    font-size: $main_size;
+    color: #a0a0a0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   &__title {
     font-size: $title-size;
-    margin: 0;
+    font-weight: 700;
+    color: $arctic;
+    margin: 0 0 12px 0;
   }
   &__description {
-    font-size: $min-size;
+    color: #a0a0a0;
+    font-size: $main_size;
+    margin: 0;
+    line-height: 1.6;
   }
 }

@@ -27,7 +27,7 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
     return (
         <div className='task'>
             <div className='task__search'>
-                <input className='task__search__input' type="search"/>
+                <input className='task__search__input' type="search" placeholder='Введите название или содержание'/>
                 <button className='task__search__button' type='button'>Искать</button>
             </div>
             <div className='task__container'>

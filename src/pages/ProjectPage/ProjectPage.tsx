@@ -4,11 +4,11 @@ import {useParams} from "react-router-dom";
 import type {IProject} from "../../types/project.ts";
 import {getOneProject} from "../../http/project.api.ts";
 import TabItem from "../../components/TabItem.tsx";
-import MemberList from "../../components/MemberList.tsx";
 import './_one_project.scss';
 import TabList from "../../components/TabList/TabList.tsx";
 import TaskList from "../../components/TaskList/TaskList.tsx";
 import Calendar from "../../components/Calendar/Calendar.tsx";
+import MemberList from "../../components/MemberList/MemberList.tsx";
 
 type ProjectPageParams = {
     id: string;

@@ -1,8 +1,8 @@
 @use '../../variables' as *;
 
 .tab-list {
-  font-size: $min-size;
-  width: 100%;
+  margin-bottom: 24px;
+
   &__nav {
     border-bottom: $border-form;
   }

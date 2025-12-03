@@ -1,10 +1,11 @@
 import React, {type FC, useEffect, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../hooks/redux.ts";
-import {addMemberAction, fetchMembersAction} from "../store/reducers/member/action-creators.ts";
-import MemberItem from "./MemberItem.tsx";
-import {PlanUser} from "../types/user.ts";
-import {fetchUsersAction} from "../store/reducers/user/action-creators.ts";
-import {RoleMember} from "../types/member.ts";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
+import {RoleMember} from "../../types/member.ts";
+import {PlanUser} from "../../types/user.ts";
+import {addMemberAction, fetchMembersAction} from "../../store/reducers/member/action-creators.ts";
+import {fetchUsersAction} from "../../store/reducers/user/action-creators.ts";
+import MemberItem from "../MemberItem/MemberItem.tsx";
+import './_member_list.scss';
 
 interface MemberListProps {
     projectId: string;

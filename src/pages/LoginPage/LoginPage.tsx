@@ -3,7 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 
 import {loginAction, meAction} from "../../store/reducers/auth/action-creators.ts";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
-import {DASHBOARD_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts.ts";
+import {DASHBOARD_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts.ts";
 import './_login.scss';
 import {type IQRSession, QrStatus} from "../../types/user.ts";
 import {checkStatusQr, getQr} from "../../http/auth.api.ts";

@@ -5,14 +5,14 @@ interface AuthState {
     isAuth: boolean;
     user: IUser | null;
     isLoading: boolean;
-    error: string | null;
+    error: string;
 }
 
 const initialState: AuthState = {
     isAuth: false,
     user: null,
     isLoading: true,
-    error: null,
+    error: '',
 };
 
 export const authSlice = createSlice({
@@ -21,11 +21,11 @@ export const authSlice = createSlice({
     reducers: {
         loginStart: (state) => {
             state.isLoading = true;
-            state.error = null;
+            state.error = '';
         },
         loginSuccess: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false;
-            state.error = null;
+            state.error = '';
             state.isAuth = true;
             state.user = action.payload;
         },
@@ -35,13 +35,13 @@ export const authSlice = createSlice({
         },
         logout: (state) => {
             state.isLoading = false;
-            state.error = null;
+            state.error = '';
             state.isAuth = false;
             state.user = null;
         },
         setUser: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false;
-            state.error = null;
+            state.error = '';
             state.isAuth = true;
             state.user = action.payload;
         }
