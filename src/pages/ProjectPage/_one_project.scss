@@ -29,3 +29,23 @@
     line-height: 1.6;
   }
 }
+
+// Responsive
+@media (max-width: 768px) {
+  .one-project {
+    padding: 24px 16px;
+
+    &__header {
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+    }
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__description {
+      font-size: 14px;
+    }
+  }
+}

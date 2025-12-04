@@ -17,7 +17,20 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
     const dispatch = useAppDispatch();
 
     const [task, setTask] = useState<ITask | null>(null);
-    const [selectedStatus, setSelectedStatus] = useState<TaskStatus | null>(() => task?.status as TaskStatus);
+    console.log(task)
+    const [selectedStatus, setSelectedStatus] = useState<TaskStatus | null>(null);
+
+    async function fetchTask() {
+        try {
+            if(taskId){
+                const data = await getOneTask(taskId);
+                setTask(data);
+                setSelectedStatus(data?.status as TaskStatus);
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     useEffect(() => {
         (async () => {
@@ -25,16 +38,7 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
         })()
     }, []);
 
-    async function fetchTask() {
-        try {
-            if(taskId){
-                const data = await getOneTask(taskId);
-                setTask(data);
-            }
-        } catch (e) {
-            console.log(e)
-        }
-    }
+
 
     const handleSelectPriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();

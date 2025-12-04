@@ -1,0 +1,169 @@
+@use '../../variables' as *;
+
+.member-list {
+  &__form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: #2d2d2d;
+    border-radius: 12px;
+    border: 2px solid #404040;
+    align-items: flex-end;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+      border-color: #606060;
+    }
+
+    &-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #a0a0a0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #404040;
+      border-radius: 8px;
+      font-size: $main-size;
+      background: #1f1f1f;
+      color: $arctic;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      min-width: 200px;
+
+      &:hover {
+        border-color: #606060;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $arctic;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+      }
+
+      option {
+        background: #1f1f1f;
+        color: $arctic;
+        padding: 12px;
+      }
+    }
+
+    button {
+      padding: 12px 28px;
+      background: $arctic;
+      color: #000000;
+      border: none;
+      border-radius: 8px;
+      font-size: $main-size;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__loading,
+  &__error {
+    text-align: center;
+    padding: 60px 20px;
+    color: #a0a0a0;
+    font-size: 18px;
+  }
+
+  &__error {
+    color: #ff6b6b;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 80px 20px;
+
+    &-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    &-title {
+      font-size: 20px;
+      color: #a0a0a0;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    &-description {
+      font-size: $main-size;
+      color: #606060;
+    }
+  }
+}
+// Responsive
+@media (max-width: 968px) {
+  .member-list {
+    &__form {
+      flex-wrap: wrap;
+
+      &-group {
+        flex: 1 1 calc(50% - 6px);
+        min-width: 200px;
+      }
+
+      button {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .member-list {
+    &__form {
+      padding: 20px 16px;
+
+      &-group {
+        flex: 1 1 100%;
+      }
+
+      select {
+        min-width: unset;
+      }
+    }
+  }
+
+}

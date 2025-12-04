@@ -2,7 +2,14 @@ import {Link, useNavigate} from "react-router-dom";
 import './_header.scss';
 
 import { useAppSelector } from "../../hooks/redux.ts";
-import {DASHBOARD_ROUTE, EAST_ROUTE, LOGIN_ROUTE, PREMIUM_ROUTE} from "../../utils/consts.ts";
+import {
+    ABOUT_ROUTE,
+    DASHBOARD_ROUTE,
+    EAST_ROUTE,
+    LOGIN_ROUTE,
+    MY_TASKS_ROUTE,
+    PREMIUM_ROUTE
+} from "../../utils/consts.ts";
 import logo from '../../assets/images/cactus.png';
 import {useState} from "react";
 import ProfileModal from "../ProfileModal/ProfileModal.tsx";
@@ -38,7 +45,8 @@ const Header = () => {
                     <>
                         <ul className='header__list'>
                             <li className='header__item'><Link className='header__item__link' to={DASHBOARD_ROUTE}>Дашборд</Link></li>
-                            <li className='header__item'><Link className='header__item__link' to={DASHBOARD_ROUTE}>О нас</Link></li>
+                            <li className='header__item'><Link className='header__item__link' to={MY_TASKS_ROUTE}>Мои задачи</Link></li>
+                            <li className='header__item'><Link className='header__item__link' to={ABOUT_ROUTE}>О нас</Link></li>
                         </ul>
                         <div className='header__profile'>
                             <button className='header__profile__button' type='button' onClick={handleClickPremium}>Premium</button>

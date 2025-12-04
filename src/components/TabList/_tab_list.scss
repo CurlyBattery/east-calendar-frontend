@@ -1,23 +1,103 @@
 @use '../../variables' as *;
 
 .tab-list {
-  margin-bottom: 24px;
-
   &__nav {
-    border-bottom: $border-form;
+    margin-bottom: 32px;
   }
+
   &__ul {
-    display: flex;
-    justify-content: center;
-    padding: 0;
-  }
-  &__item {
     list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid #404040;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #404040;
+      border-radius: 2px;
+    }
+  }
+
+  &__item {
+    flex-shrink: 0;
 
     &__link {
-      background: $main-color;
+      display: block;
+      padding: 14px 24px;
+      background: transparent;
+      color: #a0a0a0;
       border: none;
+      border-bottom: 3px solid transparent;
+      font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      bottom: -2px;
+      white-space: nowrap;
+
+      &:hover {
+        color: #e0e0e0;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      &:focus {
+        outline: none;
+        color: $arctic;
+      }
+
+      // Активный таб
+      &:focus,
+      &[aria-selected="true"] {
+        color: $arctic;
+        border-bottom-color: $arctic;
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+  }
+
+  // Контент табов с анимацией
+  > div {
+    animation: fadeInUp 0.3s ease;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+
+
+  .tab-list {
+    &__nav {
+      margin-bottom: 24px;
+    }
+
+    &__item {
+      &__link {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
     }
   }
 }

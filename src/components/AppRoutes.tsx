@@ -2,12 +2,13 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import type {FC} from "react";
 
 import {
+    ABOUT_ROUTE,
     ALL_DEVICES_ROUTE,
     CREATE_PROJECT_ROUTE,
     DASHBOARD_ROUTE,
     EAST_ROUTE,
-    LOGIN_ROUTE,
-    ONE_PROJECT_ROUTE, PREMIUM_ROUTE,
+    LOGIN_ROUTE, MY_TASKS_ROUTE,
+    ONE_PROJECT_ROUTE, PREMIUM_ROUTE, PROFILE_ROUTE,
     REGISTRATION_ROUTE, SCAN_ROUTE
 } from "../utils/consts.ts";
 import {ProtectedRoute} from "./ProtectedRoute.tsx";
@@ -22,6 +23,9 @@ import ProjectPage from "../pages/ProjectPage/ProjectPage.tsx";
 import PremiumPage from "../pages/PremiumPage/PremiumPage.tsx";
 import AllDevices from "../pages/AllDevicesPage/AllDevices.tsx";
 import ScanPage from "../pages/ScanPage/ScanPage.tsx";
+import MyTasksPage from "../pages/MyTasks/MyTasksPage.tsx";
+import AboutPage from "../pages/AboutPage/AboutPage.tsx";
+import MyProfilePage from "../pages/MyProfilePage/MyProfilePage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -89,6 +93,30 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                             <ScanPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: MY_TASKS_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                        <MyTasksPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: ABOUT_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                        <AboutPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: PROFILE_ROUTE,
+                element: (
+                    <ProtectedRoute>
+                        <MyProfilePage />
                     </ProtectedRoute>
                 )
             },

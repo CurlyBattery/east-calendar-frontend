@@ -6,6 +6,11 @@ export const getMyTasksByProject = async (projectId: string) => {
     return data;
 };
 
+export const getMyTasks = async () => {
+    const { data } = await $host.get<ITask[]>(`tasks/my`);
+    return data;
+};
+
 export const getOneTask = async (id: string) => {
     const { data } = await $host.get<ITask>('tasks/' + id);
     return data;

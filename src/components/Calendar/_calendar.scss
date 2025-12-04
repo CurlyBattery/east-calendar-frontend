@@ -1,96 +1,485 @@
+// _calendar.scss
 @use '../../variables' as *;
 
 .calendar {
   background: #2d2d2d;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   color: $arctic;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  }
 
   :global {
+    // Основные переменные календаря
     .fc {
       --fc-border-color: #404040;
       --fc-button-bg-color: #404040;
       --fc-button-border-color: #404040;
+      --fc-button-hover-bg-color: #4a4a4a;
       --fc-button-hover-border-color: #4a4a4a;
       --fc-button-active-bg-color: #ffffff;
       --fc-button-active-border-color: #ffffff;
       --fc-event-bg-color: #404040;
       --fc-event-border-color: #404040;
       --fc-page-bg-color: transparent;
+      --fc-neutral-bg-color: #1f1f1f;
+      --fc-today-bg-color: rgba(255, 255, 255, 0.08);
+
+      font-family: inherit;
     }
+
+    // Границы таблицы
     .fc-theme-standard td,
     .fc-theme-standard th {
       border-color: #404040;
     }
 
-    .fc-toolbar-title {
-      color: #ffffff;
-      font-size: 24px;
-      font-weight: 600;
+    .fc-scrollgrid {
+      border-color: #404040;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
+    // Toolbar (верхняя панель)
+    .fc-toolbar {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #404040;
+
+      &-title {
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      &-chunk {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    // Кнопки
     .fc-button {
       color: #ffffff;
       text-transform: capitalize;
-      font-weight: 500;
-      padding: 8px 16px;
-
-      &:focus {
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-      }
-    }
-
-    .fc-button-primary:not(:disabled).fc-button-active {
-      background-color: #ffffff;
-      color: #000000;
-    }
-
-    .fc-col-header-cell {
-      background: #1f1f1f;
-
-      a {
-        color: #a0a0a0;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 13px;
-        text-transform: uppercase;
-      }
-    }
-
-    .fc-daygrid-day-number {
-      color: #e0e0e0;
-      padding: 8px;
-    }
-
-    .fc-daygrid-day.fc-day-today {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .fc-event {
-      cursor: pointer;
-      border-radius: 4px;
-      padding: 2px 4px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-size: 14px;
 
       &:hover {
-        opacity: 0.8;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: none;
       }
     }
 
-    .fc-event-title {
-      font-weight: 500;
+    .fc-button-primary {
+      &:not(:disabled) {
+        &.fc-button-active {
+          background-color: #ffffff;
+          color: #000000;
+          font-weight: 700;
+          box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+
+          &:hover {
+            background-color: #f0f0f0;
+          }
+        }
+      }
     }
 
-    .fc-timegrid-slot {
-      height: 3em;
+    // Группа кнопок
+    .fc-button-group {
+      .fc-button {
+        border-radius: 0;
+
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+        }
+
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+        }
+      }
     }
 
-    .fc-timegrid-slot-label {
-      color: #a0a0a0;
+    // Заголовки дней недели
+    .fc-col-header {
+      background: #1f1f1f;
+
+      &-cell {
+        padding: 12px 8px;
+        border-bottom: 2px solid #404040;
+
+        a {
+          color: #a0a0a0;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
     }
 
-    .fc-scrollgrid {
-      border-color: #404040;
+    // Ячейки дней
+    .fc-daygrid-day {
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+
+      &-number {
+        color: #e0e0e0;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: color 0.2s ease;
+      }
+
+      &-top {
+        display: flex;
+        justify-content: center;
+        padding: 4px;
+      }
+
+      // Сегодняшний день
+      &.fc-day-today {
+        background-color: rgba(255, 255, 255, 0.08);
+        position: relative;
+
+        .fc-daygrid-day-number {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: #ffffff;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+      }
+
+      // Дни других месяцев
+      &.fc-day-other {
+        .fc-daygrid-day-number {
+          color: #606060;
+        }
+      }
+
+      // Выходные дни
+      &.fc-day-sat,
+      &.fc-day-sun {
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+    }
+
+    // События
+    .fc-event {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 4px 8px;
+      border: none;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      &-title {
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-time {
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      // Цветовые схемы для разных статусов
+      &.fc-event-draggable {
+        cursor: move;
+      }
+    }
+
+    // Цвета событий по статусам
+    .fc-event {
+      // TODO - серый
+      &[style*="gray"] {
+        background-color: #6b7280 !important;
+        border-left: 4px solid #9ca3af !important;
+      }
+
+      // DONE - зелёный
+      &[style*="green"] {
+        background-color: #10b981 !important;
+        border-left: 4px solid #34d399 !important;
+      }
+
+      // IN_PROGRESS - синий
+      &[style*="blue"] {
+        background-color: #3b82f6 !important;
+        border-left: 4px solid #60a5fa !important;
+      }
+
+      // CHECKING - розовый
+      &[style*="pink"] {
+        background-color: #ec4899 !important;
+        border-left: 4px solid #f472b6 !important;
+      }
+    }
+
+    // Временная сетка (week/day view)
+    .fc-timegrid {
+      &-slot {
+        height: 3.5em;
+        border-color: #404040;
+
+        &-label {
+          color: #a0a0a0;
+          font-size: 12px;
+          font-weight: 600;
+          padding: 8px;
+          border-color: #404040;
+        }
+      }
+
+      &-event {
+        border-radius: 6px;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+        &-harness {
+          margin-right: 2px;
+        }
+      }
+
+      &-axis {
+        background: #1f1f1f;
+      }
+
+      &-col {
+        &.fc-day-today {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+      }
+
+      &-now-indicator-line {
+        border-color: #ef4444;
+        border-width: 2px;
+      }
+
+      &-now-indicator-arrow {
+        border-color: #ef4444;
+      }
+    }
+
+    // Попап при создании события
+    .fc-popover {
+      background: #2d2d2d;
+      border: 1px solid #404040;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+      &-header {
+        background: #1f1f1f;
+        color: #ffffff;
+        padding: 12px 16px;
+        border-radius: 8px 8px 0 0;
+      }
+
+      &-body {
+        padding: 8px;
+      }
+    }
+
+    // More link (показать больше событий)
+    .fc-more-link {
+      color: #667eea;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgba(102, 126, 234, 0.1);
+        color: #764ba2;
+      }
+    }
+
+    // Кнопка "Сегодня"
+    .fc-today-button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: #ffffff;
+      font-weight: 700;
+
+      &:hover {
+        background: linear-gradient(135deg, #5568d3 0%, #6a3f8b 100%);
+      }
+
+      &:disabled {
+        background: #404040;
+        opacity: 0.5;
+      }
+    }
+
+    // Скроллбар
+    .fc-scroller {
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #1f1f1f;
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #404040;
+        border-radius: 4px;
+
+        &:hover {
+          background: #4a4a4a;
+        }
+      }
+    }
+
+    // Список событий в попапе
+    .fc-daygrid-event-harness {
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    // View container
+    .fc-view-harness {
+      background: transparent;
+    }
+
+    // Лицензия FullCalendar
+    .fc-license-message {
+      display: none;
+    }
+  }
+}
+
+// Анимация загрузки календаря
+.calendar {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 968px) {
+  .calendar {
+    padding: 24px 20px;
+
+    :global {
+      .fc-toolbar {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+
+        &-title {
+          font-size: 24px;
+          text-align: center;
+        }
+
+        &-chunk {
+          justify-content: center;
+        }
+      }
+
+      .fc-button {
+        padding: 8px 14px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar {
+    padding: 16px 12px;
+    border-radius: 12px;
+
+    :global {
+      .fc-toolbar {
+        &-title {
+          font-size: 20px;
+        }
+      }
+
+      .fc-button {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .fc-col-header-cell a {
+        font-size: 10px;
+      }
+
+      .fc-daygrid-day-number {
+        font-size: 12px;
+        padding: 6px;
+      }
+
+      .fc-event {
+        font-size: 11px;
+        padding: 2px 6px;
+      }
     }
   }
 }
