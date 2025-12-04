@@ -57,7 +57,6 @@
         color: $arctic;
       }
 
-      // Активный таб
       &:focus,
       &[aria-selected="true"] {
         color: $arctic;
@@ -67,7 +66,6 @@
     }
   }
 
-  // Контент табов с анимацией
   > div {
     animation: fadeInUp 0.3s ease;
   }
@@ -84,7 +82,6 @@
   }
 }
 
-// Responsive
 @media (max-width: 768px) {
 
 
