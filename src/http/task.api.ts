@@ -20,7 +20,7 @@ export const createTask = async (
     projectId: string,
     assigneeId: string,
 ) => {
-    const { data } =  await $host.post<ITask>('tasks', {
+    const request = assigneeId !== '' ? {
         title,
         description,
         start,
@@ -28,7 +28,16 @@ export const createTask = async (
         priority,
         projectId,
         assigneeId
-    })
+    } : {
+        title,
+        description,
+        start,
+        end,
+        priority,
+        projectId,
+    };
+    console.log(request)
+    const { data } =  await $host.post<ITask>('tasks', request)
     return data;
 };
 

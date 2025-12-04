@@ -1,9 +1,11 @@
-import {type FC, useEffect, useState} from "react";
+import React, {type FC, useEffect, useState} from "react";
 
 import Modal from "../Modal.tsx";
-import type {ITask} from "../../types/task.ts";
+import {type ITask, TaskPriority, TaskStatus} from "../../types/task.ts";
 import {getOneTask} from "../../http/task.api.ts";
 import './_task_modal.scss';
+import {useAppDispatch} from "../../hooks/redux.ts";
+import {updateTaskAction} from "../../store/reducers/task/action-creators.ts";
 
 interface TaskModalProps {
     visible: boolean;
@@ -12,7 +14,10 @@ interface TaskModalProps {
 }
 
 const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
+    const dispatch = useAppDispatch();
+
     const [task, setTask] = useState<ITask | null>(null);
+    const [selectedStatus, setSelectedStatus] = useState<TaskStatus | null>(() => task?.status as TaskStatus);
 
     useEffect(() => {
         (async () => {
@@ -29,6 +34,11 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
         } catch (e) {
             console.log(e)
         }
+    }
+
+    const handleSelectPriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        e.preventDefault();
+        dispatch(updateTaskAction(taskId, {status: e.target.value as TaskStatus}));
     }
 
     return (
@@ -49,7 +59,17 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                     </div>
                     <div className='one-task__detail'>
                         <h4>Статус</h4>
-                        <p>{task?.status}</p>
+                        <select
+                            className='create-task-modal__input'
+                            value={selectedStatus}
+                            onChange={handleSelectPriorityChange}
+                        >
+                            <option key={TaskStatus.TODO} value={TaskStatus.TODO}>Новая</option>
+                            <option key={TaskStatus.CHECKING} value={TaskStatus.CHECKING}>На проверке</option>
+                            <option key={TaskStatus.IN_PROGRESS} value={TaskStatus.IN_PROGRESS}>Выполняется</option>
+                            <option key={TaskStatus.DONE} value={TaskStatus.DONE}>Готова</option>
+                        </select>
+
                     </div>
                     <div className='one-task__detail'>
                         <h4>Дедлайн</h4>

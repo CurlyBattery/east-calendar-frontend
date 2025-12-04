@@ -29,7 +29,7 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
 
     const handleClick = async (e: React.FormEvent) => {
         e.preventDefault();
-       await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId, selectedMemberId));
+        await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId, selectedMemberId));
         setTitle('');
         setDescription('');
         setStart('');
@@ -48,6 +48,7 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
     useEffect(() => {
         dispatch(fetchMembersAction(projectId));
     }, [dispatch, projectId]);
+
 
     // @ts-ignore
     const handleSelectMemberIdChange = (e) => {

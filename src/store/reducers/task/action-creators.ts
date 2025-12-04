@@ -39,7 +39,6 @@ export const updateTaskAction = (
     taskUpdateData: ITaskUpdateData
 ) => async (dispatch: AppDispatch) => {
     try {
-        console.log(taskId)
         dispatch(taskSlice.actions.updateTaskStart());
         const data = await updateTask(taskId, taskUpdateData);
         dispatch(taskSlice.actions.updateTaskSuccess(data));
