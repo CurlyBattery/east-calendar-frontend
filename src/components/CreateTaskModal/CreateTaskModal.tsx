@@ -17,7 +17,7 @@ interface CreateTaskProps {
 const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }) => {
     const dispatch = useAppDispatch();
     const { members } = useAppSelector(state => state.member);
-     const { user } = useAppSelector(state => state.auth);
+    const { user } = useAppSelector(state => state.auth);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -26,95 +26,140 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
     const [selectedPriority, setSelectedPriority] = useState(TaskPriority.MEDIUM);
     const [ selectedMemberId, setSelectedMemberId ] = useState('');
 
-
-    const handleClick = async (e: React.FormEvent) => {
-        e.preventDefault();
-        await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId, selectedMemberId));
+    const resetForm = () => {
         setTitle('');
         setDescription('');
         setStart('');
         setEnd('');
         setSelectedPriority(TaskPriority.MEDIUM)
         setSelectedMemberId('')
+    }
 
-       setVisible(false);
+    const handleClick = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!title || !start || !end) {
+            alert("Пожалуйста, заполните название, дату начала и дату окончания.");
+            return;
+        }
+
+        await dispatch(createTaskAction(title, description, start, end, selectedPriority, projectId, selectedMemberId));
+        resetForm();
+        setVisible(false);
     };
 
-    // @ts-ignore
-    const handleSelectPriorityChange = (e) => {
-        setSelectedPriority(e.target.value);
+    const handleSelectPriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedPriority(e.target.value as TaskPriority);
     };
 
     useEffect(() => {
-        dispatch(fetchMembersAction(projectId));
-    }, [dispatch, projectId]);
+        if (visible) {
+            dispatch(fetchMembersAction(projectId));
+        }
+    }, [dispatch, projectId, visible]);
 
-
-    // @ts-ignore
-    const handleSelectMemberIdChange = (e) => {
+    const handleSelectMemberIdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedMemberId(e.target.value)
     };
 
     return (
-        <Modal visible={visible} setVisible={setVisible} width={'80%'} height={'80%'}>
-            <form className='create-task-modal'>
-                <h1 className='create-task-modal__header'>Создать новую задачу</h1>
-                {user?.plan?.subscriptionPlan === PlanUser.PRO && (
-                    <>
-                        <label>Исполнитель</label>
-                        <select value={selectedMemberId} onChange={handleSelectMemberIdChange}>
-                            {members && members.map(member =>
-                                <option key={member?.user?.id} id={member?.user?.id} value={member?.user?.id}>
-                                    {member?.user?.name}
-                                </option>
-                            )}
+        <Modal visible={visible} setVisible={setVisible}>
+            <form className='create-task-modal' onSubmit={handleClick}>
+
+                <h2 className='create-task-modal__header'>Создать новую задачу</h2>
+
+                <div className='create-task-modal__form-group'>
+                    <label htmlFor="title">Название</label>
+                    <input
+                        id="title"
+                        className='create-task-modal__input'
+                        type="text"
+                        placeholder="Краткое описание задачи"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className='create-task-modal__form-group'>
+                    <label htmlFor="description">Описание</label>
+                    <textarea
+                        id="description"
+                        className='create-task-modal__input create-task-modal__textarea'
+                        placeholder="Подробная информация о задаче"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        rows={3}
+                    />
+                </div>
+
+                {/* Блок с датами в одной строке */}
+                <div className='create-task-modal__dates-group'>
+                    <div className='create-task-modal__form-group'>
+                        <label htmlFor="start">Дата начала</label>
+                        <input
+                            id="start"
+                            className='create-task-modal__input'
+                            type="datetime-local"
+                            value={start}
+                            onChange={(e) => setStart(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='create-task-modal__form-group'>
+                        <label htmlFor="end">Дата окончания</label>
+                        <input
+                            id="end"
+                            className='create-task-modal__input'
+                            type="datetime-local"
+                            value={end}
+                            onChange={(e) => setEnd(e.target.value)}
+                            required
+                        />
+                    </div>
+                </div>
+
+
+                <div className='create-task-modal__selects-group'>
+                    {/* Выбор приоритета */}
+                    <div className='create-task-modal__form-group'>
+                        <label htmlFor="priority">Приоритет</label>
+                        <select
+                            id="priority"
+                            className='create-task-modal__input create-task-modal__select'
+                            value={selectedPriority}
+                            onChange={handleSelectPriorityChange}
+                        >
+                            <option value={TaskPriority.LOW}>Низкий</option>
+                            <option value={TaskPriority.MEDIUM}>Средний</option>
+                            <option value={TaskPriority.HIGH}>Высокий</option>
                         </select>
-                    </>
-                )}
-                <label>Название</label>
-                <input
-                    className='create-task-modal__input'
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <label>Описание</label>
-                <input
-                    className='create-task-modal__input'
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-                <label>Дата начала</label>
-                <input
-                    className='create-task-modal__input'
-                    type="datetime-local"
-                    value={start}
-                    onChange={(e) => setStart(e.target.value)}
-                />
-                <label>Дата окончания</label>
-                <input
-                    className='create-task-modal__input'
-                    type="datetime-local"
-                    value={end}
-                    onChange={(e) => setEnd(e.target.value)}
-                />
-                <label>Приоритет</label>
-                <select
-                    className='create-task-modal__input'
-                    value={selectedPriority}
-                    onChange={handleSelectPriorityChange}
-                >
-                    <option key={TaskPriority.LOW} value={TaskPriority.LOW}>Низкий</option>
-                    <option key={TaskPriority.MEDIUM} value={TaskPriority.MEDIUM}>Средний</option>
-                    <option key={TaskPriority.HIGH} value={TaskPriority.HIGH}>Высокий</option>
-                </select>
+                    </div>
+
+                    {user?.plan?.subscriptionPlan === PlanUser.PRO && (
+                        <div className='create-task-modal__form-group'>
+                            <label htmlFor="member">Исполнитель</label>
+                            <select
+                                id="member"
+                                className='create-task-modal__input create-task-modal__select'
+                                value={selectedMemberId}
+                                onChange={handleSelectMemberIdChange}
+                            >
+                                <option value="">(Выбрать)</option>
+                                {members.map(member => (
+                                    <option key={member?.user?.id} value={member?.user?.id}>
+                                        {member?.user?.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+                </div>
 
                 <button
-                    className='create-task-modal__button'
-                    type='button'
-                    onClick={handleClick}
-                >Добавить
+                    className='create-task-modal__button primary-button'
+                    type='submit'
+                >
+                    Добавить Задачу
                 </button>
             </form>
         </Modal>
