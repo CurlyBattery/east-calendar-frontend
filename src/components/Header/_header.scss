@@ -6,13 +6,14 @@
   height: $header-height;
   background: $midnight;
   border-bottom: 1px solid $midnight;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   font-family: 'MyFont', sans-serif;
   padding: 0 24px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 100;
 
   &__nav {
     display: flex;

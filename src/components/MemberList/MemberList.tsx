@@ -6,6 +6,8 @@ import {addMemberAction, fetchMembersAction} from "../../store/reducers/member/a
 import {fetchUsersAction} from "../../store/reducers/user/action-creators.ts";
 import MemberItem from "../MemberItem/MemberItem.tsx";
 import './_member_list.scss';
+import {useNavigate} from "react-router-dom";
+import {PREMIUM_ROUTE} from "../../utils/consts.ts";
 
 interface MemberListProps {
     projectId: string;
@@ -13,6 +15,7 @@ interface MemberListProps {
 
 const MemberList: FC<MemberListProps> = ({ projectId }) => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { members, isLoading, error } = useAppSelector(state => state.member);
     const { user } = useAppSelector(state => state.auth);
     const { users } = useAppSelector(state => state.user);
@@ -56,6 +59,10 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
         dispatch(addMemberAction(selectedUserId, selectedRole, projectId));
     };
 
+    const handleClickPremium = () => {
+        navigate(PREMIUM_ROUTE);
+    };
+
     return (
         <div className='member-list'>
             {/* Premium баннер для Free пользователей */}
@@ -68,13 +75,12 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
                     <p className='member-list__premium-banner-description'>
                         Обновитесь до PRO, чтобы добавлять неограниченное количество участников в проекты
                     </p>
-                    <button className='member-list__premium-banner-button'>
+                    <button className='member-list__premium-banner-button' onClick={handleClickPremium}>
                         Перейти на PRO
                     </button>
                 </div>
             )}
 
-            {/* Форма добавления участника (только для PRO) */}
             {isPro && (
                 <form className='member-list__form' onSubmit={handleClick}>
                     <div className='member-list__form-group'>
