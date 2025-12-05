@@ -26,10 +26,10 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
 
     return (
         <div className='task'>
-            <div className='task__search'>
-                <input className='task__search__input' type="search" placeholder='Введите название или содержание'/>
-                <button className='task__search__button' type='button'>Искать</button>
-            </div>
+                <form className='task__search'>
+                    <input className='task__search__input' type="search" placeholder='Введите название или содержание'/>
+                    <button className='task__search__button' type='submit'>Искать</button>
+                </form>
             <div className='task__container'>
                 {isLoading && <h1>Загрузка</h1>}
                 {error && <h1>{error}</h1>}

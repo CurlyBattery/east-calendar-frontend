@@ -1,0 +1,16 @@
+@use '../../variables' as *;
+
+.task {
+  font-family: 'MyFont', sans-serif;
+  background: #1a1a1a;
+  padding: 20px;
+  min-height: calc(100vh - $header-height - $footer-height);
+  color: $arctic;
+
+  &__header {
+    text-align: center;
+    &__title {
+      font-size: $title-size;
+    }
+  }
+}

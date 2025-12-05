@@ -6,8 +6,9 @@ export const getMyTasksByProject = async (projectId: string) => {
     return data;
 };
 
-export const getMyTasks = async () => {
-    const { data } = await $host.get<ITask[]>(`tasks/my`);
+export const getMyTasks = async (text?: string) => {
+    const url = !!text ? `tasks/my?text=${text}` : `tasks/my`
+    const { data } = await $host.get<ITask[]>(url);
     return data;
 };
 

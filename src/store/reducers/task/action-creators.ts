@@ -14,10 +14,10 @@ export const fetchTasksAction = (projectId: string) => async (dispatch: AppDispa
     }
 };
 
-export const fetchMyTasksAction = () => async (dispatch: AppDispatch) => {
+export const fetchMyTasksAction = (text?: string) => async (dispatch: AppDispatch) => {
     try {
         dispatch(taskSlice.actions.tasksFetching());
-        const data = await getMyTasks();
+        const data = await getMyTasks(text);
         dispatch(taskSlice.actions.tasksFetchingSuccess(data));
     } catch (e) {
         // @ts-ignore
