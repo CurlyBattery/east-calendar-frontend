@@ -51,7 +51,6 @@
       &:focus {
         outline: none;
         border-color: $arctic;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
       }
 
       option {
@@ -83,12 +82,6 @@
       &:active {
         transform: translateY(0);
       }
-
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-      }
     }
   }
 
@@ -98,27 +91,9 @@
     gap: 12px;
   }
 
-  &__loading,
-  &__error {
-    text-align: center;
-    padding: 60px 20px;
-    color: #a0a0a0;
-    font-size: 18px;
-  }
-
-  &__error {
-    color: #ff6b6b;
-  }
-
   &__empty {
     text-align: center;
     padding: 80px 20px;
-
-    &-icon {
-      font-size: 64px;
-      margin-bottom: 16px;
-      opacity: 0.3;
-    }
 
     &-title {
       font-size: 20px;
@@ -133,7 +108,6 @@
     }
   }
 }
-// Responsive
 @media (max-width: 968px) {
   .member-list {
     &__form {

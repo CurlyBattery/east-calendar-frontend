@@ -1,9 +1,13 @@
-// MyProfilePage.tsx
-import { useAppSelector } from "../../hooks/redux.ts";
+import { GiCrown } from "react-icons/gi";
+
+import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import { PlanUser } from "../../types/user.ts";
 import './_profile.scss';
+import {logoutAction} from "../../store/reducers/auth/action-creators.ts";
 
 const MyProfilePage = () => {
+    const dispatch = useAppDispatch();
+
     const { user } = useAppSelector(state => state.auth);
     const avatar = user?.avatarPath ? `http://localhost:5000/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
 
@@ -18,10 +22,14 @@ const MyProfilePage = () => {
 
     const isPro = user?.plan?.subscriptionPlan === PlanUser.PRO;
 
+    const handleLogout = () => {
+        dispatch(logoutAction())
+    };
+
+
     return (
         <div className='profile'>
             <div className='profile__container'>
-                {/* Шапка профиля */}
                 <div className='profile__header'>
                     <div className='profile__header-bg'></div>
                     <div className='profile__header-content'>
@@ -35,16 +43,13 @@ const MyProfilePage = () => {
                             ) : (
                                 <img src={avatar} alt="аватарка" className='profile__avatar profile__avatar--placeholder'/>
                             )}
-                            <button className='profile__avatar-edit'>
-                                <span>📷</span>
-                            </button>
                         </div>
                         <div className='profile__header-info'>
                             <h1 className='profile__name'>{user?.name || 'Имя не указано'}</h1>
                             <p className='profile__email'>{user?.email || 'Email не указан'}</p>
                             <div className='profile__badges'>
                                 <span className={`profile__plan-badge ${isPro ? 'profile__plan-badge--pro' : 'profile__plan-badge--free'}`}>
-                                    {isPro ? '⭐ PRO' : 'FREE'}
+                                    {isPro ? 'PRO' : 'FREE'}
                                 </span>
                                 <span className='profile__date-badge'>
                                     Регистрация: {formatDate(user?.createdAt)}
@@ -67,7 +72,7 @@ const MyProfilePage = () => {
                         <div className='profile__plan-card'>
                             <div className='profile__plan-info'>
                                 <div className='profile__plan-icon'>
-                                    {isPro ? '👑' : '📦'}
+                                    {isPro ? <GiCrown /> : '📦'}
                                 </div>
                                 <div className='profile__plan-details'>
                                     <h3 className='profile__plan-name'>
@@ -170,7 +175,7 @@ const MyProfilePage = () => {
                                         Вы будете перенаправлены на страницу входа
                                     </p>
                                 </div>
-                                <button className='profile__danger-btn profile__danger-btn--warning'>
+                                <button className='profile__danger-btn profile__danger-btn--warning' onClick={handleLogout}>
                                     Выйти
                                 </button>
                             </div>

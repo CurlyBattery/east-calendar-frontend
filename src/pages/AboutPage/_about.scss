@@ -10,18 +10,6 @@
     margin: 40px 0;
   }
 
-  .contact-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: $arctic;
-    border: 1px solid #764ba2;
-    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
-
-    &:hover {
-      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
-    }
-  }
-
   .devices__stat-card {
     &:hover {
       transform: none;

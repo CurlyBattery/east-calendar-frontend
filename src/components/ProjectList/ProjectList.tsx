@@ -24,7 +24,7 @@ const ProjectList = () => {
     return (
         <div className='project_list'>
             <div className='project_list__header'>
-                <h1 className='project_list__header__title'>Проекты</h1>
+                <div className='project_list__header__title'>Проекты</div>
                 <button className='project_list__header__create' type='button' onClick={handleClick}>Создать проект</button>
             </div>
 

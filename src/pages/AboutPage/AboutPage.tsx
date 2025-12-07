@@ -1,3 +1,7 @@
+import { FaRegNewspaper } from "react-icons/fa";
+import { MdOutlineRememberMe } from "react-icons/md";
+import { MdOutlineHighQuality } from "react-icons/md";
+
 import './_about.scss';
 
 const AboutPage = () => {
@@ -19,6 +23,7 @@ const AboutPage = () => {
                 <section className="devices__stats about-page__values">
                     <div className="devices__stat-card">
                         <div className="devices__stat-icon" style={{ color: '#667eea' }}>
+                            <FaRegNewspaper />
                         </div>
                         <div className="devices__stat-info">
                             <p className="devices__stat-value">Инновации</p>
@@ -28,6 +33,7 @@ const AboutPage = () => {
 
                     <div className="devices__stat-card">
                         <div className="devices__stat-icon" style={{ color: '#6bcf7f' }}>
+                            <MdOutlineRememberMe />
                         </div>
                         <div className="devices__stat-info">
                             <p className="devices__stat-value">Партнёрство</p>
@@ -37,6 +43,7 @@ const AboutPage = () => {
 
                     <div className="devices__stat-card">
                         <div className="devices__stat-icon" style={{ color: '#ff6b6b' }}>
+                            <MdOutlineHighQuality />
                         </div>
                         <div className="devices__stat-info">
                             <p className="devices__stat-value">Качество</p>
@@ -53,7 +60,7 @@ const AboutPage = () => {
                     </h2>
                     <ul className="devices__info-list">
                         <li>Гибкая методология: Мы работаем по принципам Agile, чтобы гарантировать быструю обратную связь и адаптацию к меняющимся требованиям.</li>
-                        <li>Современный стек: Используем React, Node.js, Python и облачные технологии для создания масштабируемых и надёжных систем.</li>
+                        <li>Современный стек: Используем React, NestJS для создания масштабируемых и надёжных систем.</li>
                     </ul>
                 </section>
 

@@ -1,7 +1,7 @@
 import React, {type FC, useEffect, useState} from "react";
 
 import Modal from "../Modal.tsx";
-import {type ITask, TaskPriority, TaskStatus} from "../../types/task.ts";
+import {type ITask, TaskStatus} from "../../types/task.ts";
 import {getOneTask} from "../../http/task.api.ts";
 import './_task_modal.scss';
 import {useAppDispatch} from "../../hooks/redux.ts";
@@ -65,7 +65,7 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                         <h4>Статус</h4>
                         <select
                             className='create-task-modal__input'
-                            value={selectedStatus}
+                            value={selectedStatus as TaskStatus}
                             onChange={handleSelectPriorityChange}
                         >
                             <option key={TaskStatus.TODO} value={TaskStatus.TODO}>Новая</option>

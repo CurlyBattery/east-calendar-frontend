@@ -15,7 +15,6 @@ export const registerAction = (
         const data = await register(email, password, confirmPassword, name, file)
         dispatch(authSlice.actions.loginSuccess(data));
     } catch (e) {
-        console.log(e.response.data)
         // @ts-ignore
         dispatch(authSlice.actions.loginError(e?.response?.data?.errors?.map(e => e.message).join(', ')) || '');
     }
