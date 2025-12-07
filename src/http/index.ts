@@ -5,7 +5,7 @@ import {authSlice} from "../store/reducers/auth/auth.slice.ts";
 
 
 const $host = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://91.229.11.165/:3000/',
     headers: {
         'Content-Type': 'application/json',
     },
