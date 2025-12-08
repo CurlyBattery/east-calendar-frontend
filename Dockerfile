@@ -1,21 +1,24 @@
-FROM node:20-alpine3.20 As build
+FROM node:23-alpine AS build
 
 WORKDIR /usr/src/app
 
-COPY package*.json package-lock.json ./
-
+COPY package*.json ./
 RUN npm ci
 
-COPY ./ ./
-
+COPY . .
 RUN npm run build
 
-FROM nginx:stable-alpine as production
+FROM nginx:alpine
 
-COPY --from=build /usr/src/app/nginx /etc/nginx/conf.d
+# Удалите дефолтный конфиг nginx
+RUN rm /etc/nginx/conf.d/default.conf
 
+# Скопируйте папку nginx/ с вашим конфигом
+COPY nginx /etc/nginx/conf.d
+
+# Скопируйте собранное приложение
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
