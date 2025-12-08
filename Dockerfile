@@ -1,21 +1,20 @@
 FROM node:20-alpine3.20 As build
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package*.json package-lock.json ./
+
 RUN npm ci
 
-COPY . .
+COPY ./ ./
 
 RUN npm run build
 
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine as production
 
-RUN rm /etc/nginx/conf.d/default.conf
+COPY --from=build /usr/src/app/nginx /etc/nginx/conf.d
 
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
