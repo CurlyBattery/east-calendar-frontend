@@ -9,7 +9,8 @@ const MyProfilePage = () => {
     const dispatch = useAppDispatch();
 
     const { user } = useAppSelector(state => state.auth);
-    const avatar = user?.avatarPath ? `http://localhost:5000/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    console.log(user);
+    const avatar = user?.avatarPath ? `http://79.174.77.240/uploads/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
 
     const formatDate = (date?: Date) => {
         if (!date) return 'Не указано';
@@ -34,15 +35,7 @@ const MyProfilePage = () => {
                     <div className='profile__header-bg'></div>
                     <div className='profile__header-content'>
                         <div className='profile__avatar-wrapper'>
-                            {user?.avatarPath ? (
-                                <img
-                                    src={user.avatarPath}
-                                    alt={user.name}
-                                    className='profile__avatar'
-                                />
-                            ) : (
-                                <img src={avatar} alt="аватарка" className='profile__avatar profile__avatar--placeholder'/>
-                            )}
+                            <img src={avatar} alt="аватарка" className='profile__avatar profile__avatar--placeholder'/>
                         </div>
                         <div className='profile__header-info'>
                             <h1 className='profile__name'>{user?.name || 'Имя не указано'}</h1>

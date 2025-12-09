@@ -15,7 +15,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ visible, setVisible }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { user } = useAppSelector(state => state.auth);
-    const avatar = user?.avatarPath ? `http://localhost:5000/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    const avatar = user?.avatarPath ? `http://79.174.77.240/uploads/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
 
     const handleLogout = () => {
         setVisible(false);

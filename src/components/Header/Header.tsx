@@ -18,7 +18,8 @@ import ProfileModal from "../ProfileModal/ProfileModal.tsx";
 const Header = () => {
     const navigate = useNavigate();
     const { isAuth, user } = useAppSelector(state => state.auth);
-    const avatar = user?.avatarPath ? `http://localhost:5000/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    console.log(user?.avatarPath)
+    const avatar = user?.avatarPath ? `http://79.174.77.240/uploads/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
     const [openModal, setOpenModal] = useState(false);
 
     const handleClick = () => {
