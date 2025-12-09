@@ -5,7 +5,7 @@ import {authSlice} from "../store/reducers/auth/auth.slice.ts";
 
 
 const $host = axios.create({
-    baseURL: 'http://79.174.77.240/api',
+    baseURL: import.meta.env.VITE_API_URL,
     headers: {
         'Content-Type': 'application/json',
     },
