@@ -11,18 +11,18 @@
     content: "";
     inset: 0;
     background-image:
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png"),
-            url("src/assets/images/cross.png");
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png"),
+            url("../../assets/images/cross.png");
     background-repeat: no-repeat;
     background-position:
             10% 20%,
@@ -66,7 +66,7 @@
       content: "";
       inset: 0;
       position: absolute;
-      background-image: url("src/assets/images/forest.png");
+      background-image: url("../../assets/images/forest.png");
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: bottom;
@@ -179,7 +179,7 @@
       position: absolute;
       content: "";
       inset: 0;
-      background-image: url("src/assets/images/teeth.png");
+      background-image: url("../../assets/images/teeth.png");
       background-repeat: no-repeat;
       background-position: 50% 160%;
       background-size: 250px;
@@ -250,7 +250,7 @@
       content: "";
       inset: 0;
       position: absolute;
-      background-image: url("src/assets/images/dvd.png");
+      background-image: url("../../assets/images/dvd.png");
       opacity: 0.1;
       background-repeat: no-repeat;
       background-position: 0% 10%;
@@ -309,7 +309,7 @@
       content: "";
       inset: 0;
       position: absolute;
-      background-image: url("src/assets/images/angel.png");
+      background-image: url("../../assets/images/angel.png");
       background-size: contain;
       opacity: 0.1;
       background-repeat: no-repeat;
