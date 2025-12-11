@@ -2,7 +2,8 @@ import type {AppDispatch} from "../../store.ts";
 import {authSlice} from "./auth.slice.ts";
 import {loginned, logouted, me, register} from "../../../http/auth.api.ts";
 import {checkPayment} from "../../../http/payment.api.ts";
-import {deleteUser} from "../../../http/user.api.ts";
+import {deleteUser, updateUser} from "../../../http/user.api.ts";
+import type {UpdateUserDto} from "../../../types/user.ts";
 
 export const registerAction = (
     email: string,
@@ -75,3 +76,13 @@ export const checkPayloadAction = () => async (dispatch: AppDispatch) => {
         dispatch(authSlice.actions.loginError(e.message));
     }
 };
+
+export const updateCurrentUserAction = (updateUserDto: UpdateUserDto) => async (dispatch: AppDispatch) => {
+    try {
+        const data = await updateUser(updateUserDto);
+        dispatch(authSlice.actions.setUser(data));
+    } catch (e) {
+        // @ts-ignore
+        console.log(e.message)
+    }
+}

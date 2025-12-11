@@ -3,13 +3,15 @@ import { GiCrown } from "react-icons/gi";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import { PlanUser } from "../../types/user.ts";
 import './_profile.scss';
-import {deleteLogoutAction, logoutAction} from "../../store/reducers/auth/action-creators.ts";
+import {deleteLogoutAction, logoutAction, updateCurrentUserAction} from "../../store/reducers/auth/action-creators.ts";
+import React, {useState} from "react";
 
 const MyProfilePage = () => {
     const dispatch = useAppDispatch();
-
     const { user } = useAppSelector(state => state.auth);
     const avatar = user?.avatarPath ? `https://www.east-calendar.ru/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    const [email, setEmail] = useState(user?.email);
+    const [name, setName] = useState(user?.name);
 
     const formatDate = (date?: Date) => {
         if (!date) return 'Не указано';
@@ -28,6 +30,16 @@ const MyProfilePage = () => {
 
     const handleDeleteUser = () => {
         dispatch(deleteLogoutAction())
+    };
+
+    const handleClickName = (e: React.FormEvent) => {
+        e.preventDefault();
+        dispatch(updateCurrentUserAction({ name }));
+    };
+
+    const handleClickEmail = (e: React.FormEvent) => {
+        e.preventDefault();
+        dispatch(updateCurrentUserAction({ email }));
     };
 
     return (
@@ -136,19 +148,30 @@ const MyProfilePage = () => {
                     <div className='profile__section'>
                         <h2 className='profile__section-title'>Настройки профиля</h2>
                         <div className='profile__settings'>
-                            <div className='profile__setting-item'>
+                            <form className='profile__setting-item' onSubmit={handleClickName}>
                                 <div className='profile__setting-info'>
-                                    <h4 className='profile__setting-label'>Имя</h4>
-                                    <p className='profile__setting-value'>{user?.name}</p>
+                                    <label className='profile__setting-label' htmlFor="">Имя</label>
+                                    <input
+                                        type="text"
+                                        className='profile__setting-value'
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                    />
                                 </div>
-                            </div>
-                            <div className='profile__setting-item'>
+                                <button className='profile__setting-btn' type='submit'>Изменить</button>
+                            </form>
+                            <form className='profile__setting-item' onSubmit={handleClickEmail}>
                                 <div className='profile__setting-info'>
-                                    <h4 className='profile__setting-label'>Email</h4>
-                                    <p className='profile__setting-value'>{user?.email}</p>
+                                    <label className='profile__setting-label' htmlFor="">Email</label>
+                                    <input
+                                        type="email"
+                                        className='profile__setting-value'
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                    />
                                 </div>
-                            </div>
-                            <button className='profile__setting-btn'>Изменить</button>
+                                <button className='profile__setting-btn' type='submit'>Изменить</button>
+                            </form>
                         </div>
                     </div>
 

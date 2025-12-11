@@ -43,3 +43,8 @@ export enum QrStatus {
     SUCCESS = 'SUCCESS',
     REJECT = 'REJECT'
 }
+
+export type UpdateUserDto = {
+    name?: string;
+    email?: string;
+}
