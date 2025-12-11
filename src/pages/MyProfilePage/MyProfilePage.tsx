@@ -9,8 +9,7 @@ const MyProfilePage = () => {
     const dispatch = useAppDispatch();
 
     const { user } = useAppSelector(state => state.auth);
-    console.log(user);
-    const avatar = user?.avatarPath ? `http://79.174.77.240/uploads/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    const avatar = user?.avatarPath ? `https://www.east-calendar.ru/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
 
     const formatDate = (date?: Date) => {
         if (!date) return 'Не указано';
