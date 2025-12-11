@@ -1,8 +1,9 @@
 import {$host} from "./index.ts";
 import type {ITask, ITaskUpdateData} from "../types/task.ts";
 
-export const getMyTasksByProject = async (projectId: string) => {
-    const { data } = await $host.get<ITask[]>(`tasks/my/${projectId}`);
+export const getTasksByProject = async (projectId: string, text?: string) => {
+    const url = !!text ? `tasks/my/${projectId}?text=${text}` : `tasks/my/${projectId}`
+    const { data } = await $host.get<ITask[]>(url);
     return data;
 };
 
@@ -42,7 +43,6 @@ export const createTask = async (
         priority,
         projectId,
     };
-    console.log(request)
     const { data } =  await $host.post<ITask>('tasks', request)
     return data;
 };

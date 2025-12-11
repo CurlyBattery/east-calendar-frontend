@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
@@ -12,6 +12,7 @@ const ProjectList = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { projects } = useAppSelector(state => state.project);
+
 
     useEffect(() => {
         dispatch(fetchMyProjectsAction());

@@ -1,12 +1,14 @@
 import type {AppDispatch} from "../../store.ts";
 import {taskSlice} from "./task.slice.ts";
-import {createTask, getMyTasks, getMyTasksByProject, updateTask} from "../../../http/task.api.ts";
+import {createTask, getMyTasks, getTasksByProject, updateTask} from "../../../http/task.api.ts";
 import type {ITaskUpdateData} from "../../../types/task.ts";
 
-export const fetchTasksAction = (projectId: string) => async (dispatch: AppDispatch) => {
+export const fetchTasksAction = (projectId: string, text?: string) => async (dispatch: AppDispatch) => {
     try {
+        console.log(projectId)
+        console.log(text)
         dispatch(taskSlice.actions.tasksFetching());
-        const data = await getMyTasksByProject(projectId);
+        const data = await getTasksByProject(projectId, text);
         dispatch(taskSlice.actions.tasksFetchingSuccess(data));
     } catch (e) {
         // @ts-ignore

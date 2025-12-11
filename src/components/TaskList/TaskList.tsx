@@ -14,6 +14,7 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
     const dispatch = useAppDispatch();
     const { tasks, isLoading, error } = useAppSelector(state => state.task);
     const [openModalCreate, setOpenModalCreate] = useState(false);
+    const [text, setText] = useState<string>("");
 
     useEffect(() => {
         dispatch(fetchTasksAction(projectId));
@@ -21,14 +22,24 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
 
     const handleClickCreate = () => {
         setOpenModalCreate(true);
-    }
+    };
 
+    const handleClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        dispatch(fetchTasksAction(projectId, text));
+    };
 
     return (
         <div className='task'>
                 <form className='task__search'>
-                    <input className='task__search__input' type="search" placeholder='Введите название или содержание'/>
-                    <button className='task__search__button' type='submit'>Искать</button>
+                    <input
+                        value={text}
+                        onChange={e => setText(e.target.value)}
+                        className='task__search__input'
+                        type="search"
+                        placeholder='Введите название или содержание'
+                    />
+                    <button className='task__search__button' type='submit' onClick={handleClick}>Искать</button>
                 </form>
             <div className='task__container'>
                 {isLoading && <h1>Загрузка</h1>}

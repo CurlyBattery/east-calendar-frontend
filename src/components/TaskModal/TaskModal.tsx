@@ -17,7 +17,6 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
     const dispatch = useAppDispatch();
 
     const [task, setTask] = useState<ITask | null>(null);
-    console.log(task)
     const [selectedStatus, setSelectedStatus] = useState<TaskStatus | null>(null);
 
     async function fetchTask() {

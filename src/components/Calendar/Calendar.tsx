@@ -30,7 +30,6 @@ const Calendar: FC<CalendarProps> = ({ projectId }) => {
 
 
     const handleEventClick = (info: { event: { id: string } }) => {
-        console.log(info.event.id)
         setSelectedTaskId(info.event.id);
         setOpenModalOne(true);
     };
