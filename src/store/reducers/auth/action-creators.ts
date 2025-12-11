@@ -1,6 +1,6 @@
 import type {AppDispatch} from "../../store.ts";
 import {authSlice} from "./auth.slice.ts";
-import {loginned, logouted, me, register} from "../../../http/auth.api.ts";
+import {loginned, logoutByAgent, logouted, me, register} from "../../../http/auth.api.ts";
 import {checkPayment} from "../../../http/payment.api.ts";
 import {deleteUser, updateUser} from "../../../http/user.api.ts";
 import type {UpdateUserDto} from "../../../types/user.ts";
@@ -53,6 +53,16 @@ export const logoutAction = () => async (dispatch: AppDispatch) => {
         console.log(e.message)
     }
 };
+
+export const logoutByAgentAction = (userAgent: string) => async (dispatch: AppDispatch) => {
+    try {
+        await logoutByAgent(userAgent);
+    } catch (e) {
+        // @ts-ignore
+        console.log(e.message)
+    }
+};
+
 
 export const deleteLogoutAction = () => async (dispatch: AppDispatch) => {
     try {

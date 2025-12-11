@@ -1,88 +1,87 @@
-// AllDevices.tsx
 import { useEffect, useState } from "react";
 import { getAllDevices } from "../../http/auth.api.ts";
 import type { IDevice } from "../../types/user.ts";
 import './_devices.scss';
+import {useAppDispatch} from "../../hooks/redux.ts";
+import {logoutByAgentAction} from "../../store/reducers/auth/action-creators.ts";
 
 const AllDevices = () => {
+    const dispatch = useAppDispatch();
     const [devices, setDevices] = useState<IDevice[] | undefined>();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const fetchDevices = async () => {
+        try {
+            setIsLoading(true);
+            const data = await getAllDevices();
+            setDevices(data);
+            setError(null);
+        } catch (err) {
+            setError('Не удалось загрузить список устройств');
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
     useEffect(() => {
-        const fetchDevices = async () => {
-            try {
-                setIsLoading(true);
-                const data = await getAllDevices();
-                setDevices(data);
-                setError(null);
-            } catch (err) {
-                setError('Не удалось загрузить список устройств');
-                console.error(err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+
         fetchDevices();
     }, []);
 
-    // Парсинг User-Agent
     const parseUserAgent = (userAgent: string) => {
-        // Определение браузера
         let browser = 'Неизвестный браузер';
-        let browserIcon = '🌐';
+        let browserIcon = '';
 
         if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) {
             browser = 'Google Chrome';
-            browserIcon = '🔵';
+            browserIcon = '';
         } else if (userAgent.includes('Firefox')) {
             browser = 'Mozilla Firefox';
-            browserIcon = '🦊';
+            browserIcon = '';
         } else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
             browser = 'Safari';
-            browserIcon = '🧭';
+            browserIcon = '';
         } else if (userAgent.includes('Edg')) {
             browser = 'Microsoft Edge';
-            browserIcon = '🌊';
+            browserIcon = '';
         } else if (userAgent.includes('Opera') || userAgent.includes('OPR')) {
             browser = 'Opera';
-            browserIcon = '🎭';
+            browserIcon = '';
         }
 
-        // Определение ОС
         let os = 'Неизвестная ОС';
-        let osIcon = '💻';
+        let osIcon = '';
 
         if (userAgent.includes('Windows NT 10.0')) {
             os = 'Windows 10/11';
-            osIcon = '🪟';
+            osIcon = '';
         } else if (userAgent.includes('Windows')) {
             os = 'Windows';
-            osIcon = '🪟';
+            osIcon = '';
         } else if (userAgent.includes('Mac OS X')) {
             os = 'macOS';
-            osIcon = '🍎';
+            osIcon = '';
         } else if (userAgent.includes('Linux')) {
             os = 'Linux';
-            osIcon = '🐧';
+            osIcon = '';
         } else if (userAgent.includes('Android')) {
             os = 'Android';
-            osIcon = '🤖';
+            osIcon = '';
         } else if (userAgent.includes('iOS') || userAgent.includes('iPhone') || userAgent.includes('iPad')) {
             os = 'iOS';
-            osIcon = '📱';
+            osIcon = '';
         }
 
-        // Определение типа устройства
         let deviceType = 'Компьютер';
-        let deviceIcon = '💻';
+        let deviceIcon = '';
 
         if (userAgent.includes('Mobile') || userAgent.includes('Android') || userAgent.includes('iPhone')) {
             deviceType = 'Мобильное устройство';
-            deviceIcon = '📱';
+            deviceIcon = '';
         } else if (userAgent.includes('Tablet') || userAgent.includes('iPad')) {
             deviceType = 'Планшет';
-            deviceIcon = '📱';
+            deviceIcon = '';
         }
 
         return { browser, browserIcon, os, osIcon, deviceType, deviceIcon };
@@ -93,11 +92,14 @@ const AllDevices = () => {
     };
 
     const handleLogoutDevice = (userAgent: string) => {
-        console.log('Logout from device:', userAgent);
+        dispatch(logoutByAgentAction(userAgent));
+        fetchDevices();
     };
 
     const handleLogoutAllDevices = () => {
-        console.log('Logout from all devices');
+        devices?.filter(d => !isCurrentDevice(d.userAgent)).map(d => {
+            dispatch(logoutByAgentAction(d.userAgent));
+        })
     };
 
     return (
@@ -120,11 +122,10 @@ const AllDevices = () => {
                     )}
                 </div>
 
-                {/* Статистика */}
                 {devices && devices.length > 0 && (
                     <div className="devices__stats">
                         <div className="devices__stat-card">
-                            <div className="devices__stat-icon">📱</div>
+                            <div className="devices__stat-icon"></div>
                             <div className="devices__stat-info">
                                 <div className="devices__stat-value">{devices.length}</div>
                                 <div className="devices__stat-label">
@@ -133,7 +134,7 @@ const AllDevices = () => {
                             </div>
                         </div>
                         <div className="devices__stat-card">
-                            <div className="devices__stat-icon">✅</div>
+                            <div className="devices__stat-icon"></div>
                             <div className="devices__stat-info">
                                 <div className="devices__stat-value">
                                     {devices.filter(d => isCurrentDevice(d.userAgent)).length}
@@ -142,7 +143,7 @@ const AllDevices = () => {
                             </div>
                         </div>
                         <div className="devices__stat-card">
-                            <div className="devices__stat-icon">🔒</div>
+                            <div className="devices__stat-icon"></div>
                             <div className="devices__stat-info">
                                 <div className="devices__stat-value">Активна</div>
                                 <div className="devices__stat-label">Безопасность</div>
@@ -151,7 +152,6 @@ const AllDevices = () => {
                     </div>
                 )}
 
-                {/* Список устройств */}
                 <div className="devices__content">
                     {isLoading && (
                         <div className="devices__loading">
@@ -162,7 +162,7 @@ const AllDevices = () => {
 
                     {error && (
                         <div className="devices__error">
-                            <div className="devices__error-icon">⚠️</div>
+                            <div className="devices__error-icon"></div>
                             <h3>Ошибка загрузки</h3>
                             <p>{error}</p>
                         </div>
@@ -170,7 +170,7 @@ const AllDevices = () => {
 
                     {!isLoading && !error && devices && devices.length === 0 && (
                         <div className="devices__empty">
-                            <div className="devices__empty-icon">📱</div>
+                            <div className="devices__empty-icon"></div>
                             <h3>Нет активных устройств</h3>
                             <p>В данный момент нет подключенных устройств</p>
                         </div>
@@ -204,7 +204,6 @@ const AllDevices = () => {
                                                     <span className="devices__item-current-dot"></span>
                                                 )}
                                             </div>
-
                                             <div className="devices__item-details">
                                                 <div className="devices__item-detail">
                                                     <span className="devices__item-detail-icon">
@@ -252,7 +251,7 @@ const AllDevices = () => {
                 </div>
 
                 <div className="devices__info-section">
-                    <h3 className="devices__info-title">💡 Советы по безопасности</h3>
+                    <h3 className="devices__info-title">Советы по безопасности</h3>
                     <ul className="devices__info-list">
                         <li>Регулярно проверяйте список активных устройств</li>
                         <li>Завершайте сеансы на устройствах, которыми больше не пользуетесь</li>

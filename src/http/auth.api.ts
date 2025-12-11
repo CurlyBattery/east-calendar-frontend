@@ -39,6 +39,13 @@ export const logouted = async () => {
     return data;
 };
 
+export const logoutByAgent = async (userAgent: string) => {
+    const { data } = await $host.post('auth/logout/agent', {
+        userAgent
+    });
+    return data;
+};
+
 export const me = async () => {
     const { data } = await $host.get('auth');
     return data;
