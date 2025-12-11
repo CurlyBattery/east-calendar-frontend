@@ -13,7 +13,6 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const { error, user } = useAppSelector(state => state.auth);
 
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [qr, setQr] = useState<string | undefined>();
