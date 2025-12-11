@@ -5,9 +5,11 @@ import { PlanUser } from "../../types/user.ts";
 import './_profile.scss';
 import {deleteLogoutAction, logoutAction, updateCurrentUserAction} from "../../store/reducers/auth/action-creators.ts";
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const MyProfilePage = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { user } = useAppSelector(state => state.auth);
     const avatar = user?.avatarPath ? `https://www.east-calendar.ru/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
     const [email, setEmail] = useState(user?.email);
@@ -30,6 +32,10 @@ const MyProfilePage = () => {
 
     const handleDeleteUser = () => {
         dispatch(deleteLogoutAction())
+    };
+
+    const handleClickPro = () => {
+        navigate('/premium')
     };
 
     const handleClickName = (e: React.FormEvent) => {
@@ -71,7 +77,7 @@ const MyProfilePage = () => {
                         <div className='profile__section-header'>
                             <h2 className='profile__section-title'>Подписка</h2>
                             {!isPro && (
-                                <button className='profile__upgrade-btn'>
+                                <button className='profile__upgrade-btn' onClick={handleClickPro}>
                                     Обновить до PRO
                                 </button>
                             )}
