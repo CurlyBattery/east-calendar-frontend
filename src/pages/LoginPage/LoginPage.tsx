@@ -86,6 +86,7 @@ const LoginPage = () => {
                 <div className='login__container__form__section'>
                     <div className='login__container__form__section__logo'>EastCalendar</div>
                     <div className='login__container__form__section__subtitle'>Войдите в свой аккаунт</div>
+                    <div>{error && <p style={{color: 'red'}}>{error}</p>}</div>
 
                     <form>
                         <div className='login__container__form__section__form__group'>
@@ -119,7 +120,7 @@ const LoginPage = () => {
                             onClick={handleLogin}
                         >Войти
                         </button>
-                        {error && <p style={{color: 'red'}}>{error}</p>}
+
 
                         <div className='login__container__form__section__form__divider'>или</div>
 
