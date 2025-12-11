@@ -5,3 +5,8 @@ export const getUsers = async () => {
     const { data } = await $host.get<IUser[]>('users');
     return data;
 };
+
+export const deleteUser = async () => {
+    const { data } = await $host.delete('users');
+    return data;
+};

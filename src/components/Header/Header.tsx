@@ -29,7 +29,6 @@ const Header = () => {
         navigate(PREMIUM_ROUTE)
     }
 
-
     const handleClickProfile = () => {
         setOpenModal(true);
     }

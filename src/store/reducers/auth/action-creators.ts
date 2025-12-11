@@ -2,6 +2,7 @@ import type {AppDispatch} from "../../store.ts";
 import {authSlice} from "./auth.slice.ts";
 import {loginned, logouted, me, register} from "../../../http/auth.api.ts";
 import {checkPayment} from "../../../http/payment.api.ts";
+import {deleteUser} from "../../../http/user.api.ts";
 
 export const registerAction = (
     email: string,
@@ -50,7 +51,17 @@ export const logoutAction = () => async (dispatch: AppDispatch) => {
         // @ts-ignore
         console.log(e.message)
     }
-}
+};
+
+export const deleteLogoutAction = () => async (dispatch: AppDispatch) => {
+    try {
+        await deleteUser();
+        dispatch(authSlice.actions.logout());
+    } catch (e) {
+        // @ts-ignore
+        console.log(e.message)
+    }
+};
 
 export const checkPayloadAction = () => async (dispatch: AppDispatch) => {
     try {
@@ -63,4 +74,4 @@ export const checkPayloadAction = () => async (dispatch: AppDispatch) => {
         // @ts-ignore
         dispatch(authSlice.actions.loginError(e.message));
     }
-}
+};

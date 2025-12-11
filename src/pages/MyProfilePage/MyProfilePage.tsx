@@ -3,7 +3,7 @@ import { GiCrown } from "react-icons/gi";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import { PlanUser } from "../../types/user.ts";
 import './_profile.scss';
-import {logoutAction} from "../../store/reducers/auth/action-creators.ts";
+import {deleteLogoutAction, logoutAction} from "../../store/reducers/auth/action-creators.ts";
 
 const MyProfilePage = () => {
     const dispatch = useAppDispatch();
@@ -26,6 +26,9 @@ const MyProfilePage = () => {
         dispatch(logoutAction())
     };
 
+    const handleDeleteUser = () => {
+        dispatch(deleteLogoutAction())
+    };
 
     return (
         <div className='profile'>
@@ -138,22 +141,14 @@ const MyProfilePage = () => {
                                     <h4 className='profile__setting-label'>Имя</h4>
                                     <p className='profile__setting-value'>{user?.name}</p>
                                 </div>
-                                <button className='profile__setting-btn'>Изменить</button>
                             </div>
                             <div className='profile__setting-item'>
                                 <div className='profile__setting-info'>
                                     <h4 className='profile__setting-label'>Email</h4>
                                     <p className='profile__setting-value'>{user?.email}</p>
                                 </div>
-                                <button className='profile__setting-btn'>Изменить</button>
                             </div>
-                            <div className='profile__setting-item'>
-                                <div className='profile__setting-info'>
-                                    <h4 className='profile__setting-label'>Пароль</h4>
-                                    <p className='profile__setting-value'>••••••••</p>
-                                </div>
-                                <button className='profile__setting-btn'>Изменить</button>
-                            </div>
+                            <button className='profile__setting-btn'>Изменить</button>
                         </div>
                     </div>
 
@@ -178,7 +173,10 @@ const MyProfilePage = () => {
                                         Это действие нельзя отменить. Все ваши данные будут удалены.
                                     </p>
                                 </div>
-                                <button className='profile__danger-btn profile__danger-btn--danger'>
+                                <button
+                                    className='profile__danger-btn profile__danger-btn--danger'
+                                    onClick={handleDeleteUser}
+                                >
                                     Удалить
                                 </button>
                             </div>
