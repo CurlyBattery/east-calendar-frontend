@@ -1,5 +1,5 @@
 import type {FC} from "react";
-import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import type {IProject} from "../../types/project.ts";
 import './_project_item.scss';
@@ -9,9 +9,11 @@ interface ProjectItemProps {
 }
 
 const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
+    const navigate = useNavigate();
+
     return (
-        <tr className='project-item'>
-            <td><Link to={`/projects/${project.id}`}>{project.name}</Link></td>
+        <tr className='project-item' onClick={() => navigate(`/projects/${project.id}`)}>
+            <td>{project.name}</td>
             <td>{project.description}</td>
             <td>{project.owner?.name}</td>
             <td>{project.createdAt?.toString()}</td>
