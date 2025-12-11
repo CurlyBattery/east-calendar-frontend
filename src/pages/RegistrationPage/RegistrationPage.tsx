@@ -95,6 +95,8 @@ const RegistrationPage = () => {
             <div className='registration__container'>
                 <div className='registration__container__logo'>EastCalendar</div>
                 <div className='registration__container__subtitle'>Создайте новый аккаунт</div>
+                <div>{error && <p style={{color: 'red'}}>{error}</p>}</div>
+
                 <form>
                     <div className='registration__container__form__group'>
                         <label htmlFor='name'>Никнейм</label>
@@ -119,10 +121,12 @@ const RegistrationPage = () => {
                             placeholder='••••••••'
                         />
                         <div className='registration__container__form__strength'>
-                            <div className={`registration__container__form__strength__bar ${strengthClass}`} id='strengthBar'></div>
+                            <div className={`registration__container__form__strength__bar ${strengthClass}`}
+                                 id='strengthBar'></div>
                         </div>
 
-                        <div className='registration__container__form__hint' style={{ color: hintTextColor }}>{passwordHint}</div>
+                        <div className='registration__container__form__hint'
+                             style={{color: hintTextColor}}>{passwordHint}</div>
                     </div>
                     <div className='registration__container__form__group'>
                         <label htmlFor="confirmPassword">Подвердите пароль</label>
@@ -149,7 +153,9 @@ const RegistrationPage = () => {
                     <div className='registration__container__form__terms'>
                         <input type="checkbox" id="terms" required/>
                         <label htmlFor="terms">
-                            Я согласен с <a href="#" className='registration__container__form__terms__link'>условиями использования</a> и <a href="#" className='registration__container__form__terms__link'>политикой конфиденциальности</a>
+                            Я согласен с <a href="#" className='registration__container__form__terms__link'>условиями
+                            использования</a> и <a href="#" className='registration__container__form__terms__link'>политикой
+                            конфиденциальности</a>
                         </label>
                     </div>
 
@@ -159,7 +165,6 @@ const RegistrationPage = () => {
                         onClick={handleRegister}
                     >Создать аккаунт
                     </button>
-                    {error && <p style={{color: 'red'}}>{error}</p>}
 
                     <div className='registration__container__form__divider'>или</div>
 
@@ -168,7 +173,7 @@ const RegistrationPage = () => {
                 </form>
             </div>
         </div>
-);
+    );
 };
 
 export default RegistrationPage;

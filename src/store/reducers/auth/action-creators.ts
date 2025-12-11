@@ -17,9 +17,9 @@ export const registerAction = (
         const data = await register(email, password, confirmPassword, name, file)
         dispatch(authSlice.actions.loginSuccess(data));
     } catch (e) {
-        console.log(e);
         // @ts-ignore
-        dispatch(authSlice.actions.loginError(e?.response?.data?.errors?.map(e => e.message).join(', ')) || '');
+        dispatch(authSlice.actions.loginError(e?.response?.data?.errors ? e?.response?.data?.errors?.map(e => e.message).join(', ') : e?.response?.data?.message) || '');
+
     }
 }
 
@@ -29,9 +29,8 @@ export const loginAction = (email: string, password: string) => async (dispatch:
         const data = await loginned(email, password);
         dispatch(authSlice.actions.loginSuccess(data));
     } catch (e) {
-        console.log(e);
         // @ts-ignore
-        dispatch(authSlice.actions.loginError(e?.response?.data?.errors?.map(e => e.message).join(', ')) || '');
+        dispatch(authSlice.actions.loginError(e?.response?.data?.errors ? e?.response?.data?.errors?.map(e => e.message).join(', ') : e?.response?.data?.message) || '');
     }
 };
 
