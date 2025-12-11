@@ -54,7 +54,7 @@ export const logoutAction = () => async (dispatch: AppDispatch) => {
     }
 };
 
-export const logoutByAgentAction = (userAgent: string) => async (dispatch: AppDispatch) => {
+export const logoutByAgentAction = (userAgent: string) => async () => {
     try {
         await logoutByAgent(userAgent);
     } catch (e) {
