@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { MdQrCodeScanner } from "react-icons/md";
 
 import {qrConfirm} from "../../http/auth.api.ts";
@@ -11,14 +11,17 @@ type ScanPageParams = {
 
 
 const ScanPage = () => {
+    const navigate = useNavigate();
     const { sessionId } = useParams<ScanPageParams>();
 
     const handleYes = async () => {
-        await qrConfirm(sessionId as string, QrStatus.SUCCESS)
+        await qrConfirm(sessionId as string, QrStatus.SUCCESS);
+        navigate('/dashboard');
     };
 
     const handleNo = async () => {
-        await qrConfirm(sessionId as string, QrStatus.REJECT)
+        await qrConfirm(sessionId as string, QrStatus.REJECT);
+        navigate('/dashboard');
     };
 
     return (
