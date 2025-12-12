@@ -138,7 +138,6 @@ const LoginPage = () => {
                             <p>Загрузка...</p>
                         )}</div>
                     </div>
-                    {session && <div>{session.status}</div>}
                 </div>
             </div>
 
