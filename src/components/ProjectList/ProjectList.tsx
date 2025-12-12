@@ -26,30 +26,30 @@ const ProjectList = () => {
         <div className='project_list'>
             <div className='project_list__header'>
                 <div className='project_list__header__title'>Проекты</div>
-                <button className='project_list__header__create' type='button' onClick={handleClick}>Создать проект</button>
+                <button
+                    className='project_list__header__create'
+                    type='button'
+                    onClick={handleClick}
+                >
+                    Создать проект
+                </button>
             </div>
 
             <div className='project_list__search'>
-                <input className='project_list__search__input' type="search" placeholder='Поиск проектов...' />
+                <input
+                    className='project_list__search__input'
+                    type="search"
+                    placeholder='Поиск проектов..'
+                />
                 <button className='project_list__search__button'>Искать</button>
             </div>
-            <div className='project_list__container'>
-                <table className='project_list__container__table'>
-                    <thead>
-                        <tr>
-                            <th>Имя</th>
-                            <th>Описание</th>
-                            <th>Руководитель</th>
-                            <th>Создано</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {projects && projects.map(project =>
-                            <ProjectItem key={project.id} project={project}/>
-                        )}
-                    </tbody>
-                </table>
+
+            <div className='project_list__grid'>
+                {projects && projects.map(project =>
+                    <ProjectItem key={project.id} project={project} />
+                )}
             </div>
+
         </div>
     )
 };
