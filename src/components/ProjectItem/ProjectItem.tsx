@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {format} from "date-fns";
 
 import type {IProject} from "../../types/project.ts";
-import sheep from '../../assets/images/sheep.jpg';
+import sheep from '../../assets/images/sheep2.jpg';
 import './_project_item.scss';
 
 interface ProjectItemProps {
