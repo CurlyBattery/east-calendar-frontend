@@ -1,9 +1,10 @@
 import type {FC} from "react";
 import { useNavigate } from "react-router-dom";
+import {format} from "date-fns";
 
 import type {IProject} from "../../types/project.ts";
+import sheep from '../../assets/images/sheep.jpg';
 import './_project_item.scss';
-import {format} from "date-fns";
 
 interface ProjectItemProps {
     project: IProject;
@@ -21,7 +22,7 @@ const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
             <div className='project_card__container'>
                 <img
                     className='project_card__container__image'
-                    src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&auto=format&fit=crop"
+                    src={sheep}
                     alt="project.name"
                 />
             </div>
