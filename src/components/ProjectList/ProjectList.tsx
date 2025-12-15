@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
@@ -12,11 +12,16 @@ const ProjectList = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { projects } = useAppSelector(state => state.project);
-
+    const [text, setText] = useState<string>("");
 
     useEffect(() => {
         dispatch(fetchMyProjectsAction());
-    }, [])
+    }, []);
+
+    const handleClickSearch = (e: React.MouseEvent) => {
+        e.preventDefault();
+        dispatch(fetchMyProjectsAction(text));
+    }
 
     const handleClick = () => {
         navigate(CREATE_PROJECT_ROUTE);
@@ -35,14 +40,16 @@ const ProjectList = () => {
                 </button>
             </div>
 
-            <div className='project_list__search'>
+            <form className='project_list__search'>
                 <input
+                    value={text}
+                    onChange={e => setText(e.target.value)}
                     className='project_list__search__input'
                     type="search"
                     placeholder='Поиск проектов..'
                 />
-                <button className='project_list__search__button'>Искать</button>
-            </div>
+                <button className='project_list__search__button' type='submit' onClick={handleClickSearch}>Искать</button>
+            </form>
 
             <div className='project_list__grid'>
                 {projects && projects.map(project =>

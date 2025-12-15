@@ -1,8 +1,9 @@
 import {$host} from "./index.ts";
 import { type IProject} from "../types/project.ts";
 
-export const getMyProjects = async () => {
-    const { data } = await $host.get<IProject[]>('projects');
+export const getMyProjects = async (text?: string) => {
+    const url = !!text ? `projects?text=${text}` : 'projects'
+    const { data } = await $host.get<IProject[]>(url);
     return data;
 };
 

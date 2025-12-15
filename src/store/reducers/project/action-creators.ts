@@ -2,10 +2,10 @@ import type {AppDispatch} from "../../store.ts";
 import {projectSlice} from "./project.slice.ts";
 import {createProject, getMyProjects} from "../../../http/project.api.ts";
 
-export const fetchMyProjectsAction = () => async (dispatch: AppDispatch) => {
+export const fetchMyProjectsAction = (text?: string) => async (dispatch: AppDispatch) => {
     try {
         dispatch(projectSlice.actions.projectsFetching());
-        const data = await getMyProjects();
+        const data = await getMyProjects(text);
         dispatch(projectSlice.actions.projectsFetchingSuccess(data));
     } catch (e) {
         // @ts-ignore

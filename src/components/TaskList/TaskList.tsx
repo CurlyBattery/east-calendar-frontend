@@ -37,7 +37,7 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
                         onChange={e => setText(e.target.value)}
                         className='task__search__input'
                         type="search"
-                        placeholder='Введите название или содержание'
+                        placeholder='Поиск задач..'
                     />
                     <button className='task__search__button' type='submit' onClick={handleClick}>Искать</button>
                 </form>

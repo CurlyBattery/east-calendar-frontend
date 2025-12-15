@@ -35,9 +35,9 @@
     max-width: 500px;
     &__input {
       flex: 1;
-      padding: 12px 16px;
+      padding: 8px 16px;
       border: 2px solid #404040;
-      border-radius: 8px;
+      border-radius: 5px;
       font-size: $main-size;
       background: #2d2d2d;
       color: $arctic;
@@ -53,12 +53,12 @@
       }
     }
     &__button {
-      padding: 12px 24px;
+      padding: 8px 24px;
       background: #404040;
       color: $arctic;
       font-family: 'MyFont', sans-serif;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
       font-size: $main-size;
       transition: all 0.3s ease;
       &:hover {
