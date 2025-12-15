@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import {format} from "date-fns";
 
 import type {IProject} from "../../types/project.ts";
-import sheep from '../../assets/images/sheep2.jpg';
 import './_project_item.scss';
 
 interface ProjectItemProps {
@@ -19,14 +18,6 @@ const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
             className='project_card'
             onClick={() => navigate(`/projects/${project.id}`)}
         >
-            <div className='project_card__container'>
-                <img
-                    className='project_card__container__image'
-                    src={sheep}
-                    alt="project.name"
-                />
-            </div>
-
             <div className='project_card__content'>
                 <h3 className='project_card__content__title'>{project.name}</h3>
                 <p className='project_card__content__description'>

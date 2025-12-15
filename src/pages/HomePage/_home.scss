@@ -147,7 +147,7 @@
           }
 
           &__text {
-            font-size: 1.1rem;
+            font-size: $main-size;
             font-weight: 600;
             color: $arctic;
             margin: 0;
@@ -201,7 +201,6 @@
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border-radius: $border-radius-table;
-      font-size: $main-size;
       box-shadow: 0 0 150px rgba(255, 255, 255, 0.1);
       transform: perspective(1500px) rotateY(15deg);
       transition: transform 2s ease 0s;
@@ -214,7 +213,7 @@
 
       &__header {
         th {
-          font-size: $main-size;
+          font-size: $title-size;
           padding: 1em 2em;
           text-align: start;
         }
@@ -236,7 +235,7 @@
 
       &__row {
         td {
-          font-size: $min-size;
+          font-size: $main-size;
           padding: 1em 2em;
           text-align: start;
         }

@@ -25,7 +25,7 @@ const ProjectList = () => {
     return (
         <div className='project_list'>
             <div className='project_list__header'>
-                <div className='project_list__header__title'>Проекты</div>
+                <div className='project_list__header__title'>Для вас</div>
                 <button
                     className='project_list__header__create'
                     type='button'
