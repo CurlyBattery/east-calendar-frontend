@@ -4,9 +4,56 @@
   background: #1a1a1a;
   height: calc(100vh - $header-height - $footer-height);
   padding: 40px 20px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png"),
+            url("../../assets/images/parental.png");
+    background-repeat: no-repeat;
+    background-position:
+            0 100%,
+            100% 0,
+            0 0,
+            50% 100%,
+            100% 50%,
+            50% 50%,
+            0 50%,
+            50% 0,
+            100% 100%;
+    background-size:
+            200px,
+            200px,
+            200px,
+            200px,
+            200px,
+            200px,
+            200px,
+            200px,
+            200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+  }
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
   &__container {
     max-width: 600px;
     margin: 0 auto;
+
     &__title {
       font-size: $title-size;
       font-weight: 700;
@@ -14,10 +61,12 @@
       margin-bottom: 32px;
     }
     &__form {
-      background: #2d2d2d;
+      background: rgba(45, 45, 45, 0.5);
       border-radius: 12px;
       padding: 40px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+
       label {
         display: block;
         margin-bottom: 8px;
@@ -32,7 +81,7 @@
         border: 2px solid #404040;
         border-radius: 8px;
         font-size: $main-size;
-        background: #1f1f1f;
+        background: rgba(31, 31, 31, 0.5);
         color: $arctic;
         transition: all 0.3s ease;
         margin-bottom: 24px;
@@ -57,7 +106,7 @@
         &__back,
         &__save {
           flex: 1;
-          padding: 14px 24px;
+          padding: 10px 16px;
           border: none;
           border-radius: 8px;
           font-size: $main-size;
@@ -71,17 +120,14 @@
           background: #404040;
           color: $arctic;
           &:hover {
-            background: #4a4a4a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0.8;
           }
         }
         &__save {
           background: $arctic;
           color: $midnight;
           &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
           }
         }
       }

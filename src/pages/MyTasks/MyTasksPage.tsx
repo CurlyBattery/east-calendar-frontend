@@ -20,27 +20,27 @@ const MyTasksPage = () => {
     }
 
     return (
-        <div className='task'>
-            <div className='task__header'>
-                <div className='task__header__title'>Все мои задачи</div>
+        <div className='my_task'>
+            <div className='my_task__header'>
+                <div className='my_task__header__title'>Все мои задачи</div>
             </div>
-            <form className='task__search'>
-                <input value={text} className='task__search__input' type="search" placeholder='Введите название или содержание' onChange={(e) => setText(e.target.value)} />
-                <button className='task__search__button' type='submit' onClick={handleClick}>Искать</button>
+            <form className='my_task__search'>
+                <input value={text} className='my_task__search__input' type="search" placeholder='Введите название или содержание' onChange={(e) => setText(e.target.value)} />
+                <button className='my_task__search__button' type='submit' onClick={handleClick}>Искать</button>
             </form>
-            <div className='task__container'>
-                <div className="task__scroll">
-                <table className='task__table'>
+            <div className='my_task__container'>
+                <div className="my_task__scroll">
+                <table className='my_task__table'>
                         <thead>
-                        <tr>
-                            <th>Задачи</th>
-                            <th>Исполнитель</th>
-                            <th>Автор</th>
-                            <th>Прироитет</th>
-                            <th>Статус</th>
-                            <th>Создано</th>
-                        </tr>
-                        </thead>
+                            <tr>
+                                <th>Задачи</th>
+                                <th className='my_task__table__hide'>Исполнитель</th>
+                                <th className='my_task__table__hide'>Автор</th>
+                                <th className='my_task__table__hide'>Прироитет</th>
+                                <th>Статус</th>
+                                <th className='my_task__table__hide'>Создано</th>
+                            </tr>
+                            </thead>
                         <tbody>
                         {tasks && tasks.map(task =>
                             <TaskItem key={task.id} task={task}/>

@@ -73,8 +73,6 @@
     border-radius: 20px;
     font-size: 12px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 
     &--owner {
       background: #ffd93d;
@@ -213,7 +211,6 @@
   }
 }
 
-// Responsive
 @media (max-width: 968px) {
   .member-item {
     flex-direction: column;

@@ -3,16 +3,34 @@
 .one-project {
   margin: 0 auto;
   padding: 40px 20px;
-  background: $midnight;
+  background: #1a1a1a;
   min-height: calc(100vh - $header-height - $footer-height);
   &__header {
     margin-bottom: 32px;
+    &__back {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        color: $slopes;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
   }
   &__name {
     display: inline-block;
     font-size: $main_size;
     color: #a0a0a0;
-    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }

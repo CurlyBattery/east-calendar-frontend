@@ -4,4 +4,57 @@
   margin: 0;
   background: #1a1a1a;
   min-height: calc(100vh - $header-height - $footer-height);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png"),
+            url("../../assets/images/dashboard.png");
+    background-repeat: no-repeat;
+    background-position:
+            10% 100%,
+            40% 100%,
+            70% 30%,
+            90% 80%,
+            10% 10%,
+            40% 30%,
+            80% 60%,
+            30% 60%,
+            34% 20%,
+            10% 85%,
+            90% 10%,
+            65% 90%;
+    background-size:
+            40px,
+            50px,
+            60px,
+            70px,
+            70px,
+            70px,
+            80px,
+            135px,
+            100px,
+            65px,
+            110px,
+            65px;
+    pointer-events: none;
+    opacity: 0.07;
+    z-index: 0;
+  }
+  > * {
+    z-index: 1;
+  }
 }

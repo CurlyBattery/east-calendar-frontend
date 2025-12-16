@@ -2,6 +2,8 @@
 
 .project_list {
   padding: 40px 20px;
+  position: relative;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -21,10 +23,9 @@
       color: $text-color;
       font-family: 'MyFont', sans-serif;
       font-weight: 500;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: opacity 0.2s ease;
       &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+        opacity: 0.8;
       }
     }
   }

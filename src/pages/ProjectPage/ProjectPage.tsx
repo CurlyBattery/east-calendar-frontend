@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {IoMdArrowBack} from "react-icons/io";
 
 import type {IProject} from "../../types/project.ts";
 import {getOneProject} from "../../http/project.api.ts";
@@ -15,6 +16,7 @@ type ProjectPageParams = {
 }
 
 const ProjectPage = () => {
+    const navigate = useNavigate();
     const [project, setProject] = useState<IProject | null>(null);
     const { id } = useParams<ProjectPageParams>();
 
@@ -33,11 +35,18 @@ const ProjectPage = () => {
         })()
     }, []);
 
+    const handleClickBack = () => {
+        navigate('/dashboard')
+    }
+
     return (
         <div className='one-project'>
             <div className='one-project__header'>
-                <span className='one-project__name'>Проекты</span>
-                <h1 className='one-project__title' >{project?.name}</h1>
+                <div className='one-project__header__back'>
+                    <button className='one-project__header__back__button' onClick={handleClickBack}><IoMdArrowBack /></button>
+                    <span className='one-project__name'>Проекты</span>
+                </div>
+                <h1 className='one-project__title'>{project?.name}</h1>
                 <p className='one-project__description'>{project?.description}</p>
             </div>
             <TabList activeTabIndex={0} >

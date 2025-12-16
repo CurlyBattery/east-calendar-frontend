@@ -1,6 +1,7 @@
 @use '../../variables' as *;
 
 .member-list {
+  max-width: 50%;
   &__form {
     display: flex;
     gap: 12px;
@@ -27,13 +28,12 @@
       font-size: 13px;
       font-weight: 600;
       color: #a0a0a0;
-      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     select {
       flex: 1;
-      padding: 12px 16px;
+      padding: 8px 24px;
       border: 2px solid #404040;
       border-radius: 8px;
       font-size: $main-size;
@@ -61,7 +61,7 @@
     }
 
     button {
-      padding: 12px 28px;
+      padding: 8px 24px;
       background: $arctic;
       color: #000000;
       border: none;
@@ -70,17 +70,10 @@
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
-      white-space: nowrap;
-      text-transform: uppercase;
       letter-spacing: 0.5px;
 
       &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
-      }
-
-      &:active {
-        transform: translateY(0);
+        opacity: 0.8;
       }
     }
   }
@@ -127,6 +120,7 @@
 
 @media (max-width: 768px) {
   .member-list {
+    max-width: 100%;
     &__form {
       padding: 20px 16px;
 

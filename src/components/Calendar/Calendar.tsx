@@ -3,6 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, {type EventResizeDoneArg} from '@fullcalendar/interaction'
+import ruLocale from '@fullcalendar/core/locales/ru';
 
 import { type EventDropArg } from "@fullcalendar/core";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
@@ -48,6 +49,7 @@ const Calendar: FC<CalendarProps> = ({ projectId }) => {
     return (
         <div className='calendar'>
             <FullCalendar
+                locale={ruLocale}
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 headerToolbar={{
                     left: 'prev,next today',

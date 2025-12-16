@@ -39,3 +39,16 @@ export enum TaskType {
     TEAM = 'TEAM',
     COMPANY = 'COMPANY'
 }
+
+export const TASK_STATUS_LABELS: Record<TaskStatus, string> = {
+    [TaskStatus.TODO]: 'К выполнению',
+    [TaskStatus.IN_PROGRESS]: 'В работе',
+    [TaskStatus.CHECKING]: 'На проверке',
+    [TaskStatus.DONE]: 'Выполнено',
+};
+
+export const TASK_PRIORITY_LABELS: Record<TaskPriority, string> = {
+    [TaskPriority.LOW]: 'Низкий',
+    [TaskPriority.MEDIUM]: 'Средний',
+    [TaskPriority.HIGH]: 'Высокий',
+};
