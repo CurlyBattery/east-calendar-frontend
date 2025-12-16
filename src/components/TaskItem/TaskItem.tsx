@@ -18,11 +18,11 @@ const TaskItem:FC<TaskItemProps> = ({ task }) => {
         <>
             <tr className='task-item' onClick={handleClickOne}>
                 <td>{task.title}</td>
-                <td>{task.assignee?.name}</td>
-                <td>{task.creator?.name}</td>
-                <td>{task.priority}</td>
+                <td className='task-item__hide'>{task.assignee?.name}</td>
+                <td className='task-item__hide'>{task.creator?.name}</td>
+                <td className='task-item__hide'>{task.priority}</td>
                 <td>{task.status}</td>
-                <td>{task.createdAt?.toString()}</td>
+                <td className='task-item__hide'>{task.createdAt?.toString()}</td>
             </tr>
             <TaskModal visible={openModalOne} setVisible={setOpenModalOne} taskId={task.id}/>
         </>

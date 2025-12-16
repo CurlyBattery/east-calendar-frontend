@@ -5,3 +5,11 @@
     background: #ddd;
   }
 }
+
+@media (max-width: 968px) {
+  .task-item {
+    &__hide {
+      display: none;
+    }
+  }
+}

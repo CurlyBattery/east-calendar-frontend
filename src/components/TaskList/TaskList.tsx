@@ -49,11 +49,11 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
                         <thead>
                         <tr>
                             <th>Задачи</th>
-                            <th>Исполнитель</th>
-                            <th>Автор</th>
-                            <th>Прироитет</th>
-                            <th>Статус</th>
-                            <th>Создано</th>
+                            <th className='task__table__hide'>Исполнитель</th>
+                            <th className='task__table__hide'>Автор</th>
+                            <th className='task__table__hide'>Прироитет</th>
+                            <th >Статус</th>
+                            <th className='task__table__hide'>Создано</th>
                         </tr>
                         </thead>
                         <tbody>

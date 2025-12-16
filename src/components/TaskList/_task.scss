@@ -1,6 +1,9 @@
 @use '../../variables' as *;
 
 .task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &__search {
     display: flex;
     gap: $gap-form;
@@ -45,15 +48,16 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 1000px;
   }
   &__scroll {
     overflow-x: auto;
+
   }
 
   &__table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 800px;
 
     thead {
       background: #1f1f1f;
@@ -115,6 +119,16 @@
       &:active {
         transform: translateY(0);
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .task {
+    &__table {
+     &__hide {
+       display: none;
+     }
     }
   }
 }

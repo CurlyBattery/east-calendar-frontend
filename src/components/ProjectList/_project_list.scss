@@ -13,7 +13,7 @@
       color: $arctic;
     }
     &__create {
-      padding: 12px 24px;
+      padding: 8px 24px;
       background-color: $arctic;
       border: none;
       border-radius: 8px;
@@ -35,7 +35,7 @@
     max-width: 500px;
     &__input {
       flex: 1;
-      padding: 8px 16px;
+      padding: 4px 16px;
       border: 2px solid #404040;
       border-radius: 5px;
       font-size: $main-size;
@@ -53,7 +53,7 @@
       }
     }
     &__button {
-      padding: 8px 24px;
+      padding: 8px 12px;
       background: #404040;
       color: $arctic;
       font-family: 'MyFont', sans-serif;
