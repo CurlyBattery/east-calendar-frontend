@@ -18,7 +18,6 @@ import './_header.scss';
 const Header = () => {
     const navigate = useNavigate();
     const { isAuth, user } = useAppSelector(state => state.auth);
-    console.log(user?.avatarPath)
     const avatar = user?.avatarPath ? `${import.meta.env.VITE_API_URL}/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
     const [openModal, setOpenModal] = useState(false);
 
