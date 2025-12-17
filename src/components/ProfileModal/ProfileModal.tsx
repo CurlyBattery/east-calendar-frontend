@@ -15,7 +15,9 @@ const ProfileModal: FC<ProfileModalProps> = ({ visible, setVisible }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { user } = useAppSelector(state => state.auth);
-    const avatar = user?.avatarPath ? `https://www.east-calendar.ru/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    const viteApi: string = import.meta.env.VITE_API_URL;
+    const url = viteApi.includes('localhost') ? viteApi.replace('/api', '') : viteApi;
+    const avatar = user?.avatarPath ? `${url}/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg';
 
     const handleLogout = () => {
         setVisible(false);

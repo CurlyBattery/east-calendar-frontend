@@ -72,7 +72,65 @@
     flex-wrap: wrap;
     gap: 24px
   }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    min-height: 400px;
+    &__icon {
+      margin-bottom: 24px;
+      animation: float 2s ease-in-out infinite;
+      opacity: 0.8;
+      img {
+        width: 148px;
+        height: 148px;
+      }
+    }
+    &__title {
+      font-size: $title-size;
+      font-weight: 700;
+      color: $arctic;
+      margin-bottom: 16px;
+      font-family: 'MyFont', sans-serif;
+    }
+    &__description {
+      font-size: $main-size;
+      color: $slopes;
+      min-width: 500px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      font-family: 'MyFont', sans-serif;
+    }
+    &__button {
+      padding: 14px 32px;
+      color: $mount;
+      background: linear-gradient($slopes 0%, $arctic 100%);
+      border: none;
+      border-radius: 8px;
+      font-size: $main-size;
+      font-weight: 600;
+      font-family: 'MyFont', sans-serif;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
 }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 
 @media (max-width: 768px) {
   .project_list {
@@ -93,6 +151,11 @@
       flex-direction: column;
       &__button {
         width: 100%;
+      }
+    }
+    &__empty {
+      &__description {
+        min-width: 100px;
       }
     }
   }

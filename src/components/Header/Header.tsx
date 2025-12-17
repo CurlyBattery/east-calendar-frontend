@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import './_header.scss';
+import {useState} from "react";
 
 import { useAppSelector } from "../../hooks/redux.ts";
 import {
@@ -11,14 +11,16 @@ import {
     PREMIUM_ROUTE
 } from "../../utils/consts.ts";
 import logo from '../../assets/images/cactus.png';
-import {useState} from "react";
 import ProfileModal from "../ProfileModal/ProfileModal.tsx";
+import './_header.scss';
 
 
 const Header = () => {
     const navigate = useNavigate();
     const { isAuth, user } = useAppSelector(state => state.auth);
-    const avatar = user?.avatarPath ? `https://www.east-calendar.ru/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    const viteApi: string = import.meta.env.VITE_API_URL;
+    const url = viteApi.includes('localhost') ? viteApi.replace('/api', '') : viteApi;
+    const avatar = user?.avatarPath ? `${url}/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
     const [openModal, setOpenModal] = useState(false);
 
     const handleClick = () => {
