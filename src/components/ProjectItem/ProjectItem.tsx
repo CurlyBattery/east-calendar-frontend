@@ -11,7 +11,7 @@ interface ProjectItemProps {
 
 const ProjectItem: FC<ProjectItemProps> = ({ project }) => {
     const navigate = useNavigate();
-    const avatar = project?.owner?.avatarPath ? `https://www.east-calendar.ru/${project?.owner?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
+    const avatar = project.owner?.avatarPath ? `${import.meta.env.VITE_API_URL}/${project.owner?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
 
     return (
         <div
