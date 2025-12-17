@@ -11,6 +11,7 @@ import {
     PREMIUM_ROUTE
 } from "../../utils/consts.ts";
 import logo from '../../assets/images/cactus.png';
+import burger from '../../assets/images/burger.png';
 import ProfileModal from "../ProfileModal/ProfileModal.tsx";
 import './_header.scss';
 
@@ -20,17 +21,26 @@ const Header = () => {
     const { isAuth, user } = useAppSelector(state => state.auth);
     const avatar = user?.avatarPath ? `${import.meta.env.VITE_API_URL}/${user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
     const [openModal, setOpenModal] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const handleClick = () => {
         navigate(LOGIN_ROUTE)
-    }
+    };
 
     const handleClickPremium = () => {
         navigate(PREMIUM_ROUTE)
-    }
+    };
 
     const handleClickProfile = () => {
         setOpenModal(true);
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const closeMenu = () => {
+        setMenuOpen(false);
     }
 
     return (
@@ -55,8 +65,67 @@ const Header = () => {
                                 alt="Профиль фото"
                                 onClick={handleClickProfile}
                             />
-                            <ProfileModal visible={openModal} setVisible={setOpenModal} />
                         </div>
+
+                        <button
+                            className={`header__burger ${menuOpen ? 'header__burger--active' : ''}`}
+                            onClick={toggleMenu}
+                            aria-label='Меню'
+                        >
+                            <img src={burger} alt="бургер"/>
+                        </button>
+
+                        <div
+                            className={`header__mobile ${menuOpen ? 'header__mobile--open' : ''}`}
+                        >
+                            <div className='header__mobile__user'>
+                                <img
+                                    className='header__mobile__user__avatar'
+                                    src={avatar}
+                                    alt= "пользователь"
+                                    onClick={() => {
+                                        handleClickProfile();
+                                        closeMenu();
+                                    }}
+                                />
+                                <span className='header__mobile__user__name'>
+                                    {user?.name}
+                                </span>
+                            </div>
+                            <nav className='header__mobile__nav'>
+                                <Link
+                                    to={DASHBOARD_ROUTE}
+                                    onClick={closeMenu}
+                                    className='header__mobile__nav__link'
+                                >Дашборд</Link>
+                                <Link
+                                    to={MY_TASKS_ROUTE}
+                                    onClick={closeMenu}
+                                    className='header__mobile__nav__link'
+                                >Мои задачи</Link>
+                                <Link
+                                    to={ABOUT_ROUTE}
+                                    onClick={closeMenu}
+                                    className='header__mobile__nav__link'
+                                >О нас</Link>
+                                <button
+                                    onClick={() => {
+                                        handleClickPremium();
+                                        closeMenu();
+                                    }}
+                                    className='header__mobile__nav__button'
+                                >
+                                    Premium
+                                </button>
+                            </nav>
+                        </div>
+
+                        {menuOpen && (
+                            <div
+                                className='header__overlay'
+                                onClick={closeMenu}
+                            />
+                        )}
                     </>
                 ) : (
                     <div className='header__profile'>
@@ -66,6 +135,8 @@ const Header = () => {
                         <ProfileModal visible={openModal} setVisible={setOpenModal}/>
                     </div>
                 )}
+
+                <ProfileModal visible={openModal} setVisible={setOpenModal} />
             </div>
         </header>
     );
