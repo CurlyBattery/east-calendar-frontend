@@ -1,6 +1,8 @@
-import { FaRegNewspaper } from "react-icons/fa";
-import { MdOutlineRememberMe } from "react-icons/md";
-import { MdOutlineHighQuality } from "react-icons/md";
+import microscope from '../../assets/images/microscope.png';
+import handshake from '../../assets/images/handshake.png';
+import cup from '../../assets/images/cup.png';
+import aristotel from '../../assets/images/aristotel.png';
+
 import './_about.scss';
 
 const AboutPage = () => {
@@ -21,7 +23,7 @@ const AboutPage = () => {
                 <section className="about__stats about-page__values">
                     <div className="about__stat-card">
                         <div className="about__stat-icon" style={{ color: '#ffffff' }}>
-                            <FaRegNewspaper />
+                            <img src={microscope} alt="микроскоп"/>
                         </div>
                         <div className="about__stat-info">
                             <p className="about__stat-value">Инновации</p>
@@ -31,7 +33,7 @@ const AboutPage = () => {
 
                     <div className="about__stat-card">
                         <div className="about__stat-icon" style={{ color: '#ffffff' }}>
-                            <MdOutlineRememberMe />
+                            <img src={handshake} alt="рукопожатие"/>
                         </div>
                         <div className="about__stat-info">
                             <p className="about__stat-value">Партнёрство</p>
@@ -41,7 +43,7 @@ const AboutPage = () => {
 
                     <div className="about__stat-card">
                         <div className="about__stat-icon" style={{ color: '#ffffff' }}>
-                            <MdOutlineHighQuality />
+                            <img src={cup} alt="кубок"/>
                         </div>
                         <div className="about__stat-info">
                             <p className="about__stat-value">Качество</p>
@@ -72,8 +74,7 @@ const AboutPage = () => {
 
                         <li className="about__item">
                             <div className="about__item-icon">
-                                <div className="about__item-icon-main" style={{ color: '#764ba2' }}>
-                                </div>
+                                    <img className="about__item-icon-main" src={aristotel} alt="аристотель"/>
                                 <span className="about__item-badge">Основатель</span>
                             </div>
                             <div className="about__item-info">

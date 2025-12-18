@@ -11,6 +11,7 @@ import {fetchTasksAction, updateTaskAction} from "../../store/reducers/task/acti
 import './_calendar.scss';
 import {TaskStatus} from "../../types/task.ts";
 import TaskModal from "../TaskModal/TaskModal.tsx";
+import cactus from '../../assets/images/cactus.png';
 
 interface CalendarProps {
     projectId: string
@@ -48,35 +49,40 @@ const Calendar: FC<CalendarProps> = ({ projectId }) => {
 
     return (
         <div className='calendar'>
-            <FullCalendar
-                locale={ruLocale}
-                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                headerToolbar={{
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                }}
-                events={tasks.map(task => {
-                    return {
-                        id: task.id,
-                        title: task.title,
-                        start: task.start,
-                        end: task.end,
-                        color: colors.get(task.status),
-                        textColor: '#FFFFFF'
-                    }
-                })}
-                editable={true}
-                selectable={true}
-                eventResizableFromStart={true}
-                eventClick={handleEventClick}
-                eventDrop={async function (info) {
-                    await update(info)
-                }}
-                eventResize={async function (info) {
-                    await update(info)
-                }}
-            />
+            <div className='calendar__wrapper'>
+                <FullCalendar
+                    locale={ruLocale}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    headerToolbar={{
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    }}
+                    events={tasks.map(task => {
+                        return {
+                            id: task.id,
+                            title: task.title,
+                            start: task.start,
+                            end: task.end,
+                            color: colors.get(task.status),
+                            textColor: '#FFFFFF'
+                        }
+                    })}
+                    editable={true}
+                    selectable={true}
+                    eventResizableFromStart={true}
+                    eventClick={handleEventClick}
+                    eventDrop={async function (info) {
+                        await update(info)
+                    }}
+                    eventResize={async function (info) {
+                        await update(info)
+                    }}
+                />
+            </div>
+            <div className='calendar__image'>
+                <img src={cactus} alt=""/>
+            </div>
             {(openModalOne && selectedTaskId) && (
                 <TaskModal
                     visible={openModalOne}
