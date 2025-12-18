@@ -5,6 +5,9 @@
   flex-direction: row;
   height: calc(100vh - $header-height - $footer-height);
   width: 100%;
+  padding: 20px;
+  gap: 20px;
+
   &__wrapper {
     background: #2d2d2d;
     border-radius: 16px;
@@ -12,19 +15,26 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     color: $arctic;
     transition: box-shadow 0.3s ease;
-    max-width: 50%;
+    width: 50%;
     font-size: $min-size;
     height: 100%;
+    overflow-y: auto;
   }
+
   &__image {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
-  }
+    position: sticky;
+    top: 100px;
+    height: fit-content;
 
-  &:hover {
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
   :global {
@@ -409,23 +419,19 @@
   }
 }
 
-@media (max-width: 968px) {
+// Планшеты
+@media (max-width: 1024px) {
   .calendar {
-    padding: 24px 20px;
+    padding: 16px;
+
+    &__wrapper {
+      padding: 24px;
+    }
 
     :global {
       .fc-toolbar {
-        flex-direction: column;
-        gap: 16px;
-        align-items: stretch;
-
         &-title {
           font-size: 24px;
-          text-align: center;
-        }
-
-        &-chunk {
-          justify-content: center;
         }
       }
 
@@ -439,34 +445,182 @@
 
 @media (max-width: 768px) {
   .calendar {
-    padding: 16px 12px;
-    border-radius: 12px;
-    max-width: 100%;
+    flex-direction: column;
+    height: auto;
+    padding: 16px;
+
+    &__wrapper {
+      width: 100%;
+      padding: 20px;
+      order: 2;
+    }
+
+    &__image {
+      width: 100%;
+      position: static;
+      order: 1;
+      margin-bottom: 24px;
+      padding: 20px;
+
+      img {
+        max-height: 300px;
+      }
+    }
 
     :global {
       .fc-toolbar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+
         &-title {
           font-size: 20px;
+          text-align: center;
+        }
+
+        &-chunk {
+          justify-content: center;
         }
       }
 
       .fc-button {
-        padding: 6px 12px;
+        padding: 8px 12px;
         font-size: 12px;
       }
 
-      .fc-col-header-cell a {
-        font-size: 10px;
+      .fc-col-header-cell {
+        padding: 8px 4px;
+
+        a {
+          font-size: 10px;
+          letter-spacing: 0.5px;
+        }
       }
 
-      .fc-daygrid-day-number {
-        font-size: 12px;
-        padding: 6px;
+      .fc-daygrid-day {
+        &-number {
+          font-size: 12px;
+          padding: 6px;
+        }
+
+        &.fc-day-today {
+          .fc-daygrid-day-number {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+          }
+        }
       }
 
       .fc-event {
         font-size: 11px;
         padding: 2px 6px;
+      }
+
+      .fc-daygrid-event-harness {
+        margin-top: 1px;
+        margin-bottom: 1px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar {
+    padding: 12px;
+
+    &__wrapper {
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    &__image {
+      padding: 12px;
+
+      img {
+        max-height: 200px;
+      }
+    }
+
+    :global {
+      .fc-toolbar {
+        gap: 8px;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+
+        &-title {
+          font-size: 18px;
+        }
+      }
+
+      .fc-button {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      .fc-button-group {
+        .fc-button {
+          padding: 6px 8px;
+        }
+      }
+
+      .fc-col-header-cell {
+        padding: 6px 2px;
+
+        a {
+          font-size: 9px;
+          letter-spacing: 0.3px;
+        }
+      }
+
+      .fc-daygrid-day {
+        &-number {
+          font-size: 11px;
+          padding: 4px;
+        }
+
+        &.fc-day-today {
+          .fc-daygrid-day-number {
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
+          }
+
+          &::after {
+            height: 2px;
+          }
+        }
+      }
+
+      .fc-event {
+        font-size: 10px;
+        padding: 2px 4px;
+        border-radius: 4px;
+
+        &-title {
+          font-size: 10px;
+        }
+      }
+
+      .fc-more-link {
+        font-size: 10px;
+        padding: 2px 6px;
+      }
+
+      .fc-popover {
+        &-header {
+          padding: 8px 12px;
+          font-size: 12px;
+        }
+      }
+
+      .fc-scroller {
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
       }
     }
   }

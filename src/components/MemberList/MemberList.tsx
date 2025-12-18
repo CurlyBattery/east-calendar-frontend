@@ -8,7 +8,7 @@ import MemberItem from "../MemberItem/MemberItem.tsx";
 import './_member_list.scss';
 import {useNavigate} from "react-router-dom";
 import {PREMIUM_ROUTE} from "../../utils/consts.ts";
-import cactus from "../../assets/images/cactus.png";
+import disk3 from '../../assets/images/disk3.png';
 
 interface MemberListProps {
     projectId: string;
@@ -143,7 +143,7 @@ const MemberList: FC<MemberListProps> = ({ projectId }) => {
                 </div>
             </div>
             <div className='member-list__image'>
-                <img src={cactus} alt=""/>
+                <img src={disk3} alt="диск"/>
             </div>
         </div>
     );

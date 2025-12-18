@@ -5,17 +5,29 @@
   flex-direction: row;
   height: calc(100vh - $header-height - $footer-height);
   width: 100%;
+
   &__wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 50%;
+    width: 50%;
+    gap: 20px;
   }
+
   &__image {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
   &__form {
     display: flex;
@@ -116,37 +128,96 @@
     }
   }
 }
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .member-list {
-    &__form {
-      flex-wrap: wrap;
+    padding: 16px;
 
-      &-group {
-        flex: 1 1 calc(50% - 6px);
-        min-width: 200px;
-      }
-
-      button {
-        flex: 1 1 100%;
-      }
+    &__image {
+      padding: 14px;
     }
   }
 }
 
 @media (max-width: 768px) {
   .member-list {
-    max-width: 100%;
+    flex-direction: column;
+    height: auto;
+
+    &__wrapper {
+      max-width: 100%;
+      width: 100%;
+      order: 2;
+    }
+
+    &__image {
+      width: 100%;
+      position: static;
+      order: 1;
+      margin-bottom: 24px;
+      padding: 20px;
+
+      img {
+        max-height: 300px;
+      }
+    }
+
     &__form {
-      padding: 20px 16px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
 
       &-group {
-        flex: 1 1 100%;
+        width: 100%;
       }
 
+      button {
+        width: 100%;
+      }
+    }
+
+    &__container {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .member-list {
+    padding: 12px;
+
+    &__image {
+      padding: 12px;
+
+      img {
+        max-height: 200px;
+      }
+    }
+
+    &__form {
+      padding: 16px 12px;
+
       select {
-        min-width: unset;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      button {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    }
+
+    &__empty {
+      padding: 60px 16px;
+
+      &-title {
+        font-size: 18px;
+      }
+
+      &-description {
+        font-size: 14px;
       }
     }
   }
-
 }
+

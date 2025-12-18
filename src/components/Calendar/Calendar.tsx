@@ -11,7 +11,7 @@ import {fetchTasksAction, updateTaskAction} from "../../store/reducers/task/acti
 import './_calendar.scss';
 import {TaskStatus} from "../../types/task.ts";
 import TaskModal from "../TaskModal/TaskModal.tsx";
-import cactus from '../../assets/images/cactus.png';
+import disk2 from "../../assets/images/disk2.png";
 
 interface CalendarProps {
     projectId: string
@@ -81,7 +81,7 @@ const Calendar: FC<CalendarProps> = ({ projectId }) => {
                 />
             </div>
             <div className='calendar__image'>
-                <img src={cactus} alt=""/>
+                <img src={disk2} alt="диск"/>
             </div>
             {(openModalOne && selectedTaskId) && (
                 <TaskModal

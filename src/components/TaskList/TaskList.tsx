@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import TaskItem from "../TaskItem/TaskItem.tsx";
 import './_task.scss';
 import CreateTaskModal from "../CreateTaskModal/CreateTaskModal.tsx";
-import cactus from '../../assets/images/cactus.png';
+import disk1 from '../../assets/images/disk1.png';
 
 interface TaskListProps {
     projectId: string;
@@ -72,7 +72,7 @@ const TaskList: FC<TaskListProps> = ({ projectId }) => {
                 </div>
             </div>
             <div className='task__image'>
-                <img src={cactus} alt=""/>
+                <img src={disk1} alt="диск"/>
             </div>
             <CreateTaskModal visible={openModalCreate} setVisible={setOpenModalCreate} projectId={projectId}/>
         </div>
