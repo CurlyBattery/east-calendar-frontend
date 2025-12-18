@@ -1,4 +1,6 @@
 import './_footer.scss';
+import {Link} from "react-router-dom";
+import {DETAILS_ROUTE} from "../../utils/consts.ts";
 
 const Footer = () => {
     return (
@@ -10,7 +12,7 @@ const Footer = () => {
                 </div>
                 <ul className='footer__container__links'>
                     <li><a href="#">Конфиденциальность</a></li>
-                    <li><a href="#">Условия использования</a></li>
+                    <li><Link to={DETAILS_ROUTE}>Реквизиты</Link></li>
                     <li><a href="#">Cookies</a></li>
                 </ul>
             </div>

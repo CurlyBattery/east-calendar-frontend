@@ -10,3 +10,4 @@ export const SCAN_ROUTE = '/scan/:sessionId';
 export const MY_TASKS_ROUTE = '/tasks/my';
 export const ABOUT_ROUTE = '/about';
 export const PROFILE_ROUTE = '/profile';
+export const DETAILS_ROUTE = '/details';

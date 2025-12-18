@@ -5,7 +5,7 @@ import {
     ABOUT_ROUTE,
     ALL_DEVICES_ROUTE,
     CREATE_PROJECT_ROUTE,
-    DASHBOARD_ROUTE,
+    DASHBOARD_ROUTE, DETAILS_ROUTE,
     EAST_ROUTE,
     LOGIN_ROUTE, MY_TASKS_ROUTE,
     ONE_PROJECT_ROUTE, PREMIUM_ROUTE, PROFILE_ROUTE,
@@ -26,6 +26,7 @@ import ScanPage from "../pages/ScanPage/ScanPage.tsx";
 import MyTasksPage from "../pages/MyTasks/MyTasksPage.tsx";
 import AboutPage from "../pages/AboutPage/AboutPage.tsx";
 import MyProfilePage from "../pages/MyProfilePage/MyProfilePage.tsx";
+import DetailsPage from "../pages/DetailsPage/DetailsPage.tsx";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: LOGIN_ROUTE,
                 element: <LoginPage />
+            },
+            {
+                path: DETAILS_ROUTE,
+                element: <DetailsPage />
             },
             {
                 path: DASHBOARD_ROUTE,
