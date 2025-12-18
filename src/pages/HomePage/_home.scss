@@ -326,6 +326,7 @@
 
       &__right {
         width: 100%;
+        padding: 2em 1em;
       }
     }
 
@@ -355,6 +356,7 @@
     }
 
     &__glass {
+      padding: 2em 1em;
       &__table {
         transform: perspective(1000px) rotateY(0deg);
         font-size: $min-size;

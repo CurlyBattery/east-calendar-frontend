@@ -128,26 +128,35 @@ const Header = () => {
 
                     </>
                 ) : (
-                    <div
-                        className={`header__mobile ${menuOpen ? 'header__mobile--open' : ''}`}
-                    >
-                        <nav className='header__mobile__nav'>
-                            <Link
-                                to={LOGIN_ROUTE}
-                                onClick={closeMenu}
-                                className='header__mobile__nav__link'
-                            >Войти</Link>
-                            <button
-                                onClick={() => {
-                                    handleClickPremium();
-                                    closeMenu();
-                                }}
-                                className='header__mobile__nav__button'
-                            >
-                                Premium
+                    <>
+                        <div
+                            className={`header__mobile ${menuOpen ? 'header__mobile--open' : ''}`}
+                        >
+                            <nav className='header__mobile__nav'>
+                                <Link
+                                    to={LOGIN_ROUTE}
+                                    onClick={closeMenu}
+                                    className='header__mobile__nav__link'
+                                >Войти</Link>
+                                <button
+                                    onClick={() => {
+                                        handleClickPremium();
+                                        closeMenu();
+                                    }}
+                                    className='header__mobile__nav__button'
+                                >
+                                    Premium
+                                </button>
+                            </nav>
+                        </div>
+                        <div className='header__profile'>
+                            <button className='header__profile__button' onClick={handleClick}>Войти</button>
+                            <button className='header__profile__button' type='button'
+                                    onClick={handleClickPremium}>Premium
                             </button>
-                        </nav>
-                    </div>
+                        </div>
+                    </>
+
                 )}
                 {menuOpen && (
                     <div
