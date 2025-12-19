@@ -7,6 +7,7 @@ import './_task_modal.scss';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {updateTaskAction} from "../../store/reducers/task/action-creators.ts";
 import {PlanUser} from "../../types/user.ts";
+import {format} from "date-fns";
 
 interface TaskModalProps {
     visible: boolean;
@@ -103,7 +104,7 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                     )}
                     <div className='one-task__detail'>
                         <h4>Дедлайн</h4>
-                        <p>{task?.end.toString()}</p>
+                        {task?.end && <p>{format(task?.end as Date, "yyyy-MM-dd")}</p>}
                     </div>
 
                 </div>

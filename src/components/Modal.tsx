@@ -74,9 +74,10 @@ const Modal: FC<ModalProps> = ({
             overflow: 'hidden',
         };
 
-    return createPortal(
-        <>
-            <style>{`
+   if(visible)  {
+       return createPortal(
+           <>
+               <style>{`
                 @keyframes slideInFromTop {
                     from {
                         opacity: 0;
@@ -88,20 +89,22 @@ const Modal: FC<ModalProps> = ({
                     }
                 }
             `}</style>
-            <div
-                style={overlayStyle}
-                onClick={handleClose}
-            >
-                <div
-                    style={contentStyle}
-                    onClick={handleContentClick}
-                >
-                    {children}
-                </div>
-            </div>
-        </>,
-        modalRoot
-    );
+               <div
+                   style={overlayStyle}
+                   onClick={handleClose}
+               >
+                   <div
+                       style={contentStyle}
+                       onClick={handleContentClick}
+                   >
+                       {children}
+                   </div>
+               </div>
+           </>,
+           modalRoot
+       )
+   }
+    return null;
 };
 
 export default Modal;

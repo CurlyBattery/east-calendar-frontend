@@ -40,6 +40,20 @@ export const memberSlice = createSlice({
         addMemberError: (state, action: PayloadAction<string>) => {
             state.isLoading = false;
             state.error = action.payload;
+        },
+        removeMemberStart: (state) => {
+            state.isLoading = true;
+        },
+        removeMemberSuccess: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = '';
+            const memberId = action.payload;
+            const index = state.members.findIndex(member => member.id === memberId);
+            state.members.splice(index, 1);
+        },
+        removeMemberError: (state, action: PayloadAction<string>) => {
+            state.isLoading = false;
+            state.error = action.payload;
         }
     }
 });

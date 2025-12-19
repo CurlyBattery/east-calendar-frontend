@@ -1,15 +1,18 @@
-import type {FC} from "react";
+import React, {type FC} from "react";
 
 import type {IMember} from "../../types/member.ts";
 import {PlanUser} from "../../types/user.ts";
 import {RoleMember} from "../../types/member.ts";
 import './_member_item.scss';
+import {useAppDispatch} from "../../hooks/redux.ts";
+import {addMemberAction, removeMemberAction} from "../../store/reducers/member/action-creators.ts";
 
 interface MemberItemProps {
     member: IMember;
 }
 
 const MemberItem: FC<MemberItemProps> = ({ member }) => {
+    const dispatch = useAppDispatch();
     const avatar = member?.user?.avatarPath ? `${import.meta.env.VITE_API_URL}/${member?.user?.avatarPath}` : 'https://i.pinimg.com/736x/61/8e/b9/618eb95d5194903a7ab2a6641f152bd0.jpg'
 
     const getRoleClass = (role: RoleMember) => {
@@ -44,6 +47,11 @@ const MemberItem: FC<MemberItemProps> = ({ member }) => {
         }
     };
 
+    const handleDelete = (e: React.FormEvent) => {
+        e.preventDefault();
+        dispatch(removeMemberAction(member?.user?.id!, member.projectId));
+    }
+
     return (
         <div className='member-item'>
             <div className='member-item__info'>
@@ -67,10 +75,15 @@ const MemberItem: FC<MemberItemProps> = ({ member }) => {
                 </span>
             </div>
 
-            {/* <div className='member-item__actions'>
-                <button>Изменить</button>
-                <button className='delete'>Удалить</button>
-            </div> */}
+            <form
+                className='member-item__actions'
+                onSubmit={handleDelete}
+            >
+                <button
+                    className='delete'
+                    type='submit'
+                >Удалить</button>
+            </form>
         </div>
     );
 };
