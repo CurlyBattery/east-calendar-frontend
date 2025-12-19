@@ -49,6 +49,8 @@ export const taskSlice = createSlice({
             state.error = '';
             const updatedTask = action.payload;
             const index = state.tasks.findIndex(task => task.id === updatedTask.id);
+            console.log(index);
+            console.log(updatedTask);
             console.log(index)
             if (index !== -1) {
                 state.tasks[index] = updatedTask;

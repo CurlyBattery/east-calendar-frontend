@@ -1,6 +1,7 @@
 import React, {type FC, type ReactNode} from "react";
+import {createPortal} from "react-dom";
 
-
+const modalRoot = document.getElementById("modal-root")!;
 interface ModalProps {
     children: ReactNode;
     visible: boolean;
@@ -28,7 +29,6 @@ const Modal: FC<ModalProps> = ({
         e.stopPropagation();
     }
 
-    // Стили в зависимости от позиции
     const overlayStyle: React.CSSProperties = position === 'top-right'
         ? {
             position: 'fixed',
@@ -37,7 +37,6 @@ const Modal: FC<ModalProps> = ({
             top: 0,
             left: 0,
             zIndex: 1000,
-            // Убираем фон и blur для top-right
         }
         : {
             position: 'fixed',
@@ -56,7 +55,7 @@ const Modal: FC<ModalProps> = ({
     const contentStyle: React.CSSProperties = position === 'top-right'
         ? {
             position: 'absolute',
-            top: '70px', // Под хедером (высота хедера + отступ)
+            top: '70px',
             right: '20px',
             background: '#2d2d2d',
             width: typeof width === 'number' ? `${width}px` : width || '320px',
@@ -75,7 +74,7 @@ const Modal: FC<ModalProps> = ({
             overflow: 'hidden',
         };
 
-    return (
+    return createPortal(
         <>
             <style>{`
                 @keyframes slideInFromTop {
@@ -100,7 +99,8 @@ const Modal: FC<ModalProps> = ({
                     {children}
                 </div>
             </div>
-        </>
+        </>,
+        modalRoot
     );
 };
 

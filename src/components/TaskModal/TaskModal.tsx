@@ -4,8 +4,9 @@ import Modal from "../Modal.tsx";
 import {type ITask, TaskStatus} from "../../types/task.ts";
 import {getOneTask} from "../../http/task.api.ts";
 import './_task_modal.scss';
-import {useAppDispatch} from "../../hooks/redux.ts";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {updateTaskAction} from "../../store/reducers/task/action-creators.ts";
+import {PlanUser} from "../../types/user.ts";
 
 interface TaskModalProps {
     visible: boolean;
@@ -15,9 +16,11 @@ interface TaskModalProps {
 
 const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
     const dispatch = useAppDispatch();
-
+    const { members } = useAppSelector(state => state.member);
+    const { user } = useAppSelector(state => state.auth);
     const [task, setTask] = useState<ITask | null>(null);
     const [selectedStatus, setSelectedStatus] = useState<TaskStatus | null>(null);
+    const [ selectedMemberId, setSelectedMemberId ] = useState('');
 
     async function fetchTask() {
         try {
@@ -25,6 +28,7 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                 const data = await getOneTask(taskId);
                 setTask(data);
                 setSelectedStatus(data?.status as TaskStatus);
+                setSelectedMemberId(data?.assigneeId as string);
             }
         } catch (e) {
             console.log(e)
@@ -35,13 +39,18 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
         (async () => {
             await fetchTask();
         })()
-    }, []);
+    }, [selectedMemberId, selectedStatus]);
 
-
-
-    const handleSelectPriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
+        setSelectedStatus(e.target.value as TaskStatus);
         dispatch(updateTaskAction(taskId, {status: e.target.value as TaskStatus}));
+    }
+
+    const handleSelectMemberIdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        e.preventDefault();
+        setSelectedMemberId(e.target.value as string);
+        dispatch(updateTaskAction(taskId, {assigneeId: e.target.value as string}));
     }
 
     return (
@@ -65,7 +74,7 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                         <select
                             className='create-task-modal__input'
                             value={selectedStatus as TaskStatus}
-                            onChange={handleSelectPriorityChange}
+                            onChange={handleSelectStatusChange}
                         >
                             <option key={TaskStatus.TODO} value={TaskStatus.TODO}>Новая</option>
                             <option key={TaskStatus.CHECKING} value={TaskStatus.CHECKING}>На проверке</option>
@@ -74,6 +83,24 @@ const TaskModal: FC<TaskModalProps> = ({ visible, setVisible, taskId }) => {
                         </select>
 
                     </div>
+                    {user?.plan?.subscriptionPlan === PlanUser.PRO && (
+                        <div className='one-task__detail'>
+                            <h4>Исполнитель</h4>
+                            <select
+                                id="member"
+                                className='create-task-modal__input'
+                                value={selectedMemberId}
+                                onChange={handleSelectMemberIdChange}
+                            >
+                                <option value="">(Выбрать)</option>
+                                {members.map(member => (
+                                    <option key={member?.user?.id} value={member?.user?.id}>
+                                        {member?.user?.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
                     <div className='one-task__detail'>
                         <h4>Дедлайн</h4>
                         <p>{task?.end.toString()}</p>

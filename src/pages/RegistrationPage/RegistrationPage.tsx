@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {registerAction} from "../../store/reducers/auth/action-creators.ts";
@@ -19,6 +19,7 @@ const RegistrationPage = () => {
 
     const [passwordStrength, setPasswordStrength] = useState(0);
     const [passwordHint, setPasswordHint] = useState('Минимум 8 символов');
+    const [passwordMatch, setPasswordMatch] = useState<boolean | null>(null);
 
     const checkPasswordStrength = useCallback((pass: string) => {
         if (pass.length === 0) {
@@ -90,6 +91,15 @@ const RegistrationPage = () => {
             passwordStrength === 2 ? '#ffd93d' :
                 passwordStrength === 3 ? '#6bcf7f' : '#808080';
 
+    useEffect(() => {
+        if(!confirmPassword) {
+            setPasswordMatch(null);
+            return;
+        }
+
+        setPasswordMatch(password === confirmPassword);
+    }, [password, confirmPassword]);
+
     return (
         <div className='registration'>
             <div className='registration__container'>
@@ -138,6 +148,18 @@ const RegistrationPage = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="••••••••"
                         />
+
+                        {passwordMatch === false && (
+                            <div style={{ color: '#ff6b6b', fontSize: 14, marginTop: 6 }}>
+                                Пароли не совпадают
+                            </div>
+                        )}
+
+                        {passwordMatch === true && (
+                            <div style={{ color: '#6bcf7f', fontSize: 14, marginTop: 6 }}>
+                                Пароли совпадают ✓
+                            </div>
+                        )}
                     </div>
                     <div className='registration__container__form__group'>
                         <label htmlFor='avatar'>Аватар</label>

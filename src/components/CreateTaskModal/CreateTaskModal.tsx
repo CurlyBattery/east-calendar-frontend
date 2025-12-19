@@ -120,7 +120,6 @@ const CreateTaskModal: FC<CreateTaskProps> = ({ visible, setVisible, projectId }
 
 
                 <div className='create-task-modal__selects-group'>
-                    {/* Выбор приоритета */}
                     <div className='create-task-modal__form-group'>
                         <label htmlFor="priority">Приоритет</label>
                         <select
