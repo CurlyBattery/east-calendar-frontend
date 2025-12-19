@@ -62,7 +62,7 @@ const HomePage = () => {
                     <tr className='home__glass__table__row'>
                         <td>Pro</td>
                         <td>Для команд — планируйте совместные проекты</td>
-                        <td>499₽</td>
+                        <td>11₽</td>
                     </tr>
                     <tr className='home__glass__table__row'>
                         <td>Business</td>

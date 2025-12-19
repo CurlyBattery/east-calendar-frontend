@@ -99,7 +99,7 @@ const PremiumPage = () => {
                                 </div>
 
                                 <div className='premium__selection__plans__card__price'>
-                                    <div className='premium__selection__plans__card__price__amount'>499<span>₽</span>
+                                    <div className='premium__selection__plans__card__price__amount'>11<span>₽</span>
                                     </div>
                                     <div className='premium__selection__plans__card__price__period'>в месяц</div>
                                 </div>
